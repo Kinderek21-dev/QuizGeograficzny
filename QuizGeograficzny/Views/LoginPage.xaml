@@ -3,11 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QuizGeograficzny.Views.LoginPage"
              Title="LoginPage">
-    <VerticalStackLayout>
+
+    <VerticalStackLayout
+        VerticalOptions="Center"
+        HorizontalOptions="Center"
+        Spacing="20">
+
         <Label 
-       Text="To jest ekran logowania" 
-       VerticalOptions="Center" 
-       HorizontalOptions="Center" />
+            Text="To jest ekran logowania" 
+            FontSize="28"
+            HorizontalOptions="Center" />
+
+        <Button
+            Text="Zaloguj odciskiem palca"
+            Clicked="OnLoginClicked"
+            BackgroundColor="Black"
+            TextColor="White"
+            CornerRadius="15"
+            WidthRequest="250"
+            HeightRequest="60" />
     </VerticalStackLayout>
+
 </ContentPage>
-    

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Shell
-    x:Class="QuizGeograficzny.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:QuizGeograficzny"
+    xmlns:views="clr-namespace:QuizGeograficzny.Views"
+    x:Class="QuizGeograficzny.AppShell"
     Title="QuizGeograficzny">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <ShellContent Route="login" ContentTemplate="{DataTemplate views:LoginPage}" />
+    <ShellContent Route="difficulty" ContentTemplate="{DataTemplate views:DifficultyPage}" />
+    <ShellContent Route="quiz" ContentTemplate="{DataTemplate views:QuizPage}" />
+    <ShellContent Route="result" ContentTemplate="{DataTemplate views:ResultPage}" />
+    <ShellContent Route="scoreboard" ContentTemplate="{DataTemplate views:ScoreboardPage}" />
 
 </Shell>
