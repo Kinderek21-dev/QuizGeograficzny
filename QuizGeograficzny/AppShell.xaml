@@ -3,13 +3,12 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:QuizGeograficzny.Views"
-    x:Class="QuizGeograficzny.AppShell"
-    Title="QuizGeograficzny">
+    x:Class="QuizGeograficzny.AppShell">
 
+    <ShellContent Route="splash" ContentTemplate="{DataTemplate views:SplashPage}" />
     <ShellContent Route="login" ContentTemplate="{DataTemplate views:LoginPage}" />
     <ShellContent Route="difficulty" ContentTemplate="{DataTemplate views:DifficultyPage}" />
     <ShellContent Route="quiz" ContentTemplate="{DataTemplate views:QuizPage}" />
     <ShellContent Route="result" ContentTemplate="{DataTemplate views:ResultPage}" />
     <ShellContent Route="scoreboard" ContentTemplate="{DataTemplate views:ScoreboardPage}" />
-
 </Shell>
