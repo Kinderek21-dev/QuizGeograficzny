@@ -1,0 +1,276 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "questionText": "Stolicą Francji jest:",
+      "answers": ["Paryż", "Berlin", "Madryt", "Rzym"],
+      "correctAnswerIndex": 0,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 2,
+      "questionText": "Najdłuższa rzeka w Polsce to:",
+      "answers": ["Wisła", "Odra", "Warta", "San"],
+      "correctAnswerIndex": 0,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 3,
+      "questionText": "Który kontynent ma najwięcej państw?",
+      "answers": ["Azja", "Afryka", "Europa", "Ameryka Południowa"],
+      "correctAnswerIndex": 1,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 4,
+      "questionText": "Która flaga należy do Japonii?",
+      "answers": [ "A", "B", "C", "D" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "trudny",
+      "imageUrl": "https://example.com/images/japan_flag.png"
+    },
+      {
+        "id": 5,
+        "questionText": "Stolicą Francji jest:",
+        "answers": [ "Lyon", "Paryż", "Marsylia", "Nicea" ],
+        "correctAnswerIndex": 1,
+        "difficulty": "łatwy",
+        "imageUrl": null
+      },
+      {
+        "id": 6,
+        "questionText": "Największy kontynent na Ziemi to:",
+        "answers": [ "Afryka", "Azja", "Ameryka Północna", "Europa" ],
+        "correctAnswerIndex": 1,
+        "difficulty": "łatwy",
+        "imageUrl": null
+      },
+      {
+        "id": 7,
+        "questionText": "Największe jezioro w Polsce to:",
+        "answers": [ "Śniardwy", "Hańcza", "Mamry", "Niegocin" ],
+        "correctAnswerIndex": 0,
+        "difficulty": "łatwy",
+        "imageUrl": null
+      },
+      {
+        "id": 8,
+        "questionText": "Które z tych państw nie ma dostępu do morza?",
+        "answers": [ "Hiszpania", "Polska", "Szwajcaria", "Grecja" ],
+        "correctAnswerIndex": 2,
+        "difficulty": "łatwy",
+        "imageUrl": null
+      },
+      {
+        "id": 9,
+        "questionText": "Na jakim kontynencie leży Egipt?",
+        "answers": [ "Azja", "Afryka", "Europa", "Ameryka Południowa" ],
+        "correctAnswerIndex": 1,
+        "difficulty": "łatwy",
+        "imageUrl": null
+      },
+      {
+        "id": 10,
+        "questionText": "Które morze leży na północy Polski?",
+        "answers": [ "Bałtyckie", "Północne", "Czarne", "Śródziemne" ],
+        "correctAnswerIndex": 0,
+        "difficulty": "łatwy",
+        "imageUrl": null
+      },
+      {
+        "id": 11,
+        "questionText": "Najwyższy szczyt w Polsce to:",
+        "answers": [ "Śnieżka", "Rysy", "Kasprowy Wierch", "Giewont" ],
+        "correctAnswerIndex": 1,
+        "difficulty": "łatwy",
+        "imageUrl": null
+      },
+      {
+        "id": 12,
+        "questionText": "Jakie państwo leży na Półwyspie Apenińskim?",
+        "answers": [ "Hiszpania", "Włochy", "Portugalia", "Francja" ],
+        "correctAnswerIndex": 1,
+        "difficulty": "łatwy",
+        "imageUrl": null
+      },
+      {
+        "id": 13,
+        "questionText": "Jakie jest największe państwo świata pod względem powierzchni?",
+        "answers": [ "Kanada", "Chiny", "Rosja", "Stany Zjednoczone" ],
+        "correctAnswerIndex": 2,
+        "difficulty": "łatwy",
+        "imageUrl": null
+      },
+    {
+      "id": 14,
+      "questionText": "Jakie miasto jest stolicą Japonii?",
+      "answers": [ "Osaka", "Tokio", "Kioto", "Hiroshima" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    }
+      {
+        "id": 15,
+        "questionText": "Która pustynia jest największa na świecie?",
+        "answers": [ "Sahara", "Gobi", "Kalahari", "Atakama" ],
+        "correctAnswerIndex": 0,
+        "difficulty": "średni",
+        "imageUrl": null
+      },
+      {
+        "id": 16,
+        "questionText": "W jakim kraju znajduje się góra Mount Everest?",
+        "answers": [ "Indie", "Nepal", "Pakistan", "Chiny" ],
+        "correctAnswerIndex": 1,
+        "difficulty": "średni",
+        "imageUrl": null
+      },
+      {
+        "id": 17,
+        "questionText": "Jakie państwo ma największą liczbę ludności na świecie?",
+        "answers": [ "Indie", "Chiny", "Stany Zjednoczone", "Indonezja" ],
+        "correctAnswerIndex": 0,
+        "difficulty": "średni",
+        "imageUrl": null
+      },
+      {
+        "id": 18,
+        "questionText": "Które z wymienionych mórz jest jeziorem słonym?",
+        "answers": [ "Morze Kaspijskie", "Morze Czarne", "Morze Bałtyckie", "Morze Adriatyckie" ],
+        "correctAnswerIndex": 0,
+        "difficulty": "średni",
+        "imageUrl": null
+      },
+      {
+        "id": 19,
+        "questionText": "Jakie państwo ma kształt przypominający but?",
+        "answers": [ "Hiszpania", "Włochy", "Grecja", "Francja" ],
+        "correctAnswerIndex": 1,
+        "difficulty": "średni",
+        "imageUrl": null
+      },
+      {
+        "id": 20,
+        "questionText": "Która rzeka przepływa przez Kair?",
+        "answers": [ "Nil", "Tygrys", "Eufrat", "Jordan" ],
+        "correctAnswerIndex": 0,
+        "difficulty": "średni",
+        "imageUrl": null
+      },
+      {
+        "id": 21,
+        "questionText": "Jakie państwo ma największą liczbę wysp na świecie?",
+        "answers": [ "Indonezja", "Szwecja", "Filipiny", "Norwegia" ],
+        "correctAnswerIndex": 1,
+        "difficulty": "średni",
+        "imageUrl": null
+      },
+      {
+        "id": 22,
+        "questionText": "Jakie miasto jest stolicą Australii?",
+        "answers": [ "Sydney", "Melbourne", "Canberra", "Perth" ],
+        "correctAnswerIndex": 2,
+        "difficulty": "średni",
+        "imageUrl": null
+      },
+      {
+        "id": 23,
+        "questionText": "W jakiej strefie klimatycznej leży większość Sahary?",
+        "answers": [ "Równikowej", "Umiarkowanej", "Zwrotnikowej", "Subarktycznej" ],
+        "correctAnswerIndex": 2,
+        "difficulty": "średni",
+        "imageUrl": null
+      },
+    {
+      "id": 24,
+      "questionText": "Które z poniższych miast leży najbliżej koła podbiegunowego północnego?",
+      "answers": [ "Sztokholm", "Oslo", "Helsinki", "Reykjavik" ],
+      "correctAnswerIndex": 3,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+      {
+        "id": 25,
+        "questionText": "Najwyższy szczyt w Europie to:",
+        "answers": [ "Mont Blanc", "Elbrus", "Matterhorn", "Dufourspitze" ],
+        "correctAnswerIndex": 1,
+        "difficulty": "trudny",
+        "imageUrl": null
+      },
+      {
+        "id": 26,
+        "questionText": "Które z tych państw leży w Ameryce Południowej?",
+        "answers": [ "Gwatemala", "Panama", "Ekwador", "Honduras" ],
+        "correctAnswerIndex": 2,
+        "difficulty": "trudny",
+        "imageUrl": null
+      },
+      {
+        "id": 27,
+        "questionText": "W jakim kraju znajduje się miasto Casablanca?",
+        "answers": [ "Tunezja", "Egipt", "Maroko", "Algieria" ],
+        "correctAnswerIndex": 2,
+        "difficulty": "trudny",
+        "imageUrl": null
+      },
+      {
+        "id": 28,
+        "questionText": "Jakie miasto jest stolicą Kanady?",
+        "answers": [ "Toronto", "Vancouver", "Ottawa", "Montreal" ],
+        "correctAnswerIndex": 2,
+        "difficulty": "trudny",
+        "imageUrl": null
+      },
+      {
+        "id": 29,
+        "questionText": "Przez jakie państwo przepływa rzeka Dunaj?",
+        "answers": [ "Francja", "Niemcy", "Polska", "Hiszpania" ],
+        "correctAnswerIndex": 1,
+        "difficulty": "trudny",
+        "imageUrl": null
+      },
+      {
+        "id": 30,
+        "questionText": "Jakie miasto jest stolicą Szwajcarii?",
+        "answers": [ "Zurych", "Genewa", "Berno", "Bazylea" ],
+        "correctAnswerIndex": 2,
+        "difficulty": "trudny",
+        "imageUrl": null
+      },
+      {
+        "id": 31,
+        "questionText": "Na jakim kontynencie leży Kazachstan?",
+        "answers": [ "Azja", "Europa", "Afryka", "Ameryka Południowa" ],
+        "correctAnswerIndex": 0,
+        "difficulty": "trudny",
+        "imageUrl": null
+      },
+      {
+        "id": 32,
+        "questionText": "Który kraj słynie z fiordów?",
+        "answers": [ "Szwecja", "Finlandia", "Norwegia", "Islandia" ],
+        "correctAnswerIndex": 2,
+        "difficulty": "trudny",
+        "imageUrl": null
+      },
+      {
+        "id": 33,
+        "questionText": "W jakim oceanie leżą Wyspy Kanaryjskie?",
+        "answers": [ "Atlantyckim", "Indyjskim", "Spokojnym", "Arktycznym" ],
+        "correctAnswerIndex": 0,
+        "difficulty": "trudny",
+        "imageUrl": null
+      },
+      {
+        "id": 34,
+        "questionText": "Które państwo jest największe powierzchniowo w Afryce?",
+        "answers": [ "Egipt", "Algieria", "Sudan", "Libia" ],
+        "correctAnswerIndex": 1,
+        "difficulty": "trudny",
+        "imageUrl": null
+      }
+  ]
+}
