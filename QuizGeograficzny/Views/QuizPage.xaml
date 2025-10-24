@@ -1,32 +1,37 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="QuizGeograficzny.Views.QuizPage"
-             Title="Quiz">
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="QuizGeograficzny.Views.QuizPage"
+    Title="Quiz">
 
-        <VerticalStackLayout
-            x:Name="QuizLayout"
-            Padding="20"
-            Spacing="15"
-            VerticalOptions="Center">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
 
-        <Label 
-            Text="Pytanie 1 z 10"
-            FontSize="20"
-            HorizontalOptions="Center" />
+            <Label x:Name="ProgressLabel"
+                   FontSize="16"
+                   HorizontalOptions="Center"
+                   Text="Pytanie 1 / 10" />
 
-        <Label 
-            x:Name="QuestionText"
-            Text="Tutaj pojawi się treść pytania"
-            FontSize="24"
-            HorizontalOptions="Center"
-            TextColor="Black"
-            Margin="0,10,0,30" />
+            <Label x:Name="QuestionLabel"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   Text="Tutaj pojawi się pytanie"
+                   Margin="0,10,0,10"/>
 
-        <Button Text="A" Clicked="OnAnswerClicked" />
-        <Button Text="B" Clicked="OnAnswerClicked" />
-        <Button Text="C" Clicked="OnAnswerClicked" />
-        <Button Text="D" Clicked="OnAnswerClicked" />
 
-    </VerticalStackLayout>
+            <Image x:Name="QuestionImage"
+                   HeightRequest="150"
+                   Aspect="AspectFit"
+                   IsVisible="False"/>
+
+            <Button x:Name="AnswerButton1" Clicked="OnAnswerClicked" />
+            <Button x:Name="AnswerButton2" Clicked="OnAnswerClicked" />
+            <Button x:Name="AnswerButton3" Clicked="OnAnswerClicked" />
+            <Button x:Name="AnswerButton4" Clicked="OnAnswerClicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

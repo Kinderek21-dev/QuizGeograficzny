@@ -9,7 +9,8 @@ public partial class DifficultyPage : ContentPage
 
     private async void GoToQuiz(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("///quiz");
-
+        var btn = sender as Button;
+        var difficulty = btn?.Text ?? "³atwy";
+        await Shell.Current.GoToAsync($"///quiz?difficulty={Uri.EscapeDataString(difficulty)}");
     }
 }

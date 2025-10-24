@@ -4,12 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuizGeograficzny.Models;
-
-public class Question
+namespace QuizGeograficzny.Models
 {
-    public string QuestionText { get; set; } = string.Empty;
-    public string[] Answers { get; set; } = Array.Empty<string>();
-    public int CorrectAnswerIndex { get; set; }   
-    public string Difficulty { get; set; } = "łatwy"; 
+    public class Question
+    {
+        public int Id { get; set; }
+        public string QuestionText { get; set; } = string.Empty;
+        public string[] Answers { get; set; } = Array.Empty<string>();
+        public int CorrectAnswerIndex { get; set; }
+        public string Difficulty { get; set; } = string.Empty;
+        public string? ImageUrl { get; set; }
+    }
 }
