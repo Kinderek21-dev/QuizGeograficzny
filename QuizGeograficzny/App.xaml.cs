@@ -5,11 +5,12 @@
         public App()
         {
             InitializeComponent();
-        }
-
-        protected override Window CreateWindow(IActivationState? activationState)
-        {
-            return new Window(new AppShell());
+            MainPage = new AppShell();
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                await Task.Delay(100); 
+                await Shell.Current.GoToAsync("///splash");
+            });
         }
     }
 }

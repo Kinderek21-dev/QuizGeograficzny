@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.Runtime;
+using Plugin.Fingerprint;
 
 namespace QuizGeograficzny
 {
@@ -12,5 +13,12 @@ namespace QuizGeograficzny
         }
 
         protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
+
+        public override void OnCreate()
+        {
+            base.OnCreate();
+           
+            CrossFingerprint.SetCurrentActivityResolver(() => Platform.CurrentActivity);
+        }
     }
 }

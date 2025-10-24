@@ -10,9 +10,10 @@
         Spacing="20">
 
         <Label 
-            Text="To jest ekran logowania" 
+            Text="QuizGeograficzny" 
             FontSize="28"
-            HorizontalOptions="Center" />
+            HorizontalOptions="Center" 
+            />
 
         <Button
             Text="Zaloguj odciskiem palca"
