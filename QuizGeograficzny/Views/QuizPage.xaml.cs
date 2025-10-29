@@ -14,7 +14,6 @@ public partial class QuizPage : ContentPage
     private int _score = 0;
     private string _difficulty = "≥atwy";
 
-
     private bool _canAdvanceByShake = false;
     private double _shakeThreshold = 2.2;
     private DateTime _lastShakeTime = DateTime.MinValue;
@@ -38,28 +37,45 @@ public partial class QuizPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        try
+
+        if (Accelerometer.Default.IsSupported)
         {
-            Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
-            if (!Accelerometer.IsMonitoring)
-                Accelerometer.Start(SensorSpeed.UI);
+            try
+            {
+                Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
+
+                if (!Accelerometer.IsMonitoring)
+                    Accelerometer.Start(SensorSpeed.UI);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"B≥πd akcelerometru: {ex.Message}");
+            }
         }
-        catch
+        else
         {
-          
+            Console.WriteLine("Akcelerometr nie jest dostÍpny na tym urzπdzeniu.");
         }
     }
 
     protected override void OnDisappearing()
     {
         base.OnDisappearing();
-        try
+
+        if (Accelerometer.Default.IsSupported)
         {
-            Accelerometer.ReadingChanged -= Accelerometer_ReadingChanged;
-            if (Accelerometer.IsMonitoring)
-                Accelerometer.Stop();
+            try
+            {
+                Accelerometer.ReadingChanged -= Accelerometer_ReadingChanged;
+
+                if (Accelerometer.IsMonitoring)
+                    Accelerometer.Stop();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"B≥πd zatrzymania akcelerometru: {ex.Message}");
+            }
         }
-        catch { }
     }
 
     private void Accelerometer_ReadingChanged(object sender, AccelerometerChangedEventArgs e)
@@ -118,13 +134,10 @@ public partial class QuizPage : ContentPage
             _questions = list;
         }
 
-      
         _questions = TakeRandom(_questions, 10);
-
         _currentIndex = 0;
         _score = 0;
     }
-
 
     private static List<T> TakeRandom<T>(List<T> source, int count)
     {
@@ -140,7 +153,6 @@ public partial class QuizPage : ContentPage
 
     private void DisplayQuestion()
     {
-
         AnswerButton1.IsEnabled = AnswerButton2.IsEnabled = AnswerButton3.IsEnabled = AnswerButton4.IsEnabled = true;
         _canAdvanceByShake = false;
 
@@ -227,22 +239,13 @@ public partial class QuizPage : ContentPage
                 await DisplayAlert("èle", "0 pkt", "OK");
         }
 
-      
         _canAdvanceByShake = true;
         ProgressLabel.Text += " ó potrzπúnij, aby przejúÊ dalej";
-
-    
-
-
-        _currentIndex++;
-
-        DisplayQuestion();
     }
 
     private async Task EndQuizAsync()
     {
         if (_score < 0) _score = 0;
-
 
         try
         {
