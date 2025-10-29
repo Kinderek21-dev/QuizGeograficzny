@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Text.Json;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 using QuizGeograficzny.Models;
+using Microsoft.Maui.Storage;
 
 namespace QuizGeograficzny.Data;
 
@@ -12,37 +9,48 @@ public static class QuestionsData
 {
     private const string FileName = "questions.json";
 
-    public static List<Question> GetAllQuestions()
+    private static List<Question>? _cached;
+
+    public static async Task<List<Question>> GetAllQuestionsAsync()
     {
+        if (_cached != null)
+            return _cached;
+
         try
         {
-            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", FileName);
+  
+            using var stream = await FileSystem.OpenAppPackageFileAsync(FileName);
+            using var reader = new StreamReader(stream);
+            var json = await reader.ReadToEndAsync();
 
-            if (!File.Exists(filePath))
-                throw new FileNotFoundException($"Nie znaleziono pliku z pytaniami: {filePath}");
+            var opts = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
 
-            string json = File.ReadAllText(filePath);
-
-            var data = JsonSerializer.Deserialize<QuestionsWrapper>(json);
-
-            return data?.Questions ?? new List<Question>();
+            var wrapper = JsonSerializer.Deserialize<QuestionsWrapper>(json, opts);
+            _cached = wrapper?.Questions ?? new List<Question>();
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Błąd przy wczytywaniu pytań: {ex.Message}");
-            return new List<Question>();
+            _cached = new List<Question>();
         }
+
+        return _cached;
     }
 
-    public static List<Question> GetByDifficulty(string difficulty)
+    public static async Task<List<Question>> GetByDifficultyAsync(string difficulty)
     {
-        return GetAllQuestions()
+        var all = await GetAllQuestionsAsync();
+        return all
             .Where(q => string.Equals(q.Difficulty, difficulty, StringComparison.OrdinalIgnoreCase))
             .ToList();
     }
 
     private class QuestionsWrapper
     {
+        [JsonPropertyName("questions")]
         public List<Question> Questions { get; set; } = new();
     }
 }

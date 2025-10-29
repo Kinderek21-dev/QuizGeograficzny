@@ -30,7 +30,7 @@
       "answers": [ "A", "B", "C", "D" ],
       "correctAnswerIndex": 2,
       "difficulty": "trudny",
-      "imageUrl": "https://example.com/images/japan_flag.png"
+      "imageUrl": null
     },
       {
         "id": 5,
@@ -111,7 +111,7 @@
       "correctAnswerIndex": 1,
       "difficulty": "łatwy",
       "imageUrl": null
-    }
+    },
       {
         "id": 15,
         "questionText": "Która pustynia jest największa na świecie?",

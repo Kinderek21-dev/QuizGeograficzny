@@ -1,5 +1,8 @@
 using QuizGeograficzny.Data;
 using QuizGeograficzny.Models;
+using QuizGeograficzny.Services;
+using Microsoft.Maui.Devices.Sensors;
+using Microsoft.Maui.ApplicationModel;
 
 namespace QuizGeograficzny.Views;
 
@@ -11,43 +14,136 @@ public partial class QuizPage : ContentPage
     private int _score = 0;
     private string _difficulty = "≥atwy";
 
+
+    private bool _canAdvanceByShake = false;
+    private double _shakeThreshold = 2.2;
+    private DateTime _lastShakeTime = DateTime.MinValue;
+    private TimeSpan _shakeCooldown = TimeSpan.FromMilliseconds(800);
+
     public QuizPage()
     {
         InitializeComponent();
-        // jeúli Difficulty zostanie ustawione przez QueryProperty, setter wywo≥a LoadAndShow()
-        // jeúli nie ó moøesz rÍcznie ustawiÊ Difficulty przed pokazaniem strony
     }
 
-    // property przypisywane przez Shell (///quiz?difficulty=≥atwy)
     public string Difficulty
     {
         get => _difficulty;
         set
         {
             _difficulty = value ?? "≥atwy";
-            // ≥adujemy pytania i pokazujemy pierwsze
-            LoadQuestions();
-            DisplayQuestion();
+            _ = LoadAndShowAsync();
         }
     }
 
-    private void LoadQuestions()
+    protected override void OnAppearing()
     {
-        // uøywamy QuestionsData.GetByDifficulty(...) ó upewnij siÍ, øe ta metoda istnieje
-        _questions = QuestionsData.GetByDifficulty(_difficulty).ToList();
-
-        // fallback: jeøeli brak pytaÒ dla poziomu, pobierz wszystkie
-        if (_questions == null || _questions.Count == 0)
+        base.OnAppearing();
+        try
         {
-            _questions = QuestionsData.GetAllQuestions();
+            Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
+            if (!Accelerometer.IsMonitoring)
+                Accelerometer.Start(SensorSpeed.UI);
         }
+        catch
+        {
+          
+        }
+    }
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        try
+        {
+            Accelerometer.ReadingChanged -= Accelerometer_ReadingChanged;
+            if (Accelerometer.IsMonitoring)
+                Accelerometer.Stop();
+        }
+        catch { }
+    }
+
+    private void Accelerometer_ReadingChanged(object sender, AccelerometerChangedEventArgs e)
+    {
+        var a = e.Reading;
+        double magnitude = Math.Sqrt(a.Acceleration.X * a.Acceleration.X
+                                     + a.Acceleration.Y * a.Acceleration.Y
+                                     + a.Acceleration.Z * a.Acceleration.Z);
+
+        if (magnitude >= _shakeThreshold)
+        {
+            var now = DateTime.UtcNow;
+            if (now - _lastShakeTime > _shakeCooldown)
+            {
+                _lastShakeTime = now;
+                if (_canAdvanceByShake)
+                {
+                    MainThread.BeginInvokeOnMainThread(() =>
+                    {
+                        _canAdvanceByShake = false;
+                        AdvanceAfterShake();
+                    });
+                }
+            }
+        }
+    }
+
+    private void AdvanceAfterShake()
+    {
+        if (_currentIndex < _questions.Count - 1)
+        {
+            _currentIndex++;
+            DisplayQuestion();
+        }
+        else
+        {
+            _ = EndQuizAsync();
+        }
+    }
+
+    private async Task LoadAndShowAsync()
+    {
+        await LoadQuestionsAsync();
+        DisplayQuestion();
+    }
+
+    private async Task LoadQuestionsAsync()
+    {
+        var list = await QuestionsData.GetByDifficultyAsync(_difficulty);
+        if (list == null || list.Count == 0)
+        {
+            _questions = await QuestionsData.GetAllQuestionsAsync();
+        }
+        else
+        {
+            _questions = list;
+        }
+
+      
+        _questions = TakeRandom(_questions, 10);
 
         _currentIndex = 0;
         _score = 0;
     }
 
+
+    private static List<T> TakeRandom<T>(List<T> source, int count)
+    {
+        var rnd = new Random();
+        var list = new List<T>(source);
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int j = rnd.Next(i + 1);
+            (list[i], list[j]) = (list[j], list[i]);
+        }
+        return list.Take(Math.Min(count, list.Count)).ToList();
+    }
+
     private void DisplayQuestion()
     {
+
+        AnswerButton1.IsEnabled = AnswerButton2.IsEnabled = AnswerButton3.IsEnabled = AnswerButton4.IsEnabled = true;
+        _canAdvanceByShake = false;
+
         if (_questions == null || _questions.Count == 0)
         {
             QuestionLabel.Text = "Brak pytaÒ.";
@@ -58,7 +154,7 @@ public partial class QuizPage : ContentPage
 
         if (_currentIndex >= _questions.Count)
         {
-            EndQuiz();
+            _ = EndQuizAsync();
             return;
         }
 
@@ -67,13 +163,11 @@ public partial class QuizPage : ContentPage
         ProgressLabel.Text = $"Pytanie {_currentIndex + 1} / {_questions.Count}";
         QuestionLabel.Text = q.QuestionText;
 
-        // ustaw odpowiedzi (przyjmujemy, øe zawsze 4)
         AnswerButton1.Text = q.Answers.Length > 0 ? q.Answers[0] : "";
         AnswerButton2.Text = q.Answers.Length > 1 ? q.Answers[1] : "";
         AnswerButton3.Text = q.Answers.Length > 2 ? q.Answers[2] : "";
         AnswerButton4.Text = q.Answers.Length > 3 ? q.Answers[3] : "";
 
-        // obrazek
         if (!string.IsNullOrEmpty(q.ImageUrl))
         {
             QuestionImage.IsVisible = true;
@@ -92,19 +186,18 @@ public partial class QuizPage : ContentPage
         if (_questions == null || _questions.Count == 0) return;
         if (_currentIndex >= _questions.Count)
         {
-            await EndQuiz();
+            await EndQuizAsync();
             return;
         }
 
+        AnswerButton1.IsEnabled = AnswerButton2.IsEnabled = AnswerButton3.IsEnabled = AnswerButton4.IsEnabled = false;
+
         var q = _questions[_currentIndex];
 
-        int chosenIndex = -1;
-        if (btn == AnswerButton1) chosenIndex = 0;
-        else if (btn == AnswerButton2) chosenIndex = 1;
-        else if (btn == AnswerButton3) chosenIndex = 2;
-        else if (btn == AnswerButton4) chosenIndex = 3;
+        int chosenIndex = btn == AnswerButton1 ? 0 :
+                          btn == AnswerButton2 ? 1 :
+                          btn == AnswerButton3 ? 2 : 3;
 
-        // punktacja wg poziomu
         int plus = _difficulty.ToLower() switch
         {
             "≥atwy" => 1,
@@ -116,6 +209,7 @@ public partial class QuizPage : ContentPage
         int minus = _difficulty.ToLower() switch
         {
             "≥atwy" => 2,
+            "úredni" => 1,
             _ => 0
         };
 
@@ -133,13 +227,44 @@ public partial class QuizPage : ContentPage
                 await DisplayAlert("èle", "0 pkt", "OK");
         }
 
+      
+        _canAdvanceByShake = true;
+        ProgressLabel.Text += " ó potrzπúnij, aby przejúÊ dalej";
+
+    
+
+
         _currentIndex++;
+
         DisplayQuestion();
     }
 
-    private async Task EndQuiz()
+    private async Task EndQuizAsync()
     {
         if (_score < 0) _score = 0;
+
+
+        try
+        {
+            string defaultName = "Anon";
+            string name = await DisplayPromptAsync("Koniec quizu", "Podaj nick do tablicy wynikÛw (Anuluj aby pominπÊ):", "Zapisz", "PomiÒ", defaultName, -1, Keyboard.Text);
+
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                var entry = new ScoreEntry
+                {
+                    PlayerName = name,
+                    Score = _score,
+                    Date = DateTime.UtcNow,
+                    Difficulty = _difficulty
+                };
+
+                await ScoreboardService.AddAsync(entry);
+            }
+        }
+        catch
+        {
+        }
 
         await Shell.Current.GoToAsync($"///result?score={_score}", animate: true);
     }
