@@ -10,13 +10,12 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame Padding="10" Margin="5" CornerRadius="8" HasShadow="True">
-                        <Grid ColumnDefinitions="Auto,*,Auto">
+                        <Grid ColumnDefinitions="*,Auto">
                             <StackLayout Grid.Column="0" VerticalOptions="Center">
                                 <Label Text="{Binding PlayerName}" FontAttributes="Bold" />
                                 <Label Text="{Binding Difficulty}" FontSize="12" />
                             </StackLayout>
-                            <Label Grid.Column="1" Text="{Binding Date, StringFormat='{0:yyyy-MM-dd HH:mm}'}" HorizontalOptions="Center" VerticalOptions="Center" />
-                            <Label Grid.Column="2" Text="{Binding Score}" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Center" />
+                            <Label Grid.Column="1" Text="{Binding Score}" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Center" />
                         </Grid>
                     </Frame>
                 </DataTemplate>

@@ -1,12 +1,12 @@
-﻿using System.Text.Json;
-using QuizGeograficzny.Models;
+﻿using QuizGeograficzny.Models;
+using System.Text.Json;
 using Microsoft.Maui.Storage;
 
 namespace QuizGeograficzny.Services
 {
     public static class ScoreboardService
     {
-        private static readonly string FilePath = Path.Combine(FileSystem.AppDataDirectory, "scoreboard.json");
+        private static readonly string FilePath = Path.Combine(FileSystem.AppDataDirectory, "scores.json");
 
         public static async Task<List<ScoreEntry>> GetAllAsync()
         {
@@ -15,8 +15,8 @@ namespace QuizGeograficzny.Services
                 if (!File.Exists(FilePath))
                     return new List<ScoreEntry>();
 
-                var json = await File.ReadAllTextAsync(FilePath);
-                var list = JsonSerializer.Deserialize<List<ScoreEntry>>(json);
+                using var stream = File.OpenRead(FilePath);
+                var list = await JsonSerializer.DeserializeAsync<List<ScoreEntry>>(stream);
                 return list ?? new List<ScoreEntry>();
             }
             catch
@@ -29,15 +29,14 @@ namespace QuizGeograficzny.Services
         {
             var list = await GetAllAsync();
             list.Add(entry);
-            list = list.OrderByDescending(x => x.Score).ThenBy(x => x.Date).ToList();
-            var json = JsonSerializer.Serialize(list, new JsonSerializerOptions { WriteIndented = true });
-            await File.WriteAllTextAsync(FilePath, json);
+            using var stream = File.Create(FilePath);
+            await JsonSerializer.SerializeAsync(stream, list, new JsonSerializerOptions { WriteIndented = true });
         }
 
-        public static async Task<List<ScoreEntry>> GetTopAsync(int n = 10)
+        public static async Task<List<ScoreEntry>> GetTopAsync(int count = 50)
         {
-            var all = await GetAllAsync();
-            return all.OrderByDescending(x => x.Score).Take(n).ToList();
+            var list = await GetAllAsync();
+            return list.OrderByDescending(x => x.Score).Take(count).ToList();
         }
 
         public static async Task ClearAsync()

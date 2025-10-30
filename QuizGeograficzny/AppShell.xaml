@@ -11,4 +11,5 @@
     <ShellContent Route="quiz" ContentTemplate="{DataTemplate views:QuizPage}" />
     <ShellContent Route="result" ContentTemplate="{DataTemplate views:ResultPage}" />
     <ShellContent Route="scoreboard" ContentTemplate="{DataTemplate views:ScoreboardPage}" />
+    
 </Shell>

@@ -29,7 +29,7 @@ public partial class ScoreboardPage : ContentPage
 
     private async void OnClearClicked(object sender, EventArgs e)
     {
-        bool ok = await DisplayAlert("Wyczyszcz tablicê?", "Czy na pewno chcesz usun¹æ wszystkie wyniki?", "Tak", "Nie");
+        bool ok = await DisplayAlert("Wyczyœæ tablicê?", "Czy na pewno chcesz usun¹æ wszystkie wyniki?", "Tak", "Nie");
         if (!ok) return;
         await ScoreboardService.ClearAsync();
         await LoadScoresAsync();
