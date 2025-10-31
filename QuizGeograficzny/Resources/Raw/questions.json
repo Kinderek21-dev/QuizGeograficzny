@@ -1,276 +1,724 @@
 {
-  "questions": [
+  "Questions": [
     {
       "id": 1,
       "questionText": "Stolicą Francji jest:",
-      "answers": ["Paryż", "Berlin", "Madryt", "Rzym"],
+      "answers": [ "Paryż", "Berlin", "Madryt", "Rzym" ],
       "correctAnswerIndex": 0,
       "difficulty": "łatwy",
       "imageUrl": null
     },
     {
       "id": 2,
-      "questionText": "Najdłuższa rzeka w Polsce to:",
-      "answers": ["Wisła", "Odra", "Warta", "San"],
-      "correctAnswerIndex": 0,
+      "questionText": "Stolicą Niemiec jest:",
+      "answers": [ "Warszawa", "Berlin", "Praga", "Wiedeń" ],
+      "correctAnswerIndex": 1,
       "difficulty": "łatwy",
       "imageUrl": null
     },
     {
       "id": 3,
-      "questionText": "Który kontynent ma najwięcej państw?",
-      "answers": ["Azja", "Afryka", "Europa", "Ameryka Południowa"],
-      "correctAnswerIndex": 1,
-      "difficulty": "średni",
+      "questionText": "Stolicą Hiszpanii jest:",
+      "answers": [ "Lizbona", "Barcelona", "Madryt", "Sewilla" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "łatwy",
       "imageUrl": null
     },
     {
       "id": 4,
-      "questionText": "Która flaga należy do Japonii?",
-      "answers": [ "A", "B", "C", "D" ],
-      "correctAnswerIndex": 2,
-      "difficulty": "trudny",
+      "questionText": "Stolicą Włoch jest:",
+      "answers": [ "Neapol", "Wenecja", "Mediolan", "Rzym" ],
+      "correctAnswerIndex": 3,
+      "difficulty": "łatwy",
       "imageUrl": null
     },
-      {
-        "id": 5,
-        "questionText": "Stolicą Francji jest:",
-        "answers": [ "Lyon", "Paryż", "Marsylia", "Nicea" ],
-        "correctAnswerIndex": 1,
-        "difficulty": "łatwy",
-        "imageUrl": null
-      },
-      {
-        "id": 6,
-        "questionText": "Największy kontynent na Ziemi to:",
-        "answers": [ "Afryka", "Azja", "Ameryka Północna", "Europa" ],
-        "correctAnswerIndex": 1,
-        "difficulty": "łatwy",
-        "imageUrl": null
-      },
-      {
-        "id": 7,
-        "questionText": "Największe jezioro w Polsce to:",
-        "answers": [ "Śniardwy", "Hańcza", "Mamry", "Niegocin" ],
-        "correctAnswerIndex": 0,
-        "difficulty": "łatwy",
-        "imageUrl": null
-      },
-      {
-        "id": 8,
-        "questionText": "Które z tych państw nie ma dostępu do morza?",
-        "answers": [ "Hiszpania", "Polska", "Szwajcaria", "Grecja" ],
-        "correctAnswerIndex": 2,
-        "difficulty": "łatwy",
-        "imageUrl": null
-      },
-      {
-        "id": 9,
-        "questionText": "Na jakim kontynencie leży Egipt?",
-        "answers": [ "Azja", "Afryka", "Europa", "Ameryka Południowa" ],
-        "correctAnswerIndex": 1,
-        "difficulty": "łatwy",
-        "imageUrl": null
-      },
-      {
-        "id": 10,
-        "questionText": "Które morze leży na północy Polski?",
-        "answers": [ "Bałtyckie", "Północne", "Czarne", "Śródziemne" ],
-        "correctAnswerIndex": 0,
-        "difficulty": "łatwy",
-        "imageUrl": null
-      },
-      {
-        "id": 11,
-        "questionText": "Najwyższy szczyt w Polsce to:",
-        "answers": [ "Śnieżka", "Rysy", "Kasprowy Wierch", "Giewont" ],
-        "correctAnswerIndex": 1,
-        "difficulty": "łatwy",
-        "imageUrl": null
-      },
-      {
-        "id": 12,
-        "questionText": "Jakie państwo leży na Półwyspie Apenińskim?",
-        "answers": [ "Hiszpania", "Włochy", "Portugalia", "Francja" ],
-        "correctAnswerIndex": 1,
-        "difficulty": "łatwy",
-        "imageUrl": null
-      },
-      {
-        "id": 13,
-        "questionText": "Jakie jest największe państwo świata pod względem powierzchni?",
-        "answers": [ "Kanada", "Chiny", "Rosja", "Stany Zjednoczone" ],
-        "correctAnswerIndex": 2,
-        "difficulty": "łatwy",
-        "imageUrl": null
-      },
     {
-      "id": 14,
-      "questionText": "Jakie miasto jest stolicą Japonii?",
-      "answers": [ "Osaka", "Tokio", "Kioto", "Hiroshima" ],
+      "id": 5,
+      "questionText": "Stolicą Wielkiej Brytanii jest:",
+      "answers": [ "Londyn", "Dublin", "Manchester", "Edynburg" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 6,
+      "questionText": "Stolicą Rosji jest:",
+      "answers": [ "Kijów", "Moskwa", "Petersburg", "Mińsk" ],
       "correctAnswerIndex": 1,
       "difficulty": "łatwy",
       "imageUrl": null
     },
-      {
-        "id": 15,
-        "questionText": "Która pustynia jest największa na świecie?",
-        "answers": [ "Sahara", "Gobi", "Kalahari", "Atakama" ],
-        "correctAnswerIndex": 0,
-        "difficulty": "średni",
-        "imageUrl": null
-      },
-      {
-        "id": 16,
-        "questionText": "W jakim kraju znajduje się góra Mount Everest?",
-        "answers": [ "Indie", "Nepal", "Pakistan", "Chiny" ],
-        "correctAnswerIndex": 1,
-        "difficulty": "średni",
-        "imageUrl": null
-      },
-      {
-        "id": 17,
-        "questionText": "Jakie państwo ma największą liczbę ludności na świecie?",
-        "answers": [ "Indie", "Chiny", "Stany Zjednoczone", "Indonezja" ],
-        "correctAnswerIndex": 0,
-        "difficulty": "średni",
-        "imageUrl": null
-      },
-      {
-        "id": 18,
-        "questionText": "Które z wymienionych mórz jest jeziorem słonym?",
-        "answers": [ "Morze Kaspijskie", "Morze Czarne", "Morze Bałtyckie", "Morze Adriatyckie" ],
-        "correctAnswerIndex": 0,
-        "difficulty": "średni",
-        "imageUrl": null
-      },
-      {
-        "id": 19,
-        "questionText": "Jakie państwo ma kształt przypominający but?",
-        "answers": [ "Hiszpania", "Włochy", "Grecja", "Francja" ],
-        "correctAnswerIndex": 1,
-        "difficulty": "średni",
-        "imageUrl": null
-      },
-      {
-        "id": 20,
-        "questionText": "Która rzeka przepływa przez Kair?",
-        "answers": [ "Nil", "Tygrys", "Eufrat", "Jordan" ],
-        "correctAnswerIndex": 0,
-        "difficulty": "średni",
-        "imageUrl": null
-      },
-      {
-        "id": 21,
-        "questionText": "Jakie państwo ma największą liczbę wysp na świecie?",
-        "answers": [ "Indonezja", "Szwecja", "Filipiny", "Norwegia" ],
-        "correctAnswerIndex": 1,
-        "difficulty": "średni",
-        "imageUrl": null
-      },
-      {
-        "id": 22,
-        "questionText": "Jakie miasto jest stolicą Australii?",
-        "answers": [ "Sydney", "Melbourne", "Canberra", "Perth" ],
-        "correctAnswerIndex": 2,
-        "difficulty": "średni",
-        "imageUrl": null
-      },
-      {
-        "id": 23,
-        "questionText": "W jakiej strefie klimatycznej leży większość Sahary?",
-        "answers": [ "Równikowej", "Umiarkowanej", "Zwrotnikowej", "Subarktycznej" ],
-        "correctAnswerIndex": 2,
-        "difficulty": "średni",
-        "imageUrl": null
-      },
     {
-      "id": 24,
-      "questionText": "Które z poniższych miast leży najbliżej koła podbiegunowego północnego?",
-      "answers": [ "Sztokholm", "Oslo", "Helsinki", "Reykjavik" ],
+      "id": 7,
+      "questionText": "Stolicą Japonii jest:",
+      "answers": [ "Pekin", "Seul", "Tokio", "Szanghaj" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 8,
+      "questionText": "Stolicą USA jest:",
+      "answers": [ "Nowy Jork", "Los Angeles", "Chicago", "Waszyngton" ],
+      "correctAnswerIndex": 3,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 9,
+      "questionText": "Stolicą Chin jest:",
+      "answers": [ "Pekin", "Hongkong", "Szanghaj", "Tajpej" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 10,
+      "questionText": "Stolicą Czech jest:",
+      "answers": [ "Budapeszt", "Praga", "Bratysława", "Wiedeń" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 11,
+      "questionText": "Stolicą Kanady jest:",
+      "answers": [ "Toronto", "Vancouver", "Montreal", "Ottawa" ],
       "correctAnswerIndex": 3,
       "difficulty": "średni",
       "imageUrl": null
     },
-      {
-        "id": 25,
-        "questionText": "Najwyższy szczyt w Europie to:",
-        "answers": [ "Mont Blanc", "Elbrus", "Matterhorn", "Dufourspitze" ],
-        "correctAnswerIndex": 1,
-        "difficulty": "trudny",
-        "imageUrl": null
-      },
-      {
-        "id": 26,
-        "questionText": "Które z tych państw leży w Ameryce Południowej?",
-        "answers": [ "Gwatemala", "Panama", "Ekwador", "Honduras" ],
-        "correctAnswerIndex": 2,
-        "difficulty": "trudny",
-        "imageUrl": null
-      },
-      {
-        "id": 27,
-        "questionText": "W jakim kraju znajduje się miasto Casablanca?",
-        "answers": [ "Tunezja", "Egipt", "Maroko", "Algieria" ],
-        "correctAnswerIndex": 2,
-        "difficulty": "trudny",
-        "imageUrl": null
-      },
-      {
-        "id": 28,
-        "questionText": "Jakie miasto jest stolicą Kanady?",
-        "answers": [ "Toronto", "Vancouver", "Ottawa", "Montreal" ],
-        "correctAnswerIndex": 2,
-        "difficulty": "trudny",
-        "imageUrl": null
-      },
-      {
-        "id": 29,
-        "questionText": "Przez jakie państwo przepływa rzeka Dunaj?",
-        "answers": [ "Francja", "Niemcy", "Polska", "Hiszpania" ],
-        "correctAnswerIndex": 1,
-        "difficulty": "trudny",
-        "imageUrl": null
-      },
-      {
-        "id": 30,
-        "questionText": "Jakie miasto jest stolicą Szwajcarii?",
-        "answers": [ "Zurych", "Genewa", "Berno", "Bazylea" ],
-        "correctAnswerIndex": 2,
-        "difficulty": "trudny",
-        "imageUrl": null
-      },
-      {
-        "id": 31,
-        "questionText": "Na jakim kontynencie leży Kazachstan?",
-        "answers": [ "Azja", "Europa", "Afryka", "Ameryka Południowa" ],
-        "correctAnswerIndex": 0,
-        "difficulty": "trudny",
-        "imageUrl": null
-      },
-      {
-        "id": 32,
-        "questionText": "Który kraj słynie z fiordów?",
-        "answers": [ "Szwecja", "Finlandia", "Norwegia", "Islandia" ],
-        "correctAnswerIndex": 2,
-        "difficulty": "trudny",
-        "imageUrl": null
-      },
-      {
-        "id": 33,
-        "questionText": "W jakim oceanie leżą Wyspy Kanaryjskie?",
-        "answers": [ "Atlantyckim", "Indyjskim", "Spokojnym", "Arktycznym" ],
-        "correctAnswerIndex": 0,
-        "difficulty": "trudny",
-        "imageUrl": null
-      },
-      {
-        "id": 34,
-        "questionText": "Które państwo jest największe powierzchniowo w Afryce?",
-        "answers": [ "Egipt", "Algieria", "Sudan", "Libia" ],
-        "correctAnswerIndex": 1,
-        "difficulty": "trudny",
-        "imageUrl": null
-      }
+    {
+      "id": 12,
+      "questionText": "Stolicą Australii jest:",
+      "answers": [ "Sydney", "Melbourne", "Canberra", "Brisbane" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 13,
+      "questionText": "Stolicą Brazylii jest:",
+      "answers": [ "Rio de Janeiro", "São Paulo", "Brasília", "Buenos Aires" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 14,
+      "questionText": "Stolicą Egiptu jest:",
+      "answers": [ "Kair", "Aleksandria", "Giza", "Stambuł" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 15,
+      "questionText": "Stolicą Argentyny jest:",
+      "answers": [ "Santiago", "Buenos Aires", "Lima", "Bogota" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 16,
+      "questionText": "Stolicą Szwecji jest:",
+      "answers": [ "Oslo", "Kopenhaga", "Helsinki", "Sztokholm" ],
+      "correctAnswerIndex": 3,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 17,
+      "questionText": "Stolicą Norwegii jest:",
+      "answers": [ "Oslo", "Bergen", "Sztokholm", "Trondheim" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 18,
+      "questionText": "Stolicą Indii jest:",
+      "answers": [ "Mumbaj", "Nowe Delhi", "Kalkuta", "Bangalore" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 19,
+      "questionText": "Stolicą Turcji jest:",
+      "answers": [ "Stambuł", "Izmir", "Ankara", "Antalya" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 20,
+      "questionText": "Stolicą Szwajcarii jest:",
+      "answers": [ "Zurych", "Genewa", "Lucerna", "Berno" ],
+      "correctAnswerIndex": 3,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 21,
+      "questionText": "Stolicą Nowej Zelandii jest:",
+      "answers": [ "Auckland", "Wellington", "Christchurch", "Queenstown" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 22,
+      "questionText": "Stolicą Wietnamu jest:",
+      "answers": [ "Ho Chi Minh", "Da Nang", "Hanoi", "Haiphong" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 23,
+      "questionText": "Stolicą RPA (Republiki Południowej Afryki) jest:",
+      "answers": [ "Kapsztad", "Johannesburg", "Durban", "Pretoria" ],
+      "correctAnswerIndex": 3,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 24,
+      "questionText": "Stolicą Kazachstanu jest:",
+      "answers": [ "Astana", "Ałmaty", "Biszkek", "Taszkent" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 25,
+      "questionText": "Stolicą Finlandii jest:",
+      "answers": [ "Tampere", "Helsinki", "Turku", "Oslo" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 26,
+      "questionText": "Stolicą Nigerii jest:",
+      "answers": [ "Lagos", "Kano", "Abudża", "Ibadan" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 27,
+      "questionText": "Stolicą Pakistanu jest:",
+      "answers": [ "Karaczi", "Lahore", "Faisalabad", "Islamabad" ],
+      "correctAnswerIndex": 3,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 28,
+      "questionText": "Stolicą Boliwii jest:",
+      "answers": [ "La Paz", "Santa Cruz", "Cochabamba", "Sucre" ],
+      "correctAnswerIndex": 3,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 29,
+      "questionText": "Stolicą Maroka jest:",
+      "answers": [ "Rabat", "Casablanca", "Marrakesz", "Fez" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 30,
+      "questionText": "Stolicą Malezji jest:",
+      "answers": [ "Singapur", "Kuala Lumpur", "Johor Bahru", "George Town" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 31,
+      "questionText": "Warszawa jest stolicą:",
+      "answers": [ "Czech", "Polski", "Słowacji", "Litwy" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 32,
+      "questionText": "Berlin jest stolicą:",
+      "answers": [ "Niemiec", "Austrii", "Szwajcarii", "Belgii" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 33,
+      "questionText": "Praga jest stolicą:",
+      "answers": [ "Węgier", "Rumunii", "Czech", "Chorwacji" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 34,
+      "questionText": "Kijów jest stolicą:",
+      "answers": [ "Białorusi", "Mołdawii", "Rosji", "Ukrainy" ],
+      "correctAnswerIndex": 3,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 35,
+      "questionText": "Paryż jest stolicą:",
+      "answers": [ "Francji", "Hiszpanii", "Włoch", "Portugalii" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 36,
+      "questionText": "Londyn jest stolicą:",
+      "answers": [ "Irlandii", "Wielkiej Brytanii", "Szkocji", "Islandii" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 37,
+      "questionText": "Rzym jest stolicą:",
+      "answers": [ "Grecji", "Albanii", "Włoch", "Malty" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 38,
+      "questionText": "Madryt jest stolicą:",
+      "answers": [ "Meksyku", "Argentyny", "Chile", "Hiszpanii" ],
+      "correctAnswerIndex": 3,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 39,
+      "questionText": "Waszyngton jest stolicą:",
+      "answers": [ "USA", "Kanady", "Australii", "Anglii" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 40,
+      "questionText": "Moskwa jest stolicą:",
+      "answers": [ "Kazachstanu", "Rosji", "Mongolii", "Białorusi" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 41,
+      "questionText": "Ateny są stolicą:",
+      "answers": [ "Turcji", "Cypru", "Grecji", "Egiptu" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 42,
+      "questionText": "Kopenhaga jest stolicą:",
+      "answers": [ "Szwecji", "Norwegii", "Holandii", "Danii" ],
+      "correctAnswerIndex": 3,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 43,
+      "questionText": "Lizbona jest stolicą:",
+      "answers": [ "Portugalii", "Brazylii", "Angoli", "Maroka" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 44,
+      "questionText": "Helsinki są stolicą:",
+      "answers": [ "Estonii", "Finlandii", "Łotwy", "Danii" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 45,
+      "questionText": "Dublin jest stolicą:",
+      "answers": [ "Szkocji", "Islandii", "Irlandii", "Walii" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 46,
+      "questionText": "Buenos Aires jest stolicą:",
+      "answers": [ "Peru", "Chile", "Kolumbii", "Argentyny" ],
+      "correctAnswerIndex": 3,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 47,
+      "questionText": "Kair jest stolicą:",
+      "answers": [ "Egiptu", "Algierii", "Tunezji", "Sudanu" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 48,
+      "questionText": "Bangkok jest stolicą:",
+      "answers": [ "Malezji", "Tajlandii", "Wietnamu", "Kambodży" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 49,
+      "questionText": "Seul jest stolicą:",
+      "answers": [ "Japonii", "Chin", "Korei Południowej", "Korei Północnej" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 50,
+      "questionText": "Meksyk (miasto) jest stolicą:",
+      "answers": [ "Gwatemali", "Kuby", "Hondurasu", "Meksyku" ],
+      "correctAnswerIndex": 3,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 51,
+      "questionText": "Canberra jest stolicą:",
+      "answers": [ "Australii", "Nowej Zelandii", "Austrii", "Papui-Nowej Gwinei" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 52,
+      "questionText": "Ottawa jest stolicą:",
+      "answers": [ "USA", "Kanady", "Australii", "Quebecu" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 53,
+      "questionText": "Berno jest stolicą:",
+      "answers": [ "Austrii", "Liechtensteinu", "Szwajcarii", "Belgii" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 54,
+      "questionText": "Ankara jest stolicą:",
+      "answers": [ "Syrii", "Grecji", "Iraku", "Turcji" ],
+      "correctAnswerIndex": 3,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 55,
+      "questionText": "Brasília jest stolicą:",
+      "answers": [ "Brazylii", "Argentyny", "Portugalii", "Paragwaju" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 56,
+      "questionText": "Wellington jest stolicą:",
+      "answers": [ "Irlandii", "Nowej Zelandii", "Fidżi", "Samoa" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 57,
+      "questionText": "Abudża jest stolicą:",
+      "answers": [ "Ghany", "Kamerunu", "Nigerii", "Kenii" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 58,
+      "questionText": "Islamabad jest stolicą:",
+      "answers": [ "Indii", "Bangladeszu", "Afganistanu", "Pakistanu" ],
+      "correctAnswerIndex": 3,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 59,
+      "questionText": "Rabat jest stolicą:",
+      "answers": [ "Maroka", "Tunezji", "Algierii", "Egiptu" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 60,
+      "questionText": "Astana (Nur-Sułtan) jest stolicą:",
+      "answers": [ "Uzbekistanu", "Kazachstanu", "Kirgistanu", "Turkmenistanu" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 61,
+      "questionText": "Główną rzeką przepływającą przez Londyn jest:",
+      "answers": [ "Sekwana", "Dunaj", "Tamiza", "Ren" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 62,
+      "questionText": "Główną rzeką przepływającą przez Paryż jest:",
+      "answers": [ "Loara", "Sekwana", "Rodan", "Tamiza" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 63,
+      "questionText": "Przez jakie państwo przepływa rzeka Nil?",
+      "answers": [ "Egipt", "Maroko", "RPA", "Nigeria" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 64,
+      "questionText": "Przez jakie państwo przepływa rzeka Tyber, nad którą leży Rzym?",
+      "answers": [ "Grecja", "Hiszpania", "Francja", "Włochy" ],
+      "correctAnswerIndex": 3,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 65,
+      "questionText": "W jakim państwie swoje główne koryto ma rzeka Ren?",
+      "answers": [ "Niemcy", "Polska", "Wielka Brytania", "Hiszpania" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 66,
+      "questionText": "Przez jakie państwo przepływa rzeka Missisipi?",
+      "answers": [ "Kanada", "USA", "Meksyk", "Brazylia" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 67,
+      "questionText": "W jakim państwie znajduje się najdłuższy odcinek rzeki Wołga?",
+      "answers": [ "Ukraina", "Białoruś", "Rosja", "Kazachstan" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 68,
+      "questionText": "Przez jakie państwo NIE przepływa rzeka Dunaj?",
+      "answers": [ "Niemcy", "Austria", "Węgry", "Polska" ],
+      "correctAnswerIndex": 3,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 69,
+      "questionText": "Przez jakie azjatyckie państwo przepływa rzeka Jangcy?",
+      "answers": [ "Chiny", "Indie", "Japonia", "Tajlandia" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 70,
+      "questionText": "Przez jakie państwo przepływa rzeka Amazonka?",
+      "answers": [ "Argentyna", "Brazylia", "Chile", "Meksyk" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 71,
+      "questionText": "W jakim państwie znajduje się rzeka Murray?",
+      "answers": [ "Nowa Zelandia", "Kanada", "Australia", "USA" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 72,
+      "questionText": "Przez jakie państwo przepływa rzeka Mekong?",
+      "answers": [ "Indie", "Japonia", "Pakistan", "Wietnam" ],
+      "correctAnswerIndex": 3,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 73,
+      "questionText": "Przez jakie państwo przepływa rzeka Parana?",
+      "answers": [ "Argentyna", "Peru", "Kolumbia", "Meksyk" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 74,
+      "questionText": "W jakim państwie płynie rzeka Mackenzie?",
+      "answers": [ "USA", "Kanada", "Rosja", "Australia" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 75,
+      "questionText": "Przez jakie państwo przepływa rzeka Eufrat?",
+      "answers": [ "Egipt", "Arabia Saudyjska", "Irak", "Iran" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 76,
+      "questionText": "Najwyższym szczytem Polski jest:",
+      "answers": [ "Giewont", "Kasprowy Wierch", "Rysy", "Śnieżka" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 77,
+      "questionText": "Najwyższy szczyt świata to:",
+      "answers": [ "K2", "Mount Everest", "Makalu", "Lhotse" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 78,
+      "questionText": "Najwyższe góry w Polsce to:",
+      "answers": [ "Tatry", "Bieszczady", "Karkonosze", "Pieniny" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 79,
+      "questionText": "Charakterystyczny, wulkaniczny szczyt będący symbolem Japonii to:",
+      "answers": [ "Ontake", "Asama", "Unzen", "Fudżi" ],
+      "correctAnswerIndex": 3,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 80,
+      "questionText": "Góry Ural tradycyjnie oddzielają:",
+      "answers": [ "Europę od Azji", "Francję od Hiszpanii", "Polskę od Słowacji", "Chiny od Indii" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 81,
+      "questionText": "Najwyższym szczytem Afryki jest:",
+      "answers": [ "Mount Kenia", "Kilimandżaro", "Tebesti", "Atlas" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 82,
+      "questionText": "Najwyższym szczytem Ameryki Północnej jest:",
+      "answers": [ "Mount Whitney", "Mount Logan", "Denali (McKinley)", "Pico de Orizaba" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 83,
+      "questionText": "Najwyższym szczytem Ameryki Południowej jest:",
+      "answers": [ "Chimborazo", "Huascarán", "Ojos del Salado", "Aconcagua" ],
+      "correctAnswerIndex": 3,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 84,
+      "questionText": "Najwyższym szczytem Alp jest:",
+      "answers": [ "Mont Blanc", "Matterhorn", "Dufourspitze", "Grossglockner" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 85,
+      "questionText": "Jak nazywa się potężne pasmo górskie w zachodniej części Ameryki Północnej?",
+      "answers": [ "Appalachy", "Góry Skaliste", "Andy", "Himalaje" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 86,
+      "questionText": "Drugi co do wysokości szczyt Ziemi, K2, leży w paśmie:",
+      "answers": [ "Himalajów", "Hindukuszu", "Karakorum", "Pamiru" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 87,
+      "questionText": "Najwyższym szczytem kontynentalnej Australii jest:",
+      "answers": [ "Puncak Jaya", "Uluru (Ayers Rock)", "Mount Wilhelm", "Góra Kościuszki" ],
+      "correctAnswerIndex": 3,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 88,
+      "questionText": "Jak nazywa się najwyższy czynny wulkan w Europie?",
+      "answers": [ "Etna", "Wezuwiusz", "Stromboli", "Hekla" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 89,
+      "questionText": "Matterhorn, jeden z najbardziej rozpoznawalnych szczytów Alp, leży na granicy:",
+      "answers": [ "Francji i Włoch", "Szwajcarii i Włoch", "Austrii i Niemiec", "Francji i Szwajcarii" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 90,
+      "questionText": "Najwyższym szczytem Antarktydy jest:",
+      "answers": [ "Erebus", "Shinn", "Masyw Vinsona", "Tyree" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "trudny",
+      "imageUrl": null
+    }
   ]
 }
