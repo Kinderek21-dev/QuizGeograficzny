@@ -12,7 +12,7 @@
                FontSize="22"
                FontAttributes="Bold"
                HorizontalOptions="Center"
-               TextColor="Black"
+               TextColor="White"
                HorizontalTextAlignment="Center"
                Margin="10,0" />
 

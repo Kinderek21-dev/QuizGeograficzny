@@ -88,9 +88,15 @@ public partial class QuizPage : ContentPage
 
     private async Task LoadAndShowAsync()
     {
-        var all = await QuestionsData.GetAllQuestionsAsync();
+        var filteredList = await QuestionsData.GetByDifficultyAsync(_difficulty);
 
-        _questions = all.OrderBy(_ => Guid.NewGuid()).Take(10).ToList();
+        if (filteredList == null || filteredList.Count == 0)
+        {
+            filteredList = await QuestionsData.GetAllQuestionsAsync();
+        }
+
+        _questions = filteredList.OrderBy(_ => Guid.NewGuid()).Take(10).ToList();
+
         _currentIndex = 0;
         _score = 0;
         DisplayQuestion();
