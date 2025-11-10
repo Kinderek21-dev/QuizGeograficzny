@@ -1,4 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
+using QuizGeograficzny.Services;
+
+#if ANDROID
+using QuizGeograficzny.Platforms.Android.Services;
+#endif
 
 namespace QuizGeograficzny
 {
@@ -16,7 +21,13 @@ namespace QuizGeograficzny
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
+#endif
+
+#if ANDROID
+            builder.Services.AddSingleton<ILightSensorService, AndroidLightSensorService>();
+#else
+            builder.Services.AddSingleton<ILightSensorService, DefaultLightSensorService>();
 #endif
 
             return builder.Build();
