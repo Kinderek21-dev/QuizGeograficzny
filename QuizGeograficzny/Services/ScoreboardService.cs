@@ -6,7 +6,11 @@ namespace QuizGeograficzny.Services
 {
     public static class ScoreboardService
     {
-        private static readonly string FilePath = Path.Combine(FileSystem.AppDataDirectory, "scores.json");
+        private static readonly string FilePath = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+            "scores.json"
+        );
+
 
         public static async Task<List<ScoreEntry>> GetAllAsync()
         {
