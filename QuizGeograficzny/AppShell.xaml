@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <Shell
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -7,9 +6,10 @@
 
     <ShellContent Route="splash" ContentTemplate="{DataTemplate views:SplashPage}" />
     <ShellContent Route="login" ContentTemplate="{DataTemplate views:LoginPage}" />
+    <ShellContent Route="gamemode" ContentTemplate="{DataTemplate views:GameModePage}" />
     <ShellContent Route="difficulty" ContentTemplate="{DataTemplate views:DifficultyPage}" />
     <ShellContent Route="quiz" ContentTemplate="{DataTemplate views:QuizPage}" />
     <ShellContent Route="result" ContentTemplate="{DataTemplate views:ResultPage}" />
     <ShellContent Route="scoreboard" ContentTemplate="{DataTemplate views:ScoreboardPage}" />
-    
+    <ShellContent Route="settings" ContentTemplate="{DataTemplate views:SettingsPage}" />
 </Shell>

@@ -15,19 +15,25 @@ using STimer = System.Timers.Timer;
 
 namespace QuizGeograficzny.Views;
 
+
 [QueryProperty(nameof(Difficulty), "difficulty")]
+[QueryProperty(nameof(Mode), "mode")]
 public partial class QuizPage : ContentPage
 {
     private List<Question> _questions = new();
+    private List<Question> _remaining = new();
     private int _currentIndex = 0;
     private int _score = 0;
     private string _difficulty = "³atwy";
 
+  
+    private string _mode = "normal";
+    private bool _isSurvivalMode => string.Equals(_mode, "survival", StringComparison.OrdinalIgnoreCase);
+    private int _survivalStreak = 0;
 
     private const int QuestionTimeSeconds = 15;
     private int _timeLeft = QuestionTimeSeconds;
     private STimer? _timer;
-
 
     private double _lastX, _lastY, _lastZ;
     private DateTime _lastShakeTime = DateTime.MinValue;
@@ -40,12 +46,25 @@ public partial class QuizPage : ContentPage
         InitializeComponent();
     }
 
+ 
     public string Difficulty
     {
         get => _difficulty;
         set
         {
             _difficulty = value ?? "³atwy";
+            _ = LoadAndShowAsync();
+        }
+    }
+
+
+    public string Mode
+    {
+        get => _mode;
+        set
+        {
+            _mode = value ?? "normal";
+
             _ = LoadAndShowAsync();
         }
     }
@@ -88,41 +107,105 @@ public partial class QuizPage : ContentPage
 
     private async Task LoadAndShowAsync()
     {
-        var filteredList = await QuestionsData.GetByDifficultyAsync(_difficulty);
-
-        if (filteredList == null || filteredList.Count == 0)
+        try
         {
-            filteredList = await QuestionsData.GetAllQuestionsAsync();
+      
+            if (_isSurvivalMode)
+            {
+                var all = await QuestionsData.GetAllQuestionsAsync();
+                _questions = all.OrderBy(_ => Guid.NewGuid()).ToList();
+
+                _remaining = _questions.ToList();
+                ShuffleList(_remaining);
+                _survivalStreak = 0;
+                _score = 0;
+                _currentIndex = 0;
+            }
+            else
+            {
+                var filteredList = await QuestionsData.GetByDifficultyAsync(_difficulty);
+                if (filteredList == null || filteredList.Count == 0)
+                {
+                    filteredList = await QuestionsData.GetAllQuestionsAsync();
+                }
+
+                _questions = filteredList.OrderBy(_ => Guid.NewGuid()).Take(10).ToList();
+                _currentIndex = 0;
+                _score = 0;
+            }
+
+            DisplayQuestion();
         }
+        catch (Exception ex)
+        {
+            Console.WriteLine("LoadAndShowAsync error: " + ex);
 
-        _questions = filteredList.OrderBy(_ => Guid.NewGuid()).Take(10).ToList();
+            _questions = await QuestionsData.GetAllQuestionsAsync();
+            ShuffleList(_questions);
+            DisplayQuestion();
+        }
+    }
 
-        _currentIndex = 0;
-        _score = 0;
-        DisplayQuestion();
+    private static void ShuffleList<T>(List<T> list)
+    {
+        var rnd = new Random();
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int j = rnd.Next(i + 1);
+            (list[i], list[j]) = (list[j], list[i]);
+        }
     }
 
     private void DisplayQuestion()
     {
         StopTimer();
 
-        if (_questions == null || _questions.Count == 0)
+        Question q = null;
+
+        if (_isSurvivalMode)
         {
-            QuestionLabel.Text = "Brak pytañ.";
-            ProgressLabel.Text = "";
-            HideAnswerButtons();
-            return;
+            if (_remaining == null || _remaining.Count == 0)
+            {
+          
+                _remaining = _questions.ToList();
+                ShuffleList(_remaining);
+            }
+
+            if (_remaining == null || _remaining.Count == 0)
+            {
+                QuestionLabel.Text = "Brak pytañ.";
+                ProgressLabel.Text = "";
+                HideAnswerButtons();
+                return;
+            }
+
+            q = _remaining[0];
+        }
+        else
+        {
+            if (_questions == null || _questions.Count == 0)
+            {
+                QuestionLabel.Text = "Brak pytañ.";
+                ProgressLabel.Text = "";
+                HideAnswerButtons();
+                return;
+            }
+
+            if (_currentIndex >= _questions.Count)
+            {
+                _ = EndQuizAsync();
+                return;
+            }
+
+            q = _questions[_currentIndex];
         }
 
-        if (_currentIndex >= _questions.Count)
-        {
-            _ = EndQuizAsync();
-            return;
-        }
+   
+        if (_isSurvivalMode)
+            ProgressLabel.Text = $"Survival: {_survivalStreak} pkt";
+        else
+            ProgressLabel.Text = $"Pytanie {_currentIndex + 1} / {_questions.Count}";
 
-        var q = _questions[_currentIndex];
-
-        ProgressLabel.Text = $"Pytanie {_currentIndex + 1} / {_questions.Count}";
         QuestionLabel.Text = q.QuestionText ?? "";
 
         AnswerButton1.Text = q.Answers.ElementAtOrDefault(0) ?? "";
@@ -145,6 +228,13 @@ public partial class QuizPage : ContentPage
 
         StartTimer();
         AnimateFadeIn(this);
+        #if WINDOWS
+            QuestionLabel.TextColor = Colors.Black;
+            AnswerButton1.TextColor = Colors.Black;
+            AnswerButton2.TextColor = Colors.Black;
+            AnswerButton3.TextColor = Colors.Black;
+            AnswerButton4.TextColor = Colors.Black;
+        #endif
     }
 
     private void ResetAnswerButtons()
@@ -195,11 +285,10 @@ public partial class QuizPage : ContentPage
     {
         _timeLeft--;
 
-   
         MainThread.BeginInvokeOnMainThread(async () =>
         {
             if (Interlocked.Exchange(ref _isProcessingAnswer, 1) == 1)
-                return; 
+                return;
 
             try
             {
@@ -266,7 +355,13 @@ public partial class QuizPage : ContentPage
             await DisplayAlert("Czas min¹³", "Brak punktów (brak odpowiedzi)", "OK");
         }
 
-     
+        if (_isSurvivalMode)
+        {
+       
+            await EndQuizAsync();
+            return;
+        }
+
         if (DeviceInfo.Platform == DevicePlatform.WinUI || DeviceInfo.Platform == DevicePlatform.Android)
         {
             _currentIndex++;
@@ -286,24 +381,32 @@ public partial class QuizPage : ContentPage
         catch { }
     }
 
-
     private async void OnAnswerClicked(object sender, EventArgs e)
     {
-      
         if (Interlocked.Exchange(ref _isProcessingAnswer, 1) == 1)
             return;
 
         try
         {
             if (sender is not Button btn) return;
-            if (_questions == null || _questions.Count == 0) return;
-            if (_currentIndex >= _questions.Count) return;
 
-       
+            if (_isSurvivalMode)
+            {
+
+                if (_remaining == null || _remaining.Count == 0)
+                    return;
+            }
+            else
+            {
+                if (_questions == null || _questions.Count == 0) return;
+                if (_currentIndex >= _questions.Count) return;
+            }
+
             StopTimer();
+   
             AnswerButton1.IsEnabled = AnswerButton2.IsEnabled = AnswerButton3.IsEnabled = AnswerButton4.IsEnabled = false;
 
-            var q = _questions[_currentIndex];
+            Question q = _isSurvivalMode ? _remaining[0] : _questions[_currentIndex];
 
             int chosenIndex = btn == AnswerButton1 ? 0 :
                               btn == AnswerButton2 ? 1 :
@@ -326,31 +429,56 @@ public partial class QuizPage : ContentPage
 
             bool correct = chosenIndex == q.CorrectAnswerIndex;
 
-   
             btn.BackgroundColor = correct ? Colors.LightGreen : Colors.IndianRed;
             TryVibrateShort(correct ? 40 : 160);
             await AnimatePulseAsync(QuestionTimerProgressBar, correct ? Colors.Green : Colors.Red);
 
-  
             if (correct)
+            {
                 _score += plus;
+            }
             else
+            {
                 _score -= minus;
+            }
 
-         
             string pointsMsg = correct ? $"+{plus}" : (minus > 0 ? $"-{minus}" : "0");
             Color pointsColor = correct ? Colors.LimeGreen : Colors.IndianRed;
             await ShowFloatingPointsLabel(pointsMsg, pointsColor);
 
-            
-            if (_currentIndex < _questions.Count - 1)
+            if (_isSurvivalMode)
             {
-                _currentIndex++;
-                DisplayQuestion();
+                if (correct)
+                {
+                    _survivalStreak++;
+             
+                    if (_remaining.Count > 0)
+                        _remaining.RemoveAt(0);
+
+              
+                    ProgressLabel.Text = $"Survival: {_survivalStreak} pkt";
+
+           
+                    DisplayQuestion();
+                }
+                else
+                {
+     
+                    await EndQuizAsync();
+                }
             }
             else
             {
-                await EndQuizAsync();
+
+                if (_currentIndex < _questions.Count - 1)
+                {
+                    _currentIndex++;
+                    DisplayQuestion();
+                }
+                else
+                {
+                    await EndQuizAsync();
+                }
             }
         }
         catch (Exception ex)
@@ -359,11 +487,9 @@ public partial class QuizPage : ContentPage
         }
         finally
         {
-           
             Interlocked.Exchange(ref _isProcessingAnswer, 0);
         }
     }
-
 
     private void OnShakeDetected(object? sender, AccelerometerChangedEventArgs e)
     {
@@ -380,7 +506,6 @@ public partial class QuizPage : ContentPage
 
         if (acceleration > _shakeThreshold && (DateTime.UtcNow - _lastShakeTime).TotalMilliseconds > 800)
         {
-        
             if (Interlocked.Exchange(ref _isProcessingAnswer, 1) == 1)
                 return;
 
@@ -390,6 +515,11 @@ public partial class QuizPage : ContentPage
             {
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
+                    if (_isSurvivalMode)
+                    {
+                        return;
+                    }
+
                     if (_currentIndex < _questions.Count - 1)
                     {
                         _currentIndex++;
@@ -403,7 +533,6 @@ public partial class QuizPage : ContentPage
             }
             finally
             {
-         
                 Interlocked.Exchange(ref _isProcessingAnswer, 0);
             }
         }
@@ -427,7 +556,7 @@ public partial class QuizPage : ContentPage
                     PlayerName = name,
                     Score = _score,
                     Date = DateTime.UtcNow,
-                    Difficulty = _difficulty
+                    Difficulty = _isSurvivalMode ? "survival" : _difficulty
                 };
 
                 await ScoreboardService.AddAsync(entry);
@@ -455,7 +584,6 @@ public partial class QuizPage : ContentPage
         catch { }
     }
 
-  
     private async Task ShowFloatingPointsLabel(string text, Color color)
     {
         var label = new Label
@@ -472,7 +600,6 @@ public partial class QuizPage : ContentPage
         if (Content is Layout layout)
             layout.Children.Add(label);
 
-  
         await label.FadeTo(1, 200);
         await label.ScaleTo(1.2, 300, Easing.CubicOut);
         await Task.Delay(400);

@@ -18,7 +18,7 @@ public partial class LoginPage : ContentPage
             
             if (DeviceInfo.Platform == DevicePlatform.WinUI)
             {
-                await Shell.Current.GoToAsync("///difficulty");
+                await Shell.Current.GoToAsync("///gamemode");
                 return;
             }
 
@@ -28,7 +28,7 @@ public partial class LoginPage : ContentPage
             if (!availability)
             {
                 await DisplayAlert("Uwaga", "Zalogowano testowo.", "OK");
-                await Shell.Current.GoToAsync("///difficulty");
+                await Shell.Current.GoToAsync("///gamemode");
                 return;
             }
 
@@ -44,7 +44,8 @@ public partial class LoginPage : ContentPage
             if (result.Authenticated)
             {
                 await DisplayAlert("Sukces", "Pomyœlnie zalogowano!", "OK");
-                await Shell.Current.GoToAsync("///difficulty");
+                await Shell.Current.GoToAsync("///gamemode");
+
             }
             else
             {

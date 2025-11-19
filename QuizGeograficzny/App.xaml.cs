@@ -1,5 +1,5 @@
 ﻿using QuizGeograficzny.Services;
-using System.Diagnostics; 
+using System.Diagnostics;
 
 namespace QuizGeograficzny
 {
@@ -8,6 +8,8 @@ namespace QuizGeograficzny
         private readonly ILightSensorService _lightSensorService;
 
         private const float DARK_THRESHOLD_LUX = 22;
+
+        public static bool LightSensorEnabled { get; set; } = true;
 
         public App(ILightSensorService lightSensorService)
         {
@@ -26,36 +28,61 @@ namespace QuizGeograficzny
         protected override void OnStart()
         {
             base.OnStart();
-            Debug.WriteLine("[App] Uruchamiam nasłuch czujnika.");
-            _lightSensorService.OnLightReadingChanged += OnLightReadingChanged;
-            _lightSensorService.StartListening();
+
+            Debug.WriteLine("[App] Start aplikacji.");
+
+            if (LightSensorEnabled)
+            {
+                Debug.WriteLine("[App] Czujnik światła włączony.");
+                _lightSensorService.OnLightReadingChanged += OnLightReadingChanged;
+                _lightSensorService.StartListening();
+            }
+            else
+            {
+                Debug.WriteLine("[App] Czujnik światła wyłączony.");
+            }
         }
 
         protected override void OnSleep()
         {
             base.OnSleep();
-            _lightSensorService.StopListening();
-            _lightSensorService.OnLightReadingChanged -= OnLightReadingChanged;
+
+            if (LightSensorEnabled)
+            {
+                Debug.WriteLine("[App] Usypianie — wyłączam czujnik.");
+                _lightSensorService.StopListening();
+                _lightSensorService.OnLightReadingChanged -= OnLightReadingChanged;
+            }
         }
 
         protected override void OnResume()
         {
             base.OnResume();
-            _lightSensorService.OnLightReadingChanged += OnLightReadingChanged;
-            _lightSensorService.StartListening();
+
+            if (LightSensorEnabled)
+            {
+                Debug.WriteLine("[App] Wznowienie — włączam czujnik.");
+                _lightSensorService.OnLightReadingChanged += OnLightReadingChanged;
+                _lightSensorService.StartListening();
+            }
         }
 
         private void OnLightReadingChanged(float currentLux)
         {
-            AppTheme newTheme = currentLux < DARK_THRESHOLD_LUX ? AppTheme.Dark : AppTheme.Light;
+            if (!LightSensorEnabled)
+                return;
 
-            Debug.WriteLine($"[App] Odczyt: {currentLux} lux. Próg: {DARK_THRESHOLD_LUX}. Wybrany motyw: {newTheme}");
+            AppTheme newTheme = currentLux < DARK_THRESHOLD_LUX
+                ? AppTheme.Dark
+                : AppTheme.Light;
+
+            Debug.WriteLine($"[App] Odczyt: {currentLux} lux. Wybrany motyw: {newTheme}");
 
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 if (Application.Current.UserAppTheme != newTheme)
                 {
-                    Debug.WriteLine($"[App] ZMIENIAM MOTYW na: {newTheme}");
+                    Debug.WriteLine($"[App] Zmieniam motyw na: {newTheme}");
                     Application.Current.UserAppTheme = newTheme;
                 }
             });

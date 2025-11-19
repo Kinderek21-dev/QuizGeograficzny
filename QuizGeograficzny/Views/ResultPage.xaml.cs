@@ -25,7 +25,7 @@ public partial class ResultPage : ContentPage
 
     private async void OnReplayClicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("///difficulty");
+        await Shell.Current.GoToAsync("///gamemode");
     }
 
     private async void OnShowScoreboardClicked(object sender, EventArgs e)
