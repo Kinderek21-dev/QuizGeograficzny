@@ -6,6 +6,7 @@ namespace QuizGeograficzny.Views;
 public partial class ResultPage : ContentPage
 {
     private int _score = 0;
+
     public ResultPage()
     {
         InitializeComponent();
@@ -18,18 +19,28 @@ public partial class ResultPage : ContentPage
             if (int.TryParse(value, out var s))
             {
                 _score = s;
-                ResultLabel.Text = $"Twój wynik: {_score} punktów";
+                ScoreValueLabel.Text = _score.ToString();
             }
         }
     }
 
-    private async void OnReplayClicked(object sender, EventArgs e)
+    private async void OnReplayTapped(object sender, EventArgs e)
     {
+        if (sender is VisualElement element)
+        {
+            await element.ScaleTo(0.95, 100);
+            await element.ScaleTo(1.0, 100);
+        }
         await Shell.Current.GoToAsync("///gamemode");
     }
 
-    private async void OnShowScoreboardClicked(object sender, EventArgs e)
+    private async void OnScoreboardTapped(object sender, EventArgs e)
     {
+        if (sender is VisualElement element)
+        {
+            await element.ScaleTo(0.95, 100);
+            await element.ScaleTo(1.0, 100);
+        }
         await Shell.Current.GoToAsync("///scoreboard");
     }
 }

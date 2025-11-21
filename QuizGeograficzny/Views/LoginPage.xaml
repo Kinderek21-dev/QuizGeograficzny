@@ -2,27 +2,67 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QuizGeograficzny.Views.LoginPage"
-             Title="LoginPage">
+             Title="Logowanie"
+             NavigationPage.HasNavigationBar="False">
 
-    <VerticalStackLayout
-        VerticalOptions="Center"
-        HorizontalOptions="Center"
-        Spacing="20">
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="{AppThemeBinding Light=#512BD4, Dark=#2B0B98}" Offset="0.0" />
+            <GradientStop Color="{AppThemeBinding Light=#2B0B98, Dark=#121212}" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
 
-        <Label 
-            Text="QuizGeograficzny" 
-            FontSize="28"
-            HorizontalOptions="Center" 
-            />
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="30" VerticalOptions="Center">
 
-        <Button
-            Text="Zaloguj odciskiem palca"
-            Clicked="OnLoginClicked"
-            BackgroundColor="Black"
-            TextColor="White"
-            CornerRadius="15"
-            WidthRequest="250"
-            HeightRequest="60" />
-    </VerticalStackLayout>
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Witaj"
+                       FontSize="36"
+                       TextColor="White"
+                       FontFamily="OpenSansSemibold"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"/>
 
+                <Label Text="Zaloguj się, aby kontynuować"
+                       FontSize="16"
+                       TextColor="{AppThemeBinding Light=#E0E0E0, Dark=#AAAAAA}"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"/>
+            </VerticalStackLayout>
+
+            <Border StrokeShape="RoundRectangle 25"
+                    StrokeThickness="0"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1F1F1F}"
+                    Padding="20"
+                    Margin="0,20,0,0">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="0,10" Radius="20" Opacity="0.25"/>
+                </Border.Shadow>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnLoginTapped" />
+                </Border.GestureRecognizers>
+
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="2">
+                    <Label Text="Zaloguj biometrią" 
+                           FontSize="18" 
+                           FontAttributes="Bold" 
+                           HorizontalOptions="Center"
+                           TextColor="{AppThemeBinding Light=#333333, Dark=White}"/>
+                    <Label Text="Użyj odcisku palca" 
+                           FontSize="12" 
+                           HorizontalOptions="Center"
+                           TextColor="{AppThemeBinding Light=#777777, Dark=#999999}"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="Jeśli nie masz skonfigurowanej biometrii, zostaniesz zalogowany testowo."
+                   FontSize="12"
+                   TextColor="{AppThemeBinding Light=#D0C2FF, Dark=#666666}"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,20,0,0"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

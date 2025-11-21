@@ -2,24 +2,93 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QuizGeograficzny.Views.SettingsPage"
-             Title="Ustawienia">
-    <VerticalStackLayout Padding="16" Spacing="16">
-        <Label Text="Ustawienia" FontSize="24" HorizontalOptions="Center" />
+             Title="Ustawienia"
+             NavigationPage.HasNavigationBar="False">
 
-        <HorizontalStackLayout VerticalOptions="CenterAndExpand" Spacing="10">
-            <Label Text="Automatyczny motyw (czujnik światła)" VerticalOptions="Center" />
-            <Switch x:Name="AutoThemeSwitch" Toggled="OnAutoThemeToggled" />
-        </HorizontalStackLayout>
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="{AppThemeBinding Light=#512BD4, Dark=#2B0B98}" Offset="0.0" />
+            <GradientStop Color="{AppThemeBinding Light=#2B0B98, Dark=#121212}" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
 
-        <Label Text="Ręczny wybór motywu:" />
-        <Picker x:Name="ThemePicker" SelectedIndexChanged="OnThemePickerChanged">
-            <Picker.Items>
-                <x:String>System</x:String>
-                <x:String>Light</x:String>
-                <x:String>Dark</x:String>
-            </Picker.Items>
-        </Picker>
+    <ScrollView>
+        <VerticalStackLayout Padding="25" Spacing="20">
 
-        <Button Text="Zapisz" Clicked="OnSaveClicked" />
-    </VerticalStackLayout>
+            <Label Text="Konfiguracja"
+                   FontSize="16"
+                   TextColor="{AppThemeBinding Light=#DFD8F7, Dark=#AAAAAA}"
+                   HorizontalOptions="Center"
+                   FontFamily="OpenSansRegular"/>
+
+            <Label Text="Ustawienia"
+                   FontSize="32"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   FontFamily="OpenSansSemibold"
+                   Margin="0,-10,0,20" />
+
+            <Border StrokeShape="RoundRectangle 20"
+                    StrokeThickness="0"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1F1F1F}"
+                    Padding="20">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="0,8" Radius="15" Opacity="0.2" />
+                </Border.Shadow>
+
+                <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto" RowSpacing="5">
+                    <Label Grid.Row="0" Grid.Column="0" Text="Automatyczny motyw" FontSize="18" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#333, Dark=White}" VerticalOptions="Center"/>
+                    <Label Grid.Row="1" Grid.Column="0" Text="Użyj czujnika światła" FontSize="12" TextColor="{AppThemeBinding Light=#666, Dark=#AAA}" VerticalOptions="Center"/>
+
+                    <Switch Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" x:Name="AutoThemeSwitch" Toggled="OnAutoThemeToggled" OnColor="{StaticResource Primary}" ThumbColor="White" VerticalOptions="Center"/>
+                </Grid>
+            </Border>
+
+            <Border StrokeShape="RoundRectangle 20"
+                    StrokeThickness="0"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1F1F1F}"
+                    Padding="20">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="0,8" Radius="15" Opacity="0.2" />
+                </Border.Shadow>
+
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Ręczny wybór motywu" FontSize="18" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#333, Dark=White}"/>
+                    <Label Text="Działa tylko gdy automat jest wyłączony" FontSize="12" TextColor="{AppThemeBinding Light=#666, Dark=#AAA}"/>
+
+                    <Border Stroke="#E0E0E0" StrokeThickness="1" StrokeShape="RoundRectangle 10" BackgroundColor="{AppThemeBinding Light=#F5F5F5, Dark=#333}" Padding="10,0">
+                        <Picker x:Name="ThemePicker" SelectedIndexChanged="OnThemePickerChanged" TextColor="{AppThemeBinding Light=#333, Dark=White}" TitleColor="{AppThemeBinding Light=#999, Dark=#777}" Title="Wybierz motyw">
+                            <Picker.Items>
+                                <x:String>System</x:String>
+                                <x:String>Light</x:String>
+                                <x:String>Dark</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border StrokeShape="RoundRectangle 20"
+                    StrokeThickness="0"
+                    BackgroundColor="{AppThemeBinding Light=#512BD4, Dark=#3E3E3E}"
+                    Padding="15"
+                    Margin="0,20,0,0">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="0,8" Radius="15" Opacity="0.3" />
+                </Border.Shadow>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnSaveTapped" />
+                </Border.GestureRecognizers>
+
+                <Label Text="Zapisz zmiany" 
+                       FontSize="18" 
+                       FontAttributes="Bold" 
+                       TextColor="White" 
+                       HorizontalOptions="Center" 
+                       VerticalOptions="Center"/>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

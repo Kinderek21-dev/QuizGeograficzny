@@ -5,12 +5,12 @@ public partial class SplashPage : ContentPage
     public SplashPage()
     {
         InitializeComponent();
-        _ = LoadAppAsync();
     }
 
-    private async Task LoadAppAsync()
+    protected override async void OnAppearing()
     {
-        await Task.Delay(2000); 
-        await Shell.Current.GoToAsync("///login", true);
+        base.OnAppearing();
+        await Task.Delay(2500);
+        await Shell.Current.GoToAsync("///login");
     }
 }

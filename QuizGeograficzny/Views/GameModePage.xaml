@@ -2,23 +2,80 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QuizGeograficzny.Views.GameModePage"
-             Title="Wybierz tryb gry">
+             Title="Tryb gry">
 
-    <VerticalStackLayout Padding="20" Spacing="20" VerticalOptions="Center">
-        <Label Text="Wybierz tryb gry" FontSize="28" HorizontalOptions="Center" />
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="{AppThemeBinding Light=#512BD4, Dark=#2B0B98}" Offset="0.0" />
+            <GradientStop Color="{AppThemeBinding Light=#2B0B98, Dark=#121212}" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
 
-        <Frame CornerRadius="12" HasShadow="True" Padding="12">
-            <VerticalStackLayout Spacing="8">
-                <Label Text="Standard (wybierz poziom trudności)" FontAttributes="Bold" />
-                <Button Text="Standard" Clicked="OnStandardClicked" />
-            </VerticalStackLayout>
-        </Frame>
+    <ScrollView>
+        <VerticalStackLayout Padding="25" Spacing="25" VerticalOptions="Center">
 
-        <Frame CornerRadius="12" HasShadow="True" Padding="12">
-            <VerticalStackLayout Spacing="8">
-                <Label Text="Survival (1 błąd = koniec)" FontAttributes="Bold" />
-                <Button Text="Survival" Clicked="OnSurvivalClicked" />
-            </VerticalStackLayout>
-        </Frame>
-    </VerticalStackLayout>
+            <Label Text="Witaj w Quizie!"
+                   FontSize="18"
+                   TextColor="{AppThemeBinding Light=#DFD8F7, Dark=#9E9E9E}"
+                   HorizontalOptions="Center"
+                   FontFamily="OpenSansRegular" />
+
+            <Label Text="Wybierz tryb gry"
+                   FontSize="32"
+                   TextColor="White"
+                   FontFamily="OpenSansSemibold"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,-10,0,20" />
+
+            <Border StrokeShape="RoundRectangle 20"
+                    StrokeThickness="0"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1F1F1F}"
+                    Padding="20">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="0,8" Radius="15" Opacity="0.2" />
+                </Border.Shadow>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnStandardTapped" />
+                </Border.GestureRecognizers>
+
+                <Grid ColumnDefinitions="Auto, *" ColumnSpacing="15">
+
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                        <Label Text="Standard" FontSize="22" FontAttributes="Bold" 
+                               TextColor="{AppThemeBinding Light=#333333, Dark=White}"/>
+                        <Label Text="10 pytań, wybór poziomu trudności." FontSize="13" 
+                               TextColor="{AppThemeBinding Light=#666666, Dark=#BBBBBB}"/>
+                    </VerticalStackLayout>
+
+                    <Label Grid.Column="1" Text="➔" TextColor="{StaticResource Primary}" FontSize="24" HorizontalOptions="End" VerticalOptions="Center"/>
+                </Grid>
+            </Border>
+
+            <Border StrokeShape="RoundRectangle 20"
+                    StrokeThickness="0"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1F1F1F}"
+                    Padding="20">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="0,8" Radius="15" Opacity="0.2" />
+                </Border.Shadow>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnSurvivalTapped" />
+                </Border.GestureRecognizers>
+
+                <Grid ColumnDefinitions="Auto, *" ColumnSpacing="15">
+
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                        <Label Text="Survival" FontSize="22" FontAttributes="Bold" 
+                               TextColor="{AppThemeBinding Light=#333333, Dark=White}"/>
+                        <Label Text="Graj do pierwszego błędu. Ile wytrzymasz?" FontSize="13" 
+                               TextColor="{AppThemeBinding Light=#666666, Dark=#BBBBBB}"/>
+                    </VerticalStackLayout>
+
+                    <Label Grid.Column="1" Text="➔" TextColor="#D32F2F" FontSize="24" HorizontalOptions="End" VerticalOptions="Center"/>
+                </Grid>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

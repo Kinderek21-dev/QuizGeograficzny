@@ -2,11 +2,87 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QuizGeograficzny.Views.ResultPage"
-             Title="Wynik">
+             Title="Wynik"
+             NavigationPage.HasNavigationBar="False">
 
-    <VerticalStackLayout Padding="20" Spacing="20" VerticalOptions="Center">
-        <Label x:Name="ResultLabel" FontSize="24" HorizontalOptions="Center" />
-        <Button Text="Zagraj ponownie" Clicked="OnReplayClicked" />
-        <Button Text="Pokaż tablicę wyników" Clicked="OnShowScoreboardClicked" />
-    </VerticalStackLayout>
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="{AppThemeBinding Light=#512BD4, Dark=#2B0B98}" Offset="0.0" />
+            <GradientStop Color="{AppThemeBinding Light=#2B0B98, Dark=#121212}" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="25" VerticalOptions="Center">
+
+            <Label Text="Koniec Gry!"
+                   FontSize="36"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   FontFamily="OpenSansSemibold" />
+
+            <Label Text="Twój wynik:"
+                   FontSize="18"
+                   TextColor="{AppThemeBinding Light=#E0E0E0, Dark=#AAAAAA}"
+                   HorizontalOptions="Center" />
+
+            <Border StrokeShape="RoundRectangle 80"
+                    StrokeThickness="4"
+                    Stroke="White"
+                    HeightRequest="160"
+                    WidthRequest="160"
+                    BackgroundColor="#30FFFFFF"
+                    HorizontalOptions="Center">
+                <Label x:Name="ScoreValueLabel"
+                       Text="0"
+                       FontSize="64"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+            </Border>
+
+            <BoxView HeightRequest="20" Color="Transparent" />
+
+            <Border StrokeShape="RoundRectangle 20"
+                    StrokeThickness="0"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1F1F1F}"
+                    Padding="20">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="0,8" Radius="15" Opacity="0.2" />
+                </Border.Shadow>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnReplayTapped" />
+                </Border.GestureRecognizers>
+
+                <Grid ColumnDefinitions="Auto, *" ColumnSpacing="20">
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                        <Label Text="Zagraj ponownie" FontSize="18" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#333333, Dark=White}"/>
+                        <Label Text="Wybierz tryb i spróbuj jeszcze raz" FontSize="12" TextColor="{AppThemeBinding Light=#777777, Dark=#AAAAAA}"/>
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+
+            <Border StrokeShape="RoundRectangle 20"
+                    StrokeThickness="0"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1F1F1F}"
+                    Padding="20">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="0,8" Radius="15" Opacity="0.2" />
+                </Border.Shadow>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnScoreboardTapped" />
+                </Border.GestureRecognizers>
+
+                <Grid ColumnDefinitions="Auto, *" ColumnSpacing="20">
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                        <Label Text="Tablica wyników" FontSize="18" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#333333, Dark=White}"/>
+                        <Label Text="Sprawdź najlepszych graczy" FontSize="12" TextColor="{AppThemeBinding Light=#777777, Dark=#AAAAAA}"/>
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

@@ -1,59 +1,71 @@
 using Microsoft.Maui.Storage;
 
-namespace QuizGeograficzny.Views
+namespace QuizGeograficzny.Views;
+
+public partial class SettingsPage : ContentPage
 {
-    public partial class SettingsPage : ContentPage
+    private const string KEY_AUTO_THEME = "AutoThemeEnabled";
+    private const string KEY_MANUAL_THEME = "ManualTheme";
+
+    public SettingsPage()
     {
-        private const string KEY_AUTO_THEME = "AutoThemeEnabled";
-        private const string KEY_MANUAL_THEME = "ManualTheme";
+        InitializeComponent();
+        Load();
+    }
 
-        public SettingsPage()
+    private void Load()
+    {
+        bool auto = Preferences.Get(KEY_AUTO_THEME, true);
+        AutoThemeSwitch.IsToggled = auto;
+
+        string manual = Preferences.Get(KEY_MANUAL_THEME, "System");
+        ThemePicker.SelectedIndex = manual == "Light" ? 1 : manual == "Dark" ? 2 : 0;
+
+        ThemePicker.IsEnabled = !auto;
+        ThemePicker.Opacity = auto ? 0.5 : 1.0;
+    }
+
+    private void OnAutoThemeToggled(object sender, ToggledEventArgs e)
+    {
+        ThemePicker.IsEnabled = !e.Value;
+        ThemePicker.Opacity = e.Value ? 0.5 : 1.0;
+        App.LightSensorEnabled = e.Value;
+    }
+
+    private void OnThemePickerChanged(object sender, EventArgs e)
+    {
+    }
+
+    private async void OnSaveTapped(object sender, TappedEventArgs e)
+    {
+        if (sender is VisualElement element)
         {
-            InitializeComponent();
-            Load();
+            await element.ScaleTo(0.95, 100);
+            await element.ScaleTo(1.0, 100);
         }
 
-        private void Load()
+        Preferences.Set(KEY_AUTO_THEME, AutoThemeSwitch.IsToggled);
+
+        var manual = ThemePicker.SelectedIndex switch
         {
-            bool auto = Preferences.Get(KEY_AUTO_THEME, true);
-            AutoThemeSwitch.IsToggled = auto;
+            1 => "Light",
+            2 => "Dark",
+            _ => "System"
+        };
+        Preferences.Set(KEY_MANUAL_THEME, manual);
 
-            string manual = Preferences.Get(KEY_MANUAL_THEME, "System");
-            ThemePicker.SelectedIndex = manual == "Light" ? 1 : manual == "Dark" ? 2 : 0;
+        App.LightSensorEnabled = AutoThemeSwitch.IsToggled;
 
-            ThemePicker.IsEnabled = !auto;
-        }
-
-        private void OnAutoThemeToggled(object sender, ToggledEventArgs e)
+        if (!AutoThemeSwitch.IsToggled)
         {
-            ThemePicker.IsEnabled = !e.Value;
-        }
-
-        private void OnThemePickerChanged(object sender, EventArgs e) { /* nic */ }
-
-        private async void OnSaveClicked(object sender, EventArgs e)
-        {
-            Preferences.Set(KEY_AUTO_THEME, AutoThemeSwitch.IsToggled);
-
-            var manual = ThemePicker.SelectedIndex switch
+            Application.Current.UserAppTheme = manual switch
             {
-                1 => "Light",
-                2 => "Dark",
-                _ => "System"
+                "Light" => AppTheme.Light,
+                "Dark" => AppTheme.Dark,
+                _ => AppTheme.Unspecified
             };
-            Preferences.Set(KEY_MANUAL_THEME, manual);
-
-            if (!AutoThemeSwitch.IsToggled)
-            {
-                Application.Current.UserAppTheme = manual switch
-                {
-                    "Light" => AppTheme.Light,
-                    "Dark" => AppTheme.Dark,
-                    _ => AppTheme.Unspecified
-                };
-            }
-
-            await DisplayAlert("Zapisano", "Ustawienia zapisane.", "OK");
         }
+
+        await DisplayAlert("Zapisano", "Ustawienia zosta³y zaktualizowane.", "OK");
     }
 }

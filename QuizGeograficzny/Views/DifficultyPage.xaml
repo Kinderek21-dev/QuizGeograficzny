@@ -4,22 +4,116 @@
              x:Class="QuizGeograficzny.Views.DifficultyPage"
              Title="Wybierz poziom trudności">
 
-    <VerticalStackLayout
-        VerticalOptions="Center"
-        HorizontalOptions="Center"
-        Spacing="15">
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="{AppThemeBinding Light=#512BD4, Dark=#2B0B98}" Offset="0.0" />
+            <GradientStop Color="{AppThemeBinding Light=#2B0B98, Dark=#121212}" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
 
-        <Label 
-            Text="Wybierz poziom trudności"
-            FontSize="28"
-            HorizontalOptions="Center"
-            Margin="0,0,0,20" />
+    <ScrollView>
+        <VerticalStackLayout Padding="25" Spacing="20" VerticalOptions="Center">
 
-        <Button Text="Łatwy" Clicked="GoToQuiz" WidthRequest="250" HeightRequest="50" />
-        <Button Text="Średni" Clicked="GoToQuiz" WidthRequest="250" HeightRequest="50" />
-        <Button Text="Trudny" Clicked="GoToQuiz" WidthRequest="250" HeightRequest="50" />
-        <Button Text="Bardzo trudny" Clicked="GoToQuiz" WidthRequest="250" HeightRequest="50" />
+            <Label Text="Wyzwanie"
+                   FontSize="18"
+                   TextColor="{AppThemeBinding Light=#DFD8F7, Dark=#9E9E9E}" 
+                   HorizontalOptions="Center"
+                   FontFamily="OpenSansRegular" />
 
-    </VerticalStackLayout>
+            <Label Text="Wybierz poziom"
+                   FontSize="32"
+                   TextColor="White"
+                   FontFamily="OpenSansSemibold"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,-10,0,30" />
 
+            <Border StrokeShape="RoundRectangle 20"
+                    StrokeThickness="0"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1F1F1F}"
+                    Padding="20">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="0,8" Radius="15" Opacity="0.2" />
+                </Border.Shadow>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnDifficultySelected" CommandParameter="Łatwy"/>
+                </Border.GestureRecognizers>
+
+                <Grid ColumnDefinitions="Auto, *" ColumnSpacing="15">
+
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                        <Label Text="Łatwy" FontSize="20" FontAttributes="Bold" 
+                               TextColor="{AppThemeBinding Light=#333333, Dark=White}"/>
+                        <Label Text="Na rozgrzewkę" FontSize="13" 
+                               TextColor="{AppThemeBinding Light=#777777, Dark=#BBBBBB}"/>
+                    </VerticalStackLayout>
+                    <Label Grid.Column="1" Text="➔" TextColor="{StaticResource Primary}" FontSize="24" HorizontalOptions="End" VerticalOptions="Center"/>
+                </Grid>
+            </Border>
+
+            <Border StrokeShape="RoundRectangle 20" StrokeThickness="0" 
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1F1F1F}" 
+                    Padding="20">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="0,8" Radius="15" Opacity="0.2" />
+                </Border.Shadow>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnDifficultySelected" CommandParameter="Średni"/>
+                </Border.GestureRecognizers>
+
+                <Grid ColumnDefinitions="Auto, *" ColumnSpacing="15">
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                        <Label Text="Średni" FontSize="20" FontAttributes="Bold" 
+                               TextColor="{AppThemeBinding Light=#333333, Dark=White}"/>
+                        <Label Text="Standardowa wiedza" FontSize="13" 
+                               TextColor="{AppThemeBinding Light=#777777, Dark=#BBBBBB}"/>
+                    </VerticalStackLayout>
+                    <Label Grid.Column="1" Text="➔" TextColor="{StaticResource Primary}" FontSize="24" HorizontalOptions="End" VerticalOptions="Center"/>
+                </Grid>
+            </Border>
+
+            <Border StrokeShape="RoundRectangle 20" StrokeThickness="0" 
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1F1F1F}" 
+                    Padding="20">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="0,8" Radius="15" Opacity="0.2" />
+                </Border.Shadow>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnDifficultySelected" CommandParameter="Trudny"/>
+                </Border.GestureRecognizers>
+
+                <Grid ColumnDefinitions="Auto, *" ColumnSpacing="15">
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                        <Label Text="Trudny" FontSize="20" FontAttributes="Bold" 
+                               TextColor="{AppThemeBinding Light=#333333, Dark=White}"/>
+                        <Label Text="Dla ekspertów" FontSize="13" 
+                               TextColor="{AppThemeBinding Light=#777777, Dark=#BBBBBB}"/>
+                    </VerticalStackLayout>
+                    <Label Grid.Column="1" Text="➔" TextColor="{StaticResource Primary}" FontSize="24" HorizontalOptions="End" VerticalOptions="Center"/>
+                </Grid>
+            </Border>
+
+            <Border StrokeShape="RoundRectangle 20" StrokeThickness="0" 
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1F1F1F}" 
+                    Padding="20">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="0,8" Radius="15" Opacity="0.2" />
+                </Border.Shadow>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnDifficultySelected" CommandParameter="Bardzo trudny"/>
+                </Border.GestureRecognizers>
+
+                <Grid ColumnDefinitions="Auto, *" ColumnSpacing="15">
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                        <Label Text="Bardzo trudny" FontSize="20" FontAttributes="Bold" 
+                               TextColor="{AppThemeBinding Light=#333333, Dark=White}"/>
+                        <Label Text="" FontSize="13" 
+                               TextColor="{AppThemeBinding Light=#777777, Dark=#BBBBBB}"/>
+                    </VerticalStackLayout>
+                    <Label Grid.Column="1" Text="➔" TextColor="{StaticResource Primary}" FontSize="24" HorizontalOptions="End" VerticalOptions="Center"/>
+                </Grid>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

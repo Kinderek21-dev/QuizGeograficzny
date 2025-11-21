@@ -4,27 +4,115 @@
              x:Class="QuizGeograficzny.Views.ScoreboardPage"
              Title="Tablica wyników">
 
-    <VerticalStackLayout Padding="10" Spacing="10">
-        <Label Text="Top Wyników" FontSize="20" HorizontalOptions="Center" />
-        <CollectionView x:Name="ScoresListView" ItemsLayout="VerticalList">
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="{AppThemeBinding Light=#512BD4, Dark=#2B0B98}" Offset="0.0" />
+            <GradientStop Color="{AppThemeBinding Light=#2B0B98, Dark=#121212}" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <Grid RowDefinitions="Auto, *, Auto" Padding="20" RowSpacing="15">
+
+        <VerticalStackLayout Grid.Row="0" Spacing="5">
+            <Label Text="Ranking"
+                   FontSize="16"
+                   TextColor="{AppThemeBinding Light=#DFD8F7, Dark=#AAAAAA}"
+                   HorizontalOptions="Center"
+                   FontFamily="OpenSansRegular"/>
+
+            <Label Text="Najlepsi Gracze"
+                   FontSize="28"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   FontFamily="OpenSansSemibold"/>
+        </VerticalStackLayout>
+
+        <CollectionView x:Name="ScoresListView" Grid.Row="1">
+            <CollectionView.EmptyView>
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10">
+                    <Label Text="📭" FontSize="40" HorizontalOptions="Center"/>
+                    <Label Text="Brak wyników" TextColor="White" FontSize="18" HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame Padding="10" Margin="5" CornerRadius="8" HasShadow="True">
-                        <Grid ColumnDefinitions="*,Auto">
-                            <StackLayout Grid.Column="0" VerticalOptions="Center">
-                                <Label Text="{Binding PlayerName}" FontAttributes="Bold" />
-                                <Label Text="{Binding Difficulty}" FontSize="12" />
-                            </StackLayout>
-                            <Label Grid.Column="1" Text="{Binding Score}" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Center" />
-                        </Grid>
-                    </Frame>
+                    <Grid Padding="0,5">
+                        <Border StrokeShape="RoundRectangle 15"
+                                BackgroundColor="{AppThemeBinding Light=White, Dark=#1F1F1F}"
+                                StrokeThickness="0"
+                                Padding="15">
+                            <Border.Shadow>
+                                <Shadow Brush="Black" Offset="0,4" Radius="8" Opacity="0.15"/>
+                            </Border.Shadow>
+
+                            <Grid ColumnDefinitions="Auto, *, Auto" ColumnSpacing="15">
+
+
+                                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                                    <Label Text="{Binding PlayerName}" 
+                                           FontSize="16" 
+                                           FontAttributes="Bold" 
+                                           TextColor="{AppThemeBinding Light=#333333, Dark=White}"/>
+
+                                    <Label Text="{Binding Difficulty}" 
+                                           FontSize="12" 
+                                           TextColor="{AppThemeBinding Light=#777777, Dark=#AAAAAA}"/>
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End">
+                                    <Label Text="{Binding Score, StringFormat='{0} pkt'}" 
+                                           FontSize="18" 
+                                           FontAttributes="Bold" 
+                                           TextColor="{StaticResource Primary}"
+                                           HorizontalOptions="End"/>
+
+                                    <Label Text="{Binding Date, StringFormat='{0:dd.MM}'}" 
+                                           FontSize="11" 
+                                           TextColor="{AppThemeBinding Light=#999999, Dark=#666666}"
+                                           HorizontalOptions="End"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Border>
+                    </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-            <Button Text="Odśwież" Clicked="OnRefreshClicked" />
-            <Button Text="Wyczyść" Clicked="OnClearClicked" />
-        </HorizontalStackLayout>
-    </VerticalStackLayout>
+        <Grid Grid.Row="2" ColumnDefinitions="*, *" ColumnSpacing="15">
+            <Border Grid.Column="0"
+                    StrokeShape="RoundRectangle 15"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1F1F1F}"
+                    StrokeThickness="0"
+                    Padding="0"
+                    HeightRequest="50">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnRefreshTapped"/>
+                </Border.GestureRecognizers>
+                <Label Text="Odśwież" 
+                       TextColor="{StaticResource Primary}" 
+                       FontAttributes="Bold" 
+                       HorizontalOptions="Center" 
+                       VerticalOptions="Center"/>
+            </Border>
+
+            <Border Grid.Column="1"
+                    StrokeShape="RoundRectangle 15"
+                    BackgroundColor="{AppThemeBinding Light=#FFEBEE, Dark=#3E1F1F}"
+                    StrokeThickness="0"
+                    Padding="0"
+                    HeightRequest="50">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnClearTapped"/>
+                </Border.GestureRecognizers>
+                <Label Text="Wyczyść" 
+                       TextColor="#D32F2F" 
+                       FontAttributes="Bold" 
+                       HorizontalOptions="Center" 
+                       VerticalOptions="Center"/>
+            </Border>
+        </Grid>
+
+    </Grid>
 </ContentPage>

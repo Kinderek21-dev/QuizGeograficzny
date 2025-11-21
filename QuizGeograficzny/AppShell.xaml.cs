@@ -8,12 +8,18 @@
 
             var settings = new ToolbarItem
             {
-                Text = "Ustawienia",
-                Order = ToolbarItemOrder.Secondary 
+                Text = "⚙️",
+
+                Order = ToolbarItemOrder.Primary,
+                Priority = 0
             };
-            settings.Clicked += async (s, e) => await Shell.Current.GoToAsync("///settings");
+
+            settings.Clicked += async (s, e) =>
+            {
+                await Shell.Current.GoToAsync("///settings");
+            };
+
             this.ToolbarItems.Add(settings);
         }
     }
-
 }

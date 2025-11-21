@@ -22,15 +22,27 @@ public partial class ScoreboardPage : ContentPage
         ScoresListView.ItemsSource = top;
     }
 
-    private async void OnRefreshClicked(object sender, EventArgs e)
+    private async void OnRefreshTapped(object sender, EventArgs e)
     {
+        if (sender is VisualElement element)
+        {
+            await element.ScaleTo(0.95, 100);
+            await element.ScaleTo(1.0, 100);
+        }
         await LoadScoresAsync();
     }
 
-    private async void OnClearClicked(object sender, EventArgs e)
+    private async void OnClearTapped(object sender, EventArgs e)
     {
+        if (sender is VisualElement element)
+        {
+            await element.ScaleTo(0.95, 100);
+            await element.ScaleTo(1.0, 100);
+        }
+
         bool ok = await DisplayAlert("Wyczyœæ tablicê?", "Czy na pewno chcesz usun¹æ wszystkie wyniki?", "Tak", "Nie");
         if (!ok) return;
+
         await ScoreboardService.ClearAsync();
         await LoadScoresAsync();
     }

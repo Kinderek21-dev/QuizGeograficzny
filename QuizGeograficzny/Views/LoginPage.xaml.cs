@@ -10,31 +10,34 @@ public partial class LoginPage : ContentPage
         InitializeComponent();
     }
 
-
-    private async void OnLoginClicked(object sender, EventArgs e)
+    private async void OnLoginTapped(object sender, EventArgs e)
     {
+        if (sender is VisualElement element)
+        {
+            await element.ScaleTo(0.95, 100);
+            await element.ScaleTo(1.0, 100);
+        }
+
         try
         {
-            
             if (DeviceInfo.Platform == DevicePlatform.WinUI)
             {
                 await Shell.Current.GoToAsync("///gamemode");
                 return;
             }
 
-           
             var availability = await CrossFingerprint.Current.IsAvailableAsync(true);
 
             if (!availability)
             {
-                await DisplayAlert("Uwaga", "Zalogowano testowo.", "OK");
+                await DisplayAlert("Uwaga", "Zalogowano testowo (brak biometrii).", "OK");
                 await Shell.Current.GoToAsync("///gamemode");
                 return;
             }
 
             var authRequest = new AuthenticationRequestConfiguration(
                 "Uwierzytelnianie",
-                "Zaloguj siê odciskiem palca, aby rozpocz¹æ quiz.")
+                "Zaloguj siê, aby rozpocz¹æ quiz.")
             {
                 AllowAlternativeAuthentication = true
             };
@@ -43,9 +46,7 @@ public partial class LoginPage : ContentPage
 
             if (result.Authenticated)
             {
-                await DisplayAlert("Sukces", "Pomyœlnie zalogowano!", "OK");
                 await Shell.Current.GoToAsync("///gamemode");
-
             }
             else
             {
@@ -57,5 +58,4 @@ public partial class LoginPage : ContentPage
             await DisplayAlert("B³¹d", $"Wyst¹pi³ wyj¹tek: {ex.Message}", "OK");
         }
     }
-
 }
