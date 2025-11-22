@@ -1,4 +1,5 @@
-using Microsoft.Maui.Controls;
+using System;
+using Microsoft.Maui.ApplicationModel;
 
 namespace QuizGeograficzny.Views;
 
@@ -20,6 +21,23 @@ public partial class ResultPage : ContentPage
             {
                 _score = s;
                 ScoreValueLabel.Text = _score.ToString();
+
+
+                double fraction = Math.Clamp(_score / 10.0, 0.0, 1.0);
+                MainThread.BeginInvokeOnMainThread(async () =>
+                {
+                    try
+                    {
+                        ScorePercentLabel.Text = $"{(int)Math.Round(fraction * 100)}%";
+                        await ScoreProgressBar.ProgressTo(fraction, 600u, Easing.CubicInOut);
+                    }
+                    catch
+                    {
+
+                        ScoreProgressBar.Progress = fraction;
+                        ScorePercentLabel.Text = $"{(int)Math.Round(fraction * 100)}%";
+                    }
+                });
             }
         }
     }

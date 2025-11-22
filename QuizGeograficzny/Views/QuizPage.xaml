@@ -1,63 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QuizGeograficzny.Views.QuizPage"
              Title="Quiz">
 
-    <VerticalStackLayout Padding="20" Spacing="10">
-        <Label x:Name="ProgressLabel"
-               FontSize="18"
-               HorizontalOptions="Center" />
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="{AppThemeBinding Light=#512BD4, Dark=#2B0B98}" Offset="0.0" />
+            <GradientStop Color="{AppThemeBinding Light=#2B0B98, Dark=#121212}" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
 
-        <Label x:Name="QuestionLabel"
-               FontSize="22"
-               FontAttributes="Bold"
-               HorizontalOptions="Center"
-               TextColor="White"
-               HorizontalTextAlignment="Center"
-               Margin="10,0" />
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="15" VerticalOptions="Center">
 
-        <Image x:Name="QuestionImage"
-               IsVisible="False"
-               HeightRequest="150"
-               Aspect="AspectFit"
-               Margin="0,10" />
+            <Border StrokeShape="RoundRectangle 20"
+                    StrokeThickness="0"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1F1F1F}"
+                    Padding="20">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="0,8" Radius="15" Opacity="0.2" />
+                </Border.Shadow>
 
-        <ProgressBar x:Name="QuestionTimerProgressBar"
-                     Progress="1"
-                     HeightRequest="10"
-                     Margin="0,10" />
+                <VerticalStackLayout Spacing="10">
 
-        <Label x:Name="QuestionTimerLabel"
-               FontSize="16"
-               HorizontalOptions="Center"
-               TextColor="Gray" />
+                    <Label x:Name="ProgressLabel"
+                           FontSize="18"
+                           HorizontalOptions="Center"
+                           TextColor="{AppThemeBinding Light=#555555, Dark=#CCCCCC}" />
 
-        <Button x:Name="AnswerButton1"
-                Clicked="OnAnswerClicked"
-                BackgroundColor="#f0f0f0"
-                TextColor="Black"
-                FontSize="18"
-                CornerRadius="15" />
+                    <Label x:Name="QuestionLabel"
+                           FontSize="22"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           TextColor="{AppThemeBinding Light=#333333, Dark=White}"
+                           HorizontalTextAlignment="Center"
+                           Margin="10,0" />
 
-        <Button x:Name="AnswerButton2"
-                Clicked="OnAnswerClicked"
-                BackgroundColor="#f0f0f0"
-                TextColor="Black"
-                FontSize="18"
-                CornerRadius="15" />
+                    <Image x:Name="QuestionImage"
+                           IsVisible="False"
+                           HeightRequest="150"
+                           Aspect="AspectFit"
+                           Margin="0,10" />
 
-        <Button x:Name="AnswerButton3"
-                Clicked="OnAnswerClicked"
-                BackgroundColor="#f0f0f0"
-                TextColor="Black"
-                FontSize="18"
-                CornerRadius="15" />
+                    <ProgressBar x:Name="QuestionTimerProgressBar"
+                                 Progress="1"
+                                 HeightRequest="10"
+                                 Margin="0,10" />
 
-        <Button x:Name="AnswerButton4"
-                Clicked="OnAnswerClicked"
-                BackgroundColor="#f0f0f0"
-                TextColor="Black"
-                FontSize="18"
-                CornerRadius="15" />
-    </VerticalStackLayout>
+                    <Label x:Name="QuestionTimerLabel"
+                           FontSize="16"
+                           HorizontalOptions="Center"
+                           TextColor="{AppThemeBinding Light=#777777, Dark=#BBBBBB}" />
+
+                    <Button x:Name="AnswerButton1"
+                            Clicked="OnAnswerClicked"
+                            BackgroundColor="{AppThemeBinding Light=#F0F0F0, Dark=#2A2A2A}"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                            FontSize="18"
+                            CornerRadius="15" />
+
+                    <Button x:Name="AnswerButton2"
+                            Clicked="OnAnswerClicked"
+                            BackgroundColor="{AppThemeBinding Light=#F0F0F0, Dark=#2A2A2A}"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                            FontSize="18"
+                            CornerRadius="15" />
+
+                    <Button x:Name="AnswerButton3"
+                            Clicked="OnAnswerClicked"
+                            BackgroundColor="{AppThemeBinding Light=#F0F0F0, Dark=#2A2A2A}"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                            FontSize="18"
+                            CornerRadius="15" />
+
+                    <Button x:Name="AnswerButton4"
+                            Clicked="OnAnswerClicked"
+                            BackgroundColor="{AppThemeBinding Light=#F0F0F0, Dark=#2A2A2A}"
+                            TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                            FontSize="18"
+                            CornerRadius="15" />
+
+                </VerticalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

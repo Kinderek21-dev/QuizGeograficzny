@@ -43,7 +43,18 @@
                        VerticalOptions="Center" />
             </Border>
 
-            <BoxView HeightRequest="20" Color="Transparent" />
+            <VerticalStackLayout Spacing="8" HorizontalOptions="Fill" Padding="10,0">
+                <ProgressBar x:Name="ScoreProgressBar"
+                             Progress="0"
+                             HeightRequest="8"
+                             BackgroundColor="#30FFFFFF"
+                             ProgressColor="White" />
+                <Label x:Name="ScorePercentLabel"
+                       Text="0%"
+                       FontSize="14"
+                       TextColor="White"
+                       HorizontalOptions="Center" />
+            </VerticalStackLayout>
 
             <Border StrokeShape="RoundRectangle 20"
                     StrokeThickness="0"

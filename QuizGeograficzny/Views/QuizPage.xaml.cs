@@ -24,7 +24,7 @@ public partial class QuizPage : ContentPage
     private List<Question> _remaining = new();
     private int _currentIndex = 0;
     private int _score = 0;
-    private string _difficulty = "³atwy";
+    private string _difficulty = "£atwy";
 
     private string _mode = "normal";
     private bool _isSurvivalMode => string.Equals(_mode, "survival", StringComparison.OrdinalIgnoreCase);
@@ -50,7 +50,7 @@ public partial class QuizPage : ContentPage
         get => _difficulty;
         set
         {
-            _difficulty = value ?? "³atwy";
+            _difficulty = value ?? "£atwy";
             _ = LoadAndShowAsync();
         }
     }
@@ -110,7 +110,6 @@ public partial class QuizPage : ContentPage
                 var all = await QuestionsData.GetAllQuestionsAsync();
                 _questions = all.OrderBy(_ => Guid.NewGuid()).ToList();
 
-        
                 _remaining = _questions.ToList();
                 ShuffleList(_remaining);
                 _survivalStreak = 0;
@@ -163,7 +162,7 @@ public partial class QuizPage : ContentPage
         {
             if (_remaining == null || _remaining.Count == 0)
             {
-              
+
                 _remaining = _questions.ToList();
                 ShuffleList(_remaining);
             }
@@ -226,14 +225,14 @@ public partial class QuizPage : ContentPage
         AnimateFadeIn(this);
 
 #if WINDOWS
-        // na Windows ustaw kolory tekstu niezale¿nie od motywu (by czcionka by³a czytelna)
-        QuestionLabel.TextColor = Colors.Black;
-        AnswerButton1.TextColor = Colors.Black;
-        AnswerButton2.TextColor = Colors.Black;
-        AnswerButton3.TextColor = Colors.Black;
-        AnswerButton4.TextColor = Colors.Black;
+        // na Windows ustaw kolory tekstu niezale¿nie od motywu (by czcionka by³a czytelna)
+        QuestionLabel.TextColor = Colors.Black;
+        AnswerButton1.TextColor = Colors.Black;
+        AnswerButton2.TextColor = Colors.Black;
+        AnswerButton3.TextColor = Colors.Black;
+        AnswerButton4.TextColor = Colors.Black;
 #endif
-    }
+    }
 
     private void ResetAnswerButtons()
     {
@@ -342,7 +341,7 @@ public partial class QuizPage : ContentPage
             return;
         }
 
-        int minus = _difficulty.ToLower() switch
+        int minus = _difficulty.ToLowerInvariant() switch
         {
             "³atwy" => 2,
             "œredni" => 1,
@@ -370,7 +369,7 @@ public partial class QuizPage : ContentPage
             return;
         }
 
-        ProgressLabel.Text += " — potrz¹œnij, aby przejœæ dalej";
+        ProgressLabel.Text += " — potwierdŸ, aby przejœæ dalej";
     }
 
     private void TryVibrateShort(int ms)
@@ -395,7 +394,7 @@ public partial class QuizPage : ContentPage
             {
                 if (_remaining == null || _remaining.Count == 0)
                 {
-            
+
                     await EndQuizAsync();
                     return;
                 }
@@ -413,10 +412,10 @@ public partial class QuizPage : ContentPage
             Question q = _isSurvivalMode ? _remaining[0] : _questions[_currentIndex];
 
             int chosenIndex = btn == AnswerButton1 ? 0 :
-                              btn == AnswerButton2 ? 1 :
-                              btn == AnswerButton3 ? 2 : 3;
+                     btn == AnswerButton2 ? 1 :
+                     btn == AnswerButton3 ? 2 : 3;
 
-            int plus = _difficulty.ToLower() switch
+            int plus = _difficulty.ToLowerInvariant() switch
             {
                 "³atwy" => 1,
                 "œredni" => 2,
@@ -425,7 +424,7 @@ public partial class QuizPage : ContentPage
                 _ => 1
             };
 
-            int minus = _isSurvivalMode ? 0 : (_difficulty.ToLower() switch
+            int minus = _isSurvivalMode ? 0 : (_difficulty.ToLowerInvariant() switch
             {
                 "³atwy" => 2,
                 "œredni" => 1,
@@ -438,7 +437,7 @@ public partial class QuizPage : ContentPage
             TryVibrateShort(correct ? 40 : 160);
             await AnimatePulseAsync(QuestionTimerProgressBar, correct ? Colors.Green : Colors.Red);
 
-     
+
             if (correct)
             {
                 _score += plus;
@@ -449,10 +448,10 @@ public partial class QuizPage : ContentPage
                 {
                     _score -= minus;
                 }
-        
+
             }
 
-  
+
             string pointsMsg = correct ? $"+{plus}" : (minus > 0 ? $"-{minus}" : "0");
             Color pointsColor = correct ? Colors.LimeGreen : Colors.IndianRed;
             await ShowFloatingPointsLabel(pointsMsg, pointsColor);
@@ -463,18 +462,18 @@ public partial class QuizPage : ContentPage
                 {
                     _survivalStreak++;
 
-        
+
                     if (_remaining.Count > 0)
                         _remaining.RemoveAt(0);
 
                     ProgressLabel.Text = $"Survival: {_survivalStreak} pkt";
 
-            
+
                     DisplayQuestion();
                 }
                 else
                 {
-           
+
                     await EndQuizAsync();
                 }
             }
