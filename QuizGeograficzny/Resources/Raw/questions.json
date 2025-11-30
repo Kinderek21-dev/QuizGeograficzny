@@ -719,6 +719,489 @@
       "correctAnswerIndex": 2,
       "difficulty": "trudny",
       "imageUrl": null
+    },
+    {
+      "id": 91,
+      "questionText": "Jak nazywa się chmura kłębiasta o charakterystycznych, „bałwanopodobnych” kształtach?",
+      "answers": [ "cumulus", "stratus", "cirrus", "nimbostratus" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 92,
+      "questionText": "Który gaz jest głównym składnikiem atmosfery ziemskiej?",
+      "answers": [ "Tlen (O2)", "Azot (N2)", "Dwutlenek węgla (CO2)", "Hel (He)" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 93,
+      "questionText": "Jak nazywa się proces, w którym woda przechodzi z fazy ciekłej w parę?",
+      "answers": [ "kondensacja", "parowanie", "sublimacja", "desublimacja" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 94,
+      "questionText": "Co bada klimatologia?",
+      "answers": [ "Krótko- i średnioterminowe zjawiska pogodowe", "Długoterminowe wzorce pogodowe i ich zmiany", "Tylko cykle dobowo-nocne", "Tylko huragany i tornada" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 95,
+      "questionText": "Jak nazywa się skalna powłoka Ziemi, z której składają się skały i gleby?",
+      "answers": [ "hydrosfera", "litosfera", "biosfera", "atmosfera" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 96,
+      "questionText": "Co to jest erozja?",
+      "answers": [ "Tworzenie nowych skał magmowych", "Zniszczenie roślinności przez suszę", "Ścieranie i transport materiału skalnego przez wodę, wiatr lub lód", "Nagłe zapadanie się terenu" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 97,
+      "questionText": "Który z tych terminów dotyczy nauki o jeziorach?",
+      "answers": [ "potamologia", "limnologia", "pelagologia", "orografia" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 98,
+      "questionText": "Jak nazywamy wielką masę stojącej wody w zagłębieniu terenu?",
+      "answers": [ "fosa", "jezioro", "strumień", "delta" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 99,
+      "questionText": "Co to jest upwelling w oceanografii?",
+      "answers": [ "Opadanie zimnej wody z powierzchni na głębiny", "Wypływ ciepłej wody w oceanie", "Wznoszenie się zimnej, bogatej w składniki odżywcze wody ku powierzchni", "Tworzenie raf koralowych" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 100,
+      "questionText": "Co to jest gleba?",
+      "answers": [ "Warstwa gazowa nad Ziemią", "Warstwa wód gruntowych", "Zewnętrzna, żyzna warstwa powierzchni Ziemi powstała z materiału skalnego i materii organicznej", "Stale zamarznięte podłoże polarne" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 101,
+      "questionText": "Jak nazywa się termin określający długotrwały okres bez opadów na danym obszarze?",
+      "answers": [ "powódź", "susza", "monsun", "tornado" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 102,
+      "questionText": "Która forma rzeźby terenu jest efektem działania lodowca?",
+      "answers": [ "meander", "kar", "delta", "wydma" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 103,
+      "questionText": "Co to jest biogeografia?",
+      "answers": [ "Nauka o pogodzie", "Nauka o rozmieszczeniu organizmów i ekosystemów na Ziemi", "Nauka o prądach oceanicznych", "Nauka o ruchach płyt tektonicznych" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 104,
+      "questionText": "Jak nazywa się warstwa atmosfery, w której zachodzi większość zjawisk pogodowych?",
+      "answers": [ "egzosfera", "mezosfera", "troposfera", "stratosfera" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 105,
+      "questionText": "Co oznacza pojęcie 'rzeka źródłowa'?",
+      "answers": [ "Rzeka bez ujścia", "Początkowy odcinek rzeki, gdzie zaczyna się jej bieg", "Rzeka podziemna", "Rzeka tworząca deltę" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 106,
+      "questionText": "Który termin opisuje pory roku związane z nawalnymi opadami i silnymi wiatrami, występujące sezonowo w Azji południowo-wschodniej?",
+      "answers": [ "monsun", "tajfun", "cyklon", "zefir" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 107,
+      "questionText": "Co to jest delta rzeki?",
+      "answers": [ "Miejsce, gdzie rzeka zaczyna się", "Rozgałęzione ujście rzeki do morza lub jeziora", "Najgłębszy odcinek rzeki", "Wąskie przejście rzeczne między jeziorami" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 108,
+      "questionText": "Jak nazywa się stały zamarznięty grunt występujący w obszarach polarnych?",
+      "answers": [ "permafrost", "regosol", "glej", "litosfera" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 109,
+      "questionText": "Jaka jest podstawowa jednostka klasyfikacji klimatu w systemie Köppena?",
+      "answers": [ "strefa geologiczna", "typ klimatu", "klasa glebowa", "strefa roślinna" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 110,
+      "questionText": "Co bada glacjologia?",
+      "answers": [ "Pustynie", "Lodowce i związane z nimi procesy", "Prądy oceaniczne", "Trzęsienia ziemi" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+
+    {
+      "id": 111,
+      "questionText": "Co oznacza w meteorologii pojęcie 'ciśnienie atmosferyczne'?",
+      "answers": [ "Masa powietrza nad danym punktem wyrażona jako siła na jednostkę powierzchni", "Ilość pary wodnej w powietrzu", "Temperatura na powierzchni Ziemi", "Prędkość wiatru" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 112,
+      "questionText": "Który typ granicy płyt tektonicznych powoduje powstawanie rowów oceanicznych i subdukcji?",
+      "answers": [ "granicę rozbieżną", "granicę zbieżną (subdukcja)", "granicę transformującą", "granicę neutralną" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 113,
+      "questionText": "Jak nazywa się skalna jednostka metodą datowania względnego, która opisuje sekwencję osadów od najstarszych do najmłodszych?",
+      "answers": [ "prawo superpozycji", "prawo aktualizmu", "prawo lateralizacji", "prawo inkluzji" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 114,
+      "questionText": "Który rodzaj skał powstaje przez przeobrażenie istniejących skał pod wpływem ciśnienia i temperatury?",
+      "answers": [ "magmowe", "osadowe", "metamorficzne", "ulkogeniczne" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 115,
+      "questionText": "Jak nazywa się zjawisko, w którym ciepłe powietrze opada nad obszarem, powodując stabilną pogodę i małe zachmurzenie?",
+      "answers": [ "konwekcja", "subsydencja", "inwersja temperaturowa", "adwekcja" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 116,
+      "questionText": "Co to jest antropogeniczne ocieplenie klimatu?",
+      "answers": [ "Ocieplenie spowodowane naturalnymi cyklami słonecznymi", "Ocieplenie wywołane działalnością ludzką zwiększającą stężenie gazów cieplarnianych", "Ochłodzenie z powodu wybuchów wulkanów", "Zjawisko lokalne niezwiązane z CO2" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 117,
+      "questionText": "Który parametr hydrologiczny określa średni czas przebywania wody w jeziorze?",
+      "answers": [ "głębokość maksymalna", "objętość jeziora podzielona przez dopływ/odpływ", "powierzchnia jeziora", "temperatura wody" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 118,
+      "questionText": "Co to jest albedo powierzchni?",
+      "answers": [ "Współczynnik odbicia promieniowania słonecznego przez powierzchnię", "Temperatura powierzchni w skali Kelvina", "Rodzaj gleby", "Szybkość parowania wody" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 119,
+      "questionText": "Które procesy zaliczamy do zewnętrznych procesów rzeźbotwórczych?",
+      "answers": [ "wulkanizm i ruchy górotwórcze", "erozję, transport i sedymentację", "metamorfizm i magmatyzm", "subdukcję i rozciąganie skorupy" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 120,
+      "questionText": "Jak nazywa się powszechna jednostka klasyfikacji gleb oparta na warstwach i procesach utworzenia?",
+      "answers": [ "system Köppena", "taksonomia gleb", "klasyfikacja biotyczna", "skala Mohsa" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 121,
+      "questionText": "Czym jest rowek w geomorfologii?",
+      "answers": [ "Płaskowyż powstały przez wulkanizm", "Stroma, wąska dolina wyrzeźbiona przez rzekę", "Nagromadzenie piasku nadbrzeżnego", "Osuwisko gleby na stoku" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 122,
+      "questionText": "Które z poniższych zjawisk wskazuje na występowanie krasu?",
+      "answers": [ "wydmy piaszczyste", "lej krasowy i jaskinie wapienne", "fala tsunami", "rzędy wulkanów" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 123,
+      "questionText": "Jak nazywamy długotrwały, globalny wzrost średniej temperatury Ziemi spowodowany wzrostem gazów cieplarnianych?",
+      "answers": [ "glacjał", "era lodowa", "globalne ocieplenie", "zlodowacenie" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 124,
+      "questionText": "Jakie zjawisko powoduje tworzenie się meandrów rzeki?",
+      "answers": [ "równomierny przepływ i twarde dno rzeki", "nierównomierna erozja brzegów i odkładanie osadów", "działalność lodowców", "prądy morskie" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+
+    {
+      "id": 125,
+      "questionText": "Co to jest izobara w mapie meteorologicznej?",
+      "answers": [ "linia łącząca punkty o tej samej temperaturze", "linia łącząca punkty o tej samej prędkości wiatru", "linia łącząca punkty o tym samym ciśnieniu atmosferycznym", "linia łącząca punkty o tej samej wilgotności" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 126,
+      "questionText": "Jakiego typu fala sejsmiczna porusza się najszybciej przez wnętrze Ziemi?",
+      "answers": [ "fala powierzchniowa (Rayleigha)", "fala P (podłużna)", "fala S (poprzeczna)", "fala Love'a" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 127,
+      "questionText": "Który system klasyfikacji klimatu bierze pod uwagę przede wszystkim temperaturę i opady sezonowe?",
+      "answers": [ "klasyfikacja Holdridge'a", "klasyfikacja Köppena-Geigera", "system FAO gleb", "skala Beauforta" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 128,
+      "questionText": "Co to jest izotermia gleb i dlaczego jest ważna dla rolnictwa?",
+      "answers": [ "To różnica w zasoleniu gleby; wpływa na zasoby wodne", "To rozkład temperatur w profilu glebowym; wpływa na rozwój roślin i procesy mikrobiologiczne", "To zmienna wilgotność gleby; reguluje parowanie", "To stopień uwapnienia gleby; wpływa na pH" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 129,
+      "questionText": "W geomorfologii pojęcie 'isostazja' odnosi się do:",
+      "answers": [ "równowagi między erozją a sedymentacją", "równowagi pionowej płyt litosfery unoszących się na plastycznym asthenosferze", "prędkości ruchu lodowców", "mechanizmu powstawania tsunami" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 130,
+      "questionText": "Który z terminów opisuje wodę gruntową znajdującą się w wypełnionych porach, nad nieprzepuszczalną warstwą?",
+      "answers": [ "aquitard", "aquitfera", "strefa aeracji", "warstwa eoliczna" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 131,
+      "questionText": "Jakie są główne składniki prądu termohalinowego?",
+      "answers": [ "zmiany pH i zanieczyszczenia", "różnice temperatury i zasolenia powodujące gęstość wody", "tylko wiatr powierzchniowy", "tylko prądy pływowe" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 132,
+      "questionText": "Co to jest morena czołowa w glacjologii?",
+      "answers": [ "składnik rafy koralowej", "osad gromadzony na czołowej krawędzi lodowca", "jezioro utworzone przez topnienie lodowca", "kanał rzeczny w strefie polodowcowej" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 133,
+      "questionText": "Która spośród poniższych skał jest typowo osadowa?",
+      "answers": [ "granit", "wapień", "gnejs", "gabro" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 134,
+      "questionText": "W hydrologii pojęcie 'przepływ podstawowy' oznacza:",
+      "answers": [ "bezpośredni spływ z opadu powierzchniowego", "dopływ rzeki pochodzący z wód podziemnych utrzymujący odpływ między opadami", "maksymalny przepływ podczas powodzi", "przepływ w ujściu rzeki" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 135,
+      "questionText": "Co to jest paleoklimatologia?",
+      "answers": [ "Nauka badająca aktualne układy pogodowe", "Nauka badająca klimaty dawnych epok z użyciem zapisów naturalnych (np. słojów drzew, rdzeni lodowych)", "Nauka o klimatach pozaziemskich", "Metoda przewidywania pogody na podstawie tradycji ludowych" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 136,
+      "questionText": "Jak nazywa się warstwa glebowa wiążąca najwięcej materii organicznej i będąca miejscem intensywnych procesów biologicznych?",
+      "answers": [ "poziom C", "poziom R", "poziom O/A", "poziom B" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 137,
+      "questionText": "W biogeografii, 'endemity' to gatunki, które:",
+      "answers": [ "występują tylko w regionach tropikalnych", "są szeroko rozpowszechnione na wszystkich kontynentach", "występują naturalnie tylko na określonym, ograniczonym obszarze", "zostały wprowadzone przez człowieka" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 138,
+      "questionText": "Które z poniższych narzędzi jest stosowane do pomiaru prędkości i kierunku wiatru?",
+      "answers": [ "barometr", "anemometr", "higrometr", "termometr" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 139,
+      "questionText": "Jak nazywa się warstwa oceaniczna o znaczącym spadku temperatury wraz z głębokością?",
+      "answers": [ "mieszana warstwa powierzchniowa", "warstwa fotyczna", "termoklina", "osamotyczna warstwa" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 140,
+      "questionText": "Co to jest soliflukcja w geomorfologii peryglacjalnej?",
+      "answers": [ "proces transportu materialu skalnego przez rzeki", "powolny spływ nasyconej wodą gleby i osadów po stokach", "tworzenie się stalaktytów w jaskiniach", "gwałtowne trzęsienie ziemi" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+
+    {
+      "id": 141,
+      "questionText": "W klimatologii, co opisuje pojęcie 'anomalia temperatury'?",
+      "answers": [ "absolutną temperaturę powierzchni w stopniach Celsjusza", "różnicę temperatury względem wartości średniej z okresu referencyjnego", "maksymalną temperaturę zanotowaną w danym roku", "liczbę dni z opadami" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 142,
+      "questionText": "Który minerał jest podstawowym składnikiem granitu?",
+      "answers": [ "kalcyt", "kwarc", "halit", "gips" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 143,
+      "questionText": "Co to jest 'ciepły prąd' oceaniczny i jaki ma wpływ na klimat wybrzeży?",
+      "answers": [ "prąd o niższej temperaturze ochładzający wybrzeża", "prąd o wyższej temperaturze, ocieplający klimat i wpływający na wilgotność", "prąd podwodny bez wpływu na klimat", "prąd powodujący powstawanie raf koralowych" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 144,
+      "questionText": "W sedymentologii 'sortowność' osadu odnosi się do:",
+      "answers": [ "chemicznego składu osadu", "jednorodności wielkości ziaren w próbce osadu", "gęstości osadu", "koloru osadu" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 145,
+      "questionText": "Jakie zjawisko geologiczne najczęściej generuje fale tsunami?",
+      "answers": [ "intensywne opady deszczu", "podwodne trzęsienia ziemi z przesunięciem dna morskiego", "erupcje wulkanów nad lądem", "stopniowe osiadanie terenu" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 146,
+      "questionText": "W hydrologii, co to jest 'próg powodziowy'?",
+      "answers": [ "maksymalna głębokość rzeki w czasie suszy", "wartość przepływu lub poziomu wody, powyżej której występują szkody powodziowe", "minimalna ilość opadów potrzebna do zasilenia rzeki", "średnia roczna temperatura w dorzeczu" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 147,
+      "questionText": "Co to jest 'peryglacjał'?",
+      "answers": [ "regionalne zlodowacenie obejmujące cały kontynent", "strefa przyległa do lodowca, charakteryzująca się czynnikami mroźnymi i rozmrażaniem", "wulkaniczna formacja skalna", "rodzaj gleby piaszczystej" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 148,
+      "questionText": "W kontekście adaptacji roślin, co to jest 'sukulencja'?",
+      "answers": [ "przystosowanie do życia w warunkach nadmiaru wody", "zdolność magazynowania wody w tkankach roślinnych", "typ korzeni występujący w glebach torfowych", "mechanizm rozmnażania wegetatywnego" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 149,
+      "questionText": "Która metoda dostarcza danych paleoklimatycznych z lodu polarnych?",
+      "answers": [ "analiza składu izotopowego (np. δ18O), zawartości pyłu i pęcherzyków gazu", "liczenie słojów osadowych bez analizy chemicznej", "pomiar prędkości prądów oceanicznych", "bezpośrednie pomiary temperatury sprzed 10 000 lat" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 150,
+      "questionText": "W geologii, co oznacza termin 'orogeneza'?",
+      "answers": [ "tworzenie się oceanów", "procesy związane z wietrzeniem chemicznym", "procesy powstawania gór, związane z fałdowaniem i wypiętrzaniem skorupy", "nagłe zapadanie się terenu" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "trudny",
+      "imageUrl": null
     }
   ]
 }
