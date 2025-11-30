@@ -1,40 +1,52 @@
 ﻿using QuizGeograficzny.Models;
-using System.Text.Json;
-using Microsoft.Maui.Storage;
+using Firebase.Database;
+using Firebase.Database.Query;
+using System.Linq;
 
 namespace QuizGeograficzny.Services
 {
     public static class ScoreboardService
     {
-        private static readonly string FilePath = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "scores.json"
-        );
+        private const string FirebaseUrl = "https://quizgeograficzny-default-rtdb.europe-west1.firebasedatabase.app/";
+        private const string CollectionName = "scores";
 
+        private static readonly FirebaseClient firebaseClient = new FirebaseClient(FirebaseUrl);
 
         public static async Task<List<ScoreEntry>> GetAllAsync()
         {
             try
             {
-                if (!File.Exists(FilePath))
-                    return new List<ScoreEntry>();
+                var scores = await firebaseClient
+                    .Child(CollectionName)
+                    .OnceAsync<ScoreEntry>();
 
-                using var stream = File.OpenRead(FilePath);
-                var list = await JsonSerializer.DeserializeAsync<List<ScoreEntry>>(stream);
-                return list ?? new List<ScoreEntry>();
+                return scores.Select(item => new ScoreEntry
+                {
+                    PlayerName = item.Object.PlayerName,
+                    Score = item.Object.Score,
+                    Date = item.Object.Date,
+                    Difficulty = item.Object.Difficulty
+                }).ToList();
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine($"Błąd pobierania z Firebase: {ex.Message}");
                 return new List<ScoreEntry>();
             }
         }
 
         public static async Task AddAsync(ScoreEntry entry)
         {
-            var list = await GetAllAsync();
-            list.Add(entry);
-            using var stream = File.Create(FilePath);
-            await JsonSerializer.SerializeAsync(stream, list, new JsonSerializerOptions { WriteIndented = true });
+            try
+            {
+                await firebaseClient
+                    .Child(CollectionName)
+                    .PostAsync(entry);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Błąd zapisu do Firebase: {ex.Message}");
+            }
         }
 
         public static async Task<List<ScoreEntry>> GetTopAsync(int count = 50)
@@ -47,8 +59,7 @@ namespace QuizGeograficzny.Services
         {
             try
             {
-                if (File.Exists(FilePath))
-                    File.Delete(FilePath);
+                await firebaseClient.Child(CollectionName).DeleteAsync();
             }
             catch { /* ignore */ }
         }
