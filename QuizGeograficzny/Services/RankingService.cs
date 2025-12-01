@@ -53,7 +53,11 @@ namespace QuizGeograficzny.Services
             var profile = await GetProfileAsync(profileId);
             if (profile == null) return;
 
-            var s = profile.Stats ?? new PlayerStats();
+            var s = profile.Stats;
+
+      
+            if (s == null) s = new QuizGeograficzny.Models.PlayerStats();
+
             s.GamesPlayed++;
             s.CorrectAnswers += correctAnswersInGame;
             s.TotalAnswers += totalAnswersInGame;

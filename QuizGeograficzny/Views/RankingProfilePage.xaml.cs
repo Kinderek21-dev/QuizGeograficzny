@@ -1,92 +1,68 @@
-using System;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Storage;
-using QuizGeograficzny.Models;
 using QuizGeograficzny.Services;
+using QuizGeograficzny.Models;
+using Microsoft.Maui.Storage;
+using System;
+using System.Threading.Tasks;
+using Microsoft.Maui.Controls;
 
 namespace QuizGeograficzny.Views
 {
     public partial class RankingProfilePage : ContentPage
     {
-        private const string KEY_PROFILE_ID = "RankingProfileId";
-        private string _profileId = string.Empty;
+        private const string KEY_PLAYER_NAME = "Ranking_PlayerName";
 
         public RankingProfilePage()
         {
             InitializeComponent();
-            _profileId = Preferences.Get(KEY_PROFILE_ID, string.Empty);
+        }
 
-            if (!string.IsNullOrEmpty(_profileId))
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            LoadLocalStats();
+            await LoadGlobalRankingAsync();
+        }
+
+        private void LoadLocalStats()
+        {
+            var stats = StatsService.GetStats();
+
+            PlayerNameLabel.Text = stats.PlayerName ?? "Anon";
+            GamesPlayedLabel.Text = stats.GamesPlayed.ToString();
+            PercentCorrectLabel.Text = stats.TotalQuestions > 0 ? $"{(int)Math.Round((double)stats.CorrectAnswers / stats.TotalQuestions * 100)}%" : "0%";
+            TotalPointsLabel.Text = stats.TotalPoints.ToString();
+            CorrectTotalLabel.Text = stats.CorrectAnswers.ToString();
+        }
+
+        private async Task LoadGlobalRankingAsync()
+        {
+            var top = await ScoreboardService.GetTopAsync(50);
+            GlobalRankingList.ItemsSource = top;
+        }
+
+        private async void OnChangeNameTapped(object sender, EventArgs e)
+        {
+            string current = PlayerNameLabel.Text ?? "Anon";
+            var name = await DisplayPromptAsync("Zmieñ nick", "Podaj nick:", "OK", "Anuluj", current, -1, Keyboard.Text);
+            if (!string.IsNullOrWhiteSpace(name))
             {
-                _ = LoadExistingProfileAsync(_profileId);
+                var stats = StatsService.GetStats();
+                stats.PlayerName = name;
+                StatsService.SaveStats(stats);
+                PlayerNameLabel.Text = name;
+                Preferences.Set(KEY_PLAYER_NAME, name);
+                await DisplayAlert("Zapisano", "Nick zosta³ zaktualizowany.", "OK");
             }
         }
 
-        private async System.Threading.Tasks.Task LoadExistingProfileAsync(string id)
+        private async void OnRefreshGlobalTapped(object sender, EventArgs e)
         {
-            try
+            if (sender is VisualElement el)
             {
-                var profile = await RankingService.GetProfileAsync(id);
-                if (profile != null)
-                {
-                    NickEntry.Text = profile.PlayerName;
-                }
+                await el.ScaleTo(0.95, 80);
+                await el.ScaleTo(1.0, 80);
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("B³¹d ³adowania profilu: " + ex.Message);
-            }
-        }
-
-        private async void OnSaveAndPlayClicked(object sender, EventArgs e)
-        {
-            var nick = NickEntry.Text?.Trim();
-            if (string.IsNullOrEmpty(nick))
-            {
-                await DisplayAlert("Uwaga", "Wpisz nick", "OK");
-                return;
-            }
-
-            if (string.IsNullOrEmpty(_profileId))
-                _profileId = Guid.NewGuid().ToString("N");
-
-            var profile = new PlayerProfile
-            {
-                ProfileId = _profileId,
-                PlayerName = nick,
-                CreatedAt = DateTime.UtcNow.ToString("o"),
-                Stats = new PlayerStats()
-            };
-
-            try
-            {
-                await RankingService.CreateOrUpdateProfileAsync(profile);
-                Preferences.Set(KEY_PROFILE_ID, _profileId);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("B³¹d zapisu profilu do Firebase: " + ex.Message);
-                await DisplayAlert("B³¹d", "Nie uda³o siê zapisaæ profilu zdalnie. Profil zosta³ zapisany lokalnie.", "OK");
-                Preferences.Set(KEY_PROFILE_ID, _profileId);
-            }
-
-            await Shell.Current.GoToAsync($"///quiz?mode=ranking&profileId={Uri.EscapeDataString(_profileId)}");
-        }
-
-        private async void OnShowLeaderboardClicked(object sender, EventArgs e)
-        {
-            await Shell.Current.GoToAsync("///scoreboard?source=remote");
-        }
-
-        private async void OnDeleteLocalProfileClicked(object sender, EventArgs e)
-        {
-            bool ok = await DisplayAlert("Usuñ profil", "Czy na pewno usun¹æ lokalnie zapisany profil? (nie usuwa go z Firebase)", "Tak", "Nie");
-            if (!ok) return;
-
-            Preferences.Remove(KEY_PROFILE_ID);
-            _profileId = string.Empty;
-            NickEntry.Text = string.Empty;
-            await DisplayAlert("Usuniêto", "Lokalny profil zosta³ usuniêty.", "OK");
+            await LoadGlobalRankingAsync();
         }
     }
 }
