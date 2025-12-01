@@ -12,4 +12,8 @@
     <ShellContent Route="result" ContentTemplate="{DataTemplate views:ResultPage}" />
     <ShellContent Route="scoreboard" ContentTemplate="{DataTemplate views:ScoreboardPage}" />
     <ShellContent Route="settings" ContentTemplate="{DataTemplate views:SettingsPage}" />
+    <ShellContent Route="ranking" ContentTemplate="{DataTemplate views:RankingModePage}" />
+    <ShellContent Route="rankingprofile" ContentTemplate="{DataTemplate views:RankingProfilePage}" />
+
+
 </Shell>

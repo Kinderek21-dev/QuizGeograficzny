@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuizGeograficzny.Views.RankingProfilePage"
+             Title="Profil i Ranking">
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="{AppThemeBinding Light=#512BD4, Dark=#2B0B98}" Offset="0.0" />
+            <GradientStop Color="{AppThemeBinding Light=#2B0B98, Dark=#121212}" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <Border StrokeShape="RoundRectangle 20"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1F1F1F}"
+                    Padding="16">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Twój profil" FontSize="20" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#333, Dark=White}" />
+                    <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                        <Label Text="Nick:" FontAttributes="Bold"/>
+                        <Label x:Name="PlayerNameLabel" Text="Anon" />
+                    </HorizontalStackLayout>
+
+                    <Grid ColumnDefinitions="*, *" RowSpacing="6">
+                        <Label Text="Gier rozegranych" />
+                        <Label x:Name="GamesPlayedLabel" Grid.Column="1" HorizontalOptions="End" />
+
+                        <Label Text="Procent poprawnych" />
+                        <Label x:Name="PercentCorrectLabel" Grid.Column="1" HorizontalOptions="End" />
+
+                        <Label Text="Łączne punkty" />
+                        <Label x:Name="TotalPointsLabel" Grid.Column="1" HorizontalOptions="End" />
+
+                        <Label Text="Poprawne odpowiedzi (total)" />
+                        <Label x:Name="CorrectTotalLabel" Grid.Column="1" HorizontalOptions="End" />
+                    </Grid>
+
+                    <HorizontalStackLayout Spacing="10" Padding="0,6">
+                        <Button Text="Zmień nick" Clicked="OnChangeNameTapped" />
+                        <Button Text="Odśwież globalny ranking" Clicked="OnRefreshGlobalTapped" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="Ranking globalny (top 50)" FontSize="18" FontAttributes="Bold" TextColor="White" />
+
+            <CollectionView x:Name="GlobalRankingList" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding PlayerName}" FontAttributes="Bold" Grid.Column="1" />
+                            <Label Text="{Binding Score, StringFormat='{0} pkt'}" Grid.Column="2" HorizontalOptions="End" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

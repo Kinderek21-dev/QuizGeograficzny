@@ -9,4 +9,9 @@ namespace QuizGeograficzny.Models
         public DateTime Date { get; set; } = DateTime.UtcNow;
         public string Difficulty { get; set; } = string.Empty;
     }
+    public class ScoreForFirebase : ScoreEntry
+    {
+        public string PlayerId { get; set; } = string.Empty;
+        public string Mode { get; set; } = "ranking";
+    }
 }

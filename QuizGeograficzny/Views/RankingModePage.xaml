@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuizGeograficzny.Views.RankingModePage"
+             Title="Ranking">
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="{AppThemeBinding Light=#512BD4, Dark=#2B0B98}" Offset="0.0" />
+            <GradientStop Color="{AppThemeBinding Light=#2B0B98, Dark=#121212}" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20" VerticalOptions="Center">
+
+            <Label Text="Tryb Rankingowy"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center" />
+
+            <Border StrokeShape="RoundRectangle 20"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1F1F1F}"
+                    Padding="16">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Zasady"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light=#333333, Dark=White}" />
+                    <Label Text="Losowane: 3 pytania z łatwego, 3 ze średniego, 4 z trudnego (10 pytań)."
+                           FontSize="14"
+                           TextColor="{AppThemeBinding Light=#666666, Dark=#BBBBBB}" />
+                    <Label Text="Punktacja: +1 za poprawne, -1 za błędne niezależnie od trudności."
+                           FontSize="14"
+                           TextColor="{AppThemeBinding Light=#666666, Dark=#BBBBBB}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Button x:Name="PlayRankingButton"
+                    Text="Graj (Ranking)"
+                    FontSize="18"
+                    CornerRadius="15"
+                    Clicked="OnPlayRankingTapped"
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White" />
+
+            <Button x:Name="OpenProfileButton"
+                    Text="Profil i Ranking globalny"
+                    FontSize="16"
+                    CornerRadius="15"
+                    Clicked="OnOpenProfileTapped"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#2A2A2A}"
+                    TextColor="{AppThemeBinding Light=#333333, Dark=White}" />
+
+            <Label Text="Uwaga: aby wyniki trafiały do rankingu globalnego, musisz być połączony z Firebase."
+                   FontSize="12"
+                   TextColor="{AppThemeBinding Light=#D0C2FF, Dark=#999999}"
+                   HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -75,6 +75,29 @@
                     <Label Grid.Column="1" Text="➔" TextColor="#D32F2F" FontSize="24" HorizontalOptions="End" VerticalOptions="Center"/>
                 </Grid>
             </Border>
+            <Border StrokeShape="RoundRectangle 20"
+                    StrokeThickness="0"
+                    BackgroundColor="{AppThemeBinding Light=White, Dark=#1F1F1F}"
+                    Padding="20">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="0,8" Radius="15" Opacity="0.2" />
+                </Border.Shadow>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnRankingTapped" />
+                </Border.GestureRecognizers>
+
+                <Grid ColumnDefinitions="Auto, *" ColumnSpacing="15">
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                        <Label Text="Ranking" FontSize="22" FontAttributes="Bold" 
+                               TextColor="{AppThemeBinding Light=#333333, Dark=White}"/>
+                        <Label Text="Graj rankingowe (globalny leaderboard i profil)" FontSize="13" 
+                               TextColor="{AppThemeBinding Light=#666666, Dark=#BBBBBB}"/>
+                    </VerticalStackLayout>
+
+                    <Label Grid.Column="1" Text="➔" TextColor="{StaticResource Primary}" FontSize="24" HorizontalOptions="End" VerticalOptions="Center"/>
+                </Grid>
+            </Border>
+
 
         </VerticalStackLayout>
     </ScrollView>
