@@ -1,6 +1,7 @@
 ﻿using Firebase.Database;
 using Firebase.Database.Query;
 using QuizGeograficzny.Models;
+using System.Linq;
 
 namespace QuizGeograficzny.Services
 {
@@ -9,11 +10,13 @@ namespace QuizGeograficzny.Services
         private const string FirebaseUrl = "https://quizgeograficzny-default-rtdb.europe-west1.firebasedatabase.app/";
         private const string ProfilesNode = "profiles";
         private const string ScoresNode = "scores";
+
         private static readonly FirebaseClient client = new FirebaseClient(FirebaseUrl);
+
+
         public static async Task CreateOrUpdateProfileAsync(PlayerProfile profile)
         {
-            if (string.IsNullOrWhiteSpace(profile.ProfileId))
-                throw new ArgumentException("ProfileId required");
+            if (string.IsNullOrWhiteSpace(profile.ProfileId)) return;
 
             await client.Child(ProfilesNode)
                         .Child(profile.ProfileId)
@@ -24,8 +27,11 @@ namespace QuizGeograficzny.Services
         {
             try
             {
-                var item = await client.Child(ProfilesNode).Child(profileId).OnceSingleAsync<PlayerProfile>();
-                return item;
+                
+                var profile = await client.Child(ProfilesNode)
+                                          .Child(profileId)
+                                          .OnceSingleAsync<PlayerProfile>();
+                return profile;
             }
             catch
             {
@@ -33,9 +39,32 @@ namespace QuizGeograficzny.Services
             }
         }
 
+        public static async Task UpdateStatsAfterGameAsync(string profileId, int gainedPoints, int correctAnswersInGame, int totalAnswersInGame)
+        {
+            var profile = await GetProfileAsync(profileId);
+            if (profile == null) return;
+
+            if (profile.Stats == null)
+                profile.Stats = new QuizGeograficzny.Models.PlayerStats();
+
+            profile.Stats.GamesPlayed++;
+            profile.Stats.CorrectAnswers += correctAnswersInGame;
+            profile.Stats.TotalAnswers += totalAnswersInGame;
+            profile.Stats.TotalPoints += gainedPoints;
+
+            if (gainedPoints > profile.Stats.BestScore)
+                profile.Stats.BestScore = gainedPoints;
+
+            profile.Stats.LastPlayed = DateTime.UtcNow.ToString("o");
+
+            await CreateOrUpdateProfileAsync(profile);
+        }
+
+
         public static async Task AddScoreAsync(string profileId, string playerName, ScoreEntry entry, string mode = "ranking")
         {
-            var obj = new
+
+            var dto = new ScoreEntryDto
             {
                 playerId = profileId,
                 playerName = playerName,
@@ -45,67 +74,49 @@ namespace QuizGeograficzny.Services
                 difficulty = entry.Difficulty
             };
 
-            await client.Child(ScoresNode).PostAsync(obj);
+            await client.Child(ScoresNode).PostAsync(dto);
         }
 
-        public static async Task UpdateStatsAfterGameAsync(string profileId, int gainedPoints, int correctAnswersInGame, int totalAnswersInGame)
-        {
-            var profile = await GetProfileAsync(profileId);
-            if (profile == null) return;
-
-            var s = profile.Stats;
-
-      
-            if (s == null) s = new QuizGeograficzny.Models.PlayerStats();
-
-            s.GamesPlayed++;
-            s.CorrectAnswers += correctAnswersInGame;
-            s.TotalAnswers += totalAnswersInGame;
-            s.TotalPoints += gainedPoints;
-            if (gainedPoints > s.BestScore) s.BestScore = gainedPoints;
-            s.LastPlayed = DateTime.UtcNow.ToString("o");
-
-            profile.Stats = s;
-            await CreateOrUpdateProfileAsync(profile);
-        }
         public static async Task<List<ScoreEntry>> GetTopScoresAsync(int count = 50)
         {
             try
             {
-                var scores = await client.Child(ScoresNode).OnceAsync<object>();
-                var list = new List<ScoreEntry>();
-                foreach (var s in scores)
-                {
-                    try
-                    {
-                        var json = System.Text.Json.JsonSerializer.Serialize(s.Object);
-                        var dto = System.Text.Json.JsonSerializer.Deserialize<ScoreEntryDto>(json);
-                        if (dto != null)
-                        {
-                            DateTime date = DateTime.UtcNow;
-                            if (!string.IsNullOrEmpty(dto.date))
-                                DateTime.TryParse(dto.date, out date);
+              
+                var collection = await client
+                    .Child(ScoresNode)
+                    .OrderBy("score") 
+                    .LimitToLast(count)
+                    .OnceAsync<ScoreEntryDto>();
 
-                            list.Add(new ScoreEntry
-                            {
-                                PlayerName = dto.playerName ?? "Anon",
-                                Score = dto.score,
-                                Date = date,
-                                Difficulty = dto.difficulty ?? string.Empty
-                            });
-                        }
-                    }
-                    catch { }
-                }
-                return list.OrderByDescending(x => x.Score).Take(count).ToList();
+
+                var list = collection.Select(item =>
+                {
+                    var dto = item.Object;
+                    DateTime date = DateTime.UtcNow;
+                    if (!string.IsNullOrEmpty(dto.date))
+                        DateTime.TryParse(dto.date, out date);
+
+                    return new ScoreEntry
+                    {
+                        PlayerName = dto.playerName ?? "Anon",
+                        Score = dto.score,
+                        Date = date,
+                        Difficulty = dto.difficulty ?? "ranking"
+                    };
+                }).ToList();
+
+ 
+                return list.OrderByDescending(x => x.Score).ToList();
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine($"RankingService error: {ex.Message}");
                 return new List<ScoreEntry>();
             }
         }
 
-        private class ScoreEntryDto
+
+        public class ScoreEntryDto
         {
             public string? playerId { get; set; }
             public string? playerName { get; set; }

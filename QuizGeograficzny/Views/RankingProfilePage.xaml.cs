@@ -9,7 +9,8 @@ namespace QuizGeograficzny.Views
 {
     public partial class RankingProfilePage : ContentPage
     {
-        private const string KEY_PLAYER_NAME = "Ranking_PlayerName";
+        private const string KEY_PROFILE_ID = "RankingProfileId";
+        private string _profileId = string.Empty;
 
         public RankingProfilePage()
         {
@@ -19,50 +20,107 @@ namespace QuizGeograficzny.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            LoadLocalStats();
-            await LoadGlobalRankingAsync();
+            _profileId = Preferences.Get(KEY_PROFILE_ID, string.Empty);
+            UpdateUIState();
+            await LoadProfileStatsAsync();
         }
 
-        private void LoadLocalStats()
+        private void UpdateUIState()
         {
-            var stats = StatsService.GetStats();
-
-            PlayerNameLabel.Text = stats.PlayerName ?? "Anon";
-            GamesPlayedLabel.Text = stats.GamesPlayed.ToString();
-            PercentCorrectLabel.Text = stats.TotalQuestions > 0 ? $"{(int)Math.Round((double)stats.CorrectAnswers / stats.TotalQuestions * 100)}%" : "0%";
-            TotalPointsLabel.Text = stats.TotalPoints.ToString();
-            CorrectTotalLabel.Text = stats.CorrectAnswers.ToString();
+            if (string.IsNullOrEmpty(_profileId))
+            {
+                ProfileActionButton.Text = "Utwórz profil";
+                PlayerNameLabel.Text = "Brak profilu";
+            }
+            else
+            {
+                ProfileActionButton.Text = "Zmieñ nick";
+            }
         }
 
-        private async Task LoadGlobalRankingAsync()
+        private async Task LoadProfileStatsAsync()
         {
-            var top = await ScoreboardService.GetTopAsync(50);
-            GlobalRankingList.ItemsSource = top;
+            if (string.IsNullOrEmpty(_profileId))
+            {
+                GamesPlayedLabel.Text = "-";
+                PercentCorrectLabel.Text = "-";
+                TotalPointsLabel.Text = "-";
+                CorrectTotalLabel.Text = "-";
+                return;
+            }
+
+            var profile = await RankingService.GetProfileAsync(_profileId);
+            if (profile != null)
+            {
+                PlayerNameLabel.Text = profile.PlayerName ?? "Anon";
+
+                var stats = profile.Stats;
+                if (stats != null)
+                {
+                    GamesPlayedLabel.Text = stats.GamesPlayed.ToString();
+                    PercentCorrectLabel.Text = stats.TotalAnswers > 0 ? $"{(int)Math.Round((double)stats.CorrectAnswers / stats.TotalAnswers * 100)}%" : "0%";
+                    TotalPointsLabel.Text = stats.TotalPoints.ToString();
+                    CorrectTotalLabel.Text = stats.CorrectAnswers.ToString();
+                }
+            }
         }
 
         private async void OnChangeNameTapped(object sender, EventArgs e)
         {
-            string current = PlayerNameLabel.Text ?? "Anon";
-            var name = await DisplayPromptAsync("Zmieñ nick", "Podaj nick:", "OK", "Anuluj", current, -1, Keyboard.Text);
-            if (!string.IsNullOrWhiteSpace(name))
+            string title = string.IsNullOrEmpty(_profileId) ? "Utwórz profil" : "Zmieñ nick";
+            string placeholder = string.IsNullOrEmpty(_profileId) ? "" : PlayerNameLabel.Text;
+
+            var name = await DisplayPromptAsync(title, "Podaj swój nick:", "Zapisz", "Anuluj", placeholder);
+
+            if (string.IsNullOrWhiteSpace(name)) return;
+            name = name.Trim();
+
+            if (string.IsNullOrEmpty(_profileId))
             {
-                var stats = StatsService.GetStats();
-                stats.PlayerName = name;
-                StatsService.SaveStats(stats);
-                PlayerNameLabel.Text = name;
-                Preferences.Set(KEY_PLAYER_NAME, name);
-                await DisplayAlert("Zapisano", "Nick zosta³ zaktualizowany.", "OK");
+                _profileId = Guid.NewGuid().ToString("N");
+                Preferences.Set(KEY_PROFILE_ID, _profileId);
             }
+
+            var profile = await RankingService.GetProfileAsync(_profileId);
+            if (profile == null)
+            {
+                profile = new PlayerProfile
+                {
+                    ProfileId = _profileId,
+                    PlayerName = name,
+                    CreatedAt = DateTime.UtcNow.ToString("o"),
+                    Stats = new QuizGeograficzny.Models.PlayerStats()
+                };
+            }
+            else
+            {
+                profile.PlayerName = name;
+            }
+
+            try
+            {
+                await RankingService.CreateOrUpdateProfileAsync(profile);
+                await DisplayAlert("Sukces", "Profil zapisany.", "OK");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("B³¹d", "Nie uda³o siê zapisaæ profilu: " + ex.Message, "OK");
+            }
+
+            UpdateUIState();
+            PlayerNameLabel.Text = name;
         }
 
-        private async void OnRefreshGlobalTapped(object sender, EventArgs e)
+
+        private async void OnShowGlobalRankingTapped(object sender, EventArgs e)
         {
-            if (sender is VisualElement el)
+            if (sender is VisualElement element)
             {
-                await el.ScaleTo(0.95, 80);
-                await el.ScaleTo(1.0, 80);
+                await element.ScaleTo(0.95, 100);
+                await element.ScaleTo(1.0, 100);
             }
-            await LoadGlobalRankingAsync();
+
+            await Shell.Current.GoToAsync("///scoreboard?source=remote");
         }
     }
 }

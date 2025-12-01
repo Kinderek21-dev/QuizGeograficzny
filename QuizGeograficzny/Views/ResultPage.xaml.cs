@@ -4,13 +4,23 @@ using Microsoft.Maui.ApplicationModel;
 namespace QuizGeograficzny.Views;
 
 [QueryProperty(nameof(Score), "score")]
+[QueryProperty(nameof(Mode), "mode")] 
 public partial class ResultPage : ContentPage
 {
     private int _score = 0;
+    private string _mode = string.Empty;
 
     public ResultPage()
     {
         InitializeComponent();
+    }
+
+    public string Mode
+    {
+        set
+        {
+            _mode = value;
+        }
     }
 
     public string Score
@@ -22,7 +32,6 @@ public partial class ResultPage : ContentPage
                 _score = s;
                 ScoreValueLabel.Text = _score.ToString();
 
-
                 double fraction = Math.Clamp(_score / 10.0, 0.0, 1.0);
                 MainThread.BeginInvokeOnMainThread(async () =>
                 {
@@ -33,7 +42,6 @@ public partial class ResultPage : ContentPage
                     }
                     catch
                     {
-
                         ScoreProgressBar.Progress = fraction;
                         ScorePercentLabel.Text = $"{(int)Math.Round(fraction * 100)}%";
                     }
@@ -59,6 +67,15 @@ public partial class ResultPage : ContentPage
             await element.ScaleTo(0.95, 100);
             await element.ScaleTo(1.0, 100);
         }
-        await Shell.Current.GoToAsync("///scoreboard");
+
+
+        if (string.Equals(_mode, "ranking", StringComparison.OrdinalIgnoreCase))
+        {
+            await Shell.Current.GoToAsync("///rankingprofile");
+        }
+        else
+        {
+            await Shell.Current.GoToAsync("///scoreboard");
+        }
     }
 }

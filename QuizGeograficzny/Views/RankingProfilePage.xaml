@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QuizGeograficzny.Views.RankingProfilePage"
-             Title="Profil i Ranking">
+             Title="Twój Profil">
 
     <ContentPage.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -12,57 +12,61 @@
     </ContentPage.Background>
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="20">
+        <VerticalStackLayout Padding="20" Spacing="25">
 
             <Border StrokeShape="RoundRectangle 20"
                     BackgroundColor="{AppThemeBinding Light=White, Dark=#1F1F1F}"
-                    Padding="16">
-                <VerticalStackLayout Spacing="8">
-                    <Label Text="Twój profil" FontSize="20" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#333, Dark=White}" />
+                    Padding="20">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="Twój profil" FontSize="22" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#333, Dark=White}" />
+
                     <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
-                        <Label Text="Nick:" FontAttributes="Bold"/>
-                        <Label x:Name="PlayerNameLabel" Text="Anon" />
+                        <Label Text="Nick:" FontAttributes="Bold" FontSize="18"/>
+                        <Label x:Name="PlayerNameLabel" Text="Anon" FontSize="18" TextColor="{StaticResource Primary}"/>
                     </HorizontalStackLayout>
 
-                    <Grid ColumnDefinitions="*, *" RowSpacing="6">
-                        <Label Text="Gier rozegranych" />
-                        <Label x:Name="GamesPlayedLabel" Grid.Column="1" HorizontalOptions="End" />
+                    <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto, Auto, Auto" RowSpacing="10">
+                        <Label Grid.Row="0" Grid.Column="0" Text="Gier rozegranych" VerticalOptions="Center"/>
+                        <Label Grid.Row="0" Grid.Column="1" x:Name="GamesPlayedLabel" HorizontalOptions="End" FontAttributes="Bold" FontSize="16" />
 
-                        <Label Text="Procent poprawnych" />
-                        <Label x:Name="PercentCorrectLabel" Grid.Column="1" HorizontalOptions="End" />
+                        <Label Grid.Row="1" Grid.Column="0" Text="Procent poprawnych" VerticalOptions="Center"/>
+                        <Label Grid.Row="1" Grid.Column="1" x:Name="PercentCorrectLabel" HorizontalOptions="End" FontAttributes="Bold" FontSize="16"/>
 
-                        <Label Text="Łączne punkty" />
-                        <Label x:Name="TotalPointsLabel" Grid.Column="1" HorizontalOptions="End" />
+                        <Label Grid.Row="2" Grid.Column="0" Text="Łączne punkty" VerticalOptions="Center"/>
+                        <Label Grid.Row="2" Grid.Column="1" x:Name="TotalPointsLabel" HorizontalOptions="End" FontAttributes="Bold" FontSize="16"/>
 
-                        <Label Text="Poprawne odpowiedzi (total)" />
-                        <Label x:Name="CorrectTotalLabel" Grid.Column="1" HorizontalOptions="End" />
+                        <Label Grid.Row="3" Grid.Column="0" Text="Poprawne odpowiedzi" VerticalOptions="Center"/>
+                        <Label Grid.Row="3" Grid.Column="1" x:Name="CorrectTotalLabel" HorizontalOptions="End" FontAttributes="Bold" FontSize="16"/>
                     </Grid>
 
-                    <HorizontalStackLayout Spacing="10" Padding="0,6">
-                        <Button Text="Zmień nick" Clicked="OnChangeNameTapped" />
-                        <Button Text="Odśwież globalny ranking" Clicked="OnRefreshGlobalTapped" />
-                    </HorizontalStackLayout>
+                    <Button x:Name="ProfileActionButton" 
+                            Text="Zmień nick" 
+                            Clicked="OnChangeNameTapped" 
+                            Margin="0,10,0,0"/>
                 </VerticalStackLayout>
             </Border>
 
-            <Label Text="Ranking globalny (top 50)" FontSize="18" FontAttributes="Bold" TextColor="White" />
+            <Border StrokeShape="RoundRectangle 20"
+                    StrokeThickness="0"
+                    BackgroundColor="{StaticResource Primary}"
+                    Padding="20"
+                    Margin="0,10,0,0">
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="0,8" Radius="15" Opacity="0.3" />
+                </Border.Shadow>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnShowGlobalRankingTapped" />
+                </Border.GestureRecognizers>
 
-            <CollectionView x:Name="GlobalRankingList" SelectionMode="None">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Padding="8">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Label Text="{Binding PlayerName}" FontAttributes="Bold" Grid.Column="1" />
-                            <Label Text="{Binding Score, StringFormat='{0} pkt'}" Grid.Column="2" HorizontalOptions="End" />
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                <HorizontalStackLayout Spacing="15" HorizontalOptions="Center">
+                    <Label Text="🏆" FontSize="28" VerticalOptions="Center"/>
+                    <Label Text="Pokaż Ranking Globalny" 
+                           FontSize="20" 
+                           FontAttributes="Bold" 
+                           TextColor="White" 
+                           VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+            </Border>
 
         </VerticalStackLayout>
     </ScrollView>

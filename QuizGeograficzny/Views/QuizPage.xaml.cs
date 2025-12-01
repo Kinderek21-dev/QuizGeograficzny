@@ -131,7 +131,6 @@ namespace QuizGeograficzny.Views
         {
             try
             {
-                // Reset per-run counters
                 _questionsAnswered = 0;
                 _correctAnswers = 0;
 
@@ -160,14 +159,18 @@ namespace QuizGeograficzny.Views
                     selected.AddRange(medium.Take(3));
                     selected.AddRange(hard.Take(4));
 
-                    var remaining = all.Except(selected).OrderBy(_ => Guid.NewGuid()).ToList();
-                    while (selected.Count < 10 && remaining.Count > 0)
+                    if (selected.Count < 10)
                     {
-                        selected.Add(remaining[0]);
-                        remaining.RemoveAt(0);
+                        var remaining = all.Except(selected).OrderBy(_ => Guid.NewGuid()).ToList();
+                        while (selected.Count < 10 && remaining.Count > 0)
+                        {
+                            selected.Add(remaining[0]);
+                            remaining.RemoveAt(0);
+                        }
                     }
 
-                    _questions = selected.OrderBy(_ => Guid.NewGuid()).ToList();
+                    _questions = selected.OrderBy(_ => Guid.NewGuid()).Take(10).ToList();
+
                     _currentIndex = 0;
                     _score = 0;
                     _survivalStreak = 0;
@@ -405,12 +408,16 @@ namespace QuizGeograficzny.Views
                 return;
             }
 
-            int minus = DifficultyKey() switch
+            int minus = 0;
+            if (!_isRankingMode)
             {
-                "³atwy" => 2,
-                "œredni" => 1,
-                _ => 0
-            };
+                minus = DifficultyKey() switch
+                {
+                    "³atwy" => 2,
+                    "œredni" => 1,
+                    _ => 0
+                };
+            }
 
             if (minus > 0)
             {
@@ -478,21 +485,27 @@ namespace QuizGeograficzny.Views
                          btn == AnswerButton2 ? 1 :
                          btn == AnswerButton3 ? 2 : 3;
 
-                int plus = DifficultyKey() switch
+                string qDifficulty = (q.Difficulty ?? "").Trim().ToLowerInvariant();
+
+                int pointsForCorrect = qDifficulty switch
                 {
                     "³atwy" => 1,
                     "œredni" => 2,
                     "trudny" => 3,
-                    "bardzo trudny" => 5,
+                    "bardzo trudny" => 3,
                     _ => 1
                 };
 
-                int minus = _isSurvivalMode ? 0 : (DifficultyKey() switch
+                int pointsForWrong = 0;
+                if (!_isSurvivalMode && !_isRankingMode)
                 {
-                    "³atwy" => 2,
-                    "œredni" => 1,
-                    _ => 0
-                });
+                    pointsForWrong = DifficultyKey() switch
+                    {
+                        "³atwy" => 2,
+                        "œredni" => 1,
+                        _ => 0
+                    };
+                }
 
                 bool correct = chosenIndex == q.CorrectAnswerIndex;
                 _questionsAnswered++;
@@ -503,24 +516,14 @@ namespace QuizGeograficzny.Views
 
                 if (correct)
                 {
-                    if (_isRankingMode)
-                        _score += 1;
-                    else
-                        _score += plus;
+                    _score += pointsForCorrect;
                 }
                 else
                 {
-                    if (!_isSurvivalMode)
-                    {
-                     
-                        if (_isRankingMode)
-                            _score -= 1;
-                        else
-                            _score -= minus;
-                    }
+                    _score -= pointsForWrong;
                 }
 
-                string pointsMsg = correct ? $"+{(_isRankingMode ? 1 : plus)}" : (minus > 0 || _isRankingMode ? $"-{(_isRankingMode ? 1 : minus)}" : "0");
+                string pointsMsg = correct ? $"+{pointsForCorrect}" : (pointsForWrong > 0 ? $"-{pointsForWrong}" : "0");
                 Color pointsColor = correct ? Colors.LimeGreen : Colors.IndianRed;
                 await ShowFloatingPointsLabel(pointsMsg, pointsColor);
 
@@ -588,10 +591,7 @@ namespace QuizGeograficzny.Views
                 {
                     MainThread.BeginInvokeOnMainThread(() =>
                     {
-                        if (_isSurvivalMode)
-                        {
-                            return;
-                        }
+                        if (_isSurvivalMode) return;
 
                         if (_currentIndex < _questions.Count - 1)
                         {
@@ -619,63 +619,72 @@ namespace QuizGeograficzny.Views
 
             try
             {
-                
-                var stats = StatsService.GetStats();
-                string defaultName = !string.IsNullOrWhiteSpace(stats.PlayerName) ? stats.PlayerName : "Imie";
-
-              
-                if (!string.IsNullOrWhiteSpace(_profileId))
-                    defaultName = _profileId;
-
-                string name = await DisplayPromptAsync("Koniec quizu", "Podaj nick do tablicy wyników (Anuluj aby pomin¹æ):", "Zapisz", "Pomiñ", defaultName, -1, Keyboard.Text);
-
-                string playerNameToUse = defaultName;
-                if (!string.IsNullOrWhiteSpace(name))
+                if (_isRankingMode && !string.IsNullOrEmpty(_profileId))
                 {
-                    playerNameToUse = name.Trim();
+                    var profile = await RankingService.GetProfileAsync(_profileId);
+                    string playerName = profile?.PlayerName ?? "Anon";
 
-            
-                    var s = StatsService.GetStats();
-                    s.PlayerName = playerNameToUse;
-                    StatsService.SaveStats(s);
-                }
-
-                if (!string.IsNullOrWhiteSpace(playerNameToUse))
-                {
                     var entry = new ScoreEntry
                     {
-                        PlayerName = playerNameToUse,
+                        PlayerName = playerName,
                         Score = _score,
                         Date = DateTime.UtcNow,
-                        Difficulty = _isSurvivalMode ? "survival" : (_isRankingMode ? "ranking" : DifficultyKey())
+                        Difficulty = "ranking"
                     };
 
-                 
-                    await ScoreboardService.AddAsync(entry);
+                    await RankingService.AddScoreAsync(_profileId, playerName, entry);
+                    await RankingService.UpdateStatsAfterGameAsync(_profileId, _score, _correctAnswers, _questionsAnswered);
                 }
+                else
+                {
+                    var stats = StatsService.GetStats();
+                    string defaultName = !string.IsNullOrWhiteSpace(stats.PlayerName) ? stats.PlayerName : "Imie";
 
-                await StatsService.RecordGameAsync(_score, _correctAnswers, _questionsAnswered);
+                    if (_isRankingMode && string.IsNullOrEmpty(_profileId))
+                    {
+                        
+                    }
+
+                    string name = await DisplayPromptAsync("Koniec quizu", "Podaj nick do lokalnej tablicy (Anuluj aby pomin¹æ):", "Zapisz", "Pomiñ", defaultName, -1, Keyboard.Text);
+
+                    if (!string.IsNullOrWhiteSpace(name))
+                    {
+                        string playerNameToUse = name.Trim();
+                        var s = StatsService.GetStats();
+                        s.PlayerName = playerNameToUse;
+                        StatsService.SaveStats(s);
+
+                        var entry = new ScoreEntry
+                        {
+                            PlayerName = playerNameToUse,
+                            Score = _score,
+                            Date = DateTime.UtcNow,
+                            Difficulty = _isSurvivalMode ? "survival" : DifficultyKey()
+                        };
+
+                        await ScoreboardService.AddAsync(entry);
+                    }
+
+                    await StatsService.RecordGameAsync(_score, _correctAnswers, _questionsAnswered);
+                }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("EndQuizAsync error: " + ex);
             }
 
-            await Shell.Current.GoToAsync($"///result?score={_score}", animate: true);
+            await Shell.Current.GoToAsync($"///result?score={_score}&mode={_mode}", animate: true);
         }
 
         private async Task AnimatePulseAsync(VisualElement element, Color flashColor)
         {
             if (element == null) return;
-
             try
             {
                 try { QuestionTimerProgressBar.ProgressColor = flashColor; } catch { }
-
                 await element.ScaleTo(1.06, 120, Easing.CubicInOut);
                 await Task.Delay(80);
                 await element.ScaleTo(1.0, 120, Easing.CubicOut);
-
                 TrySetTimerColorByTime(_timeLeft);
             }
             catch { }
@@ -715,20 +724,6 @@ namespace QuizGeograficzny.Views
                 await element.FadeTo(1, 400, Easing.CubicInOut);
             }
             catch { }
-        }
-
-        private static async void AnimateFadeOut(VisualElement element, Action onComplete)
-        {
-            try
-            {
-                await element.FadeTo(0, 240, Easing.CubicInOut);
-                onComplete?.Invoke();
-                await element.FadeTo(1, 240, Easing.CubicInOut);
-            }
-            catch
-            {
-                onComplete?.Invoke();
-            }
         }
     }
 }

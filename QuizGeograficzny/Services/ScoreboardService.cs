@@ -1,52 +1,33 @@
 ﻿using QuizGeograficzny.Models;
-using Firebase.Database;
-using Firebase.Database.Query;
-using System.Linq;
+using Microsoft.Maui.Storage;
+using System.Text.Json;
 
 namespace QuizGeograficzny.Services
 {
+   
     public static class ScoreboardService
     {
-        private const string FirebaseUrl = "https://quizgeograficzny-default-rtdb.europe-west1.firebasedatabase.app/";
-        private const string CollectionName = "scores";
-
-        private static readonly FirebaseClient firebaseClient = new FirebaseClient(FirebaseUrl);
+        private const string KEY_LOCAL_SCORES = "Local_Scores_List_v2";
 
         public static async Task<List<ScoreEntry>> GetAllAsync()
         {
-            try
-            {
-                var scores = await firebaseClient
-                    .Child(CollectionName)
-                    .OnceAsync<ScoreEntry>();
 
-                return scores.Select(item => new ScoreEntry
-                {
-                    PlayerName = item.Object.PlayerName,
-                    Score = item.Object.Score,
-                    Date = item.Object.Date,
-                    Difficulty = item.Object.Difficulty
-                }).ToList();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Błąd pobierania z Firebase: {ex.Message}");
-                return new List<ScoreEntry>();
-            }
+            string json = Preferences.Get(KEY_LOCAL_SCORES, "[]");
+            var list = JsonSerializer.Deserialize<List<ScoreEntry>>(json) ?? new List<ScoreEntry>();
+
+            
+            return await Task.FromResult(list);
         }
 
         public static async Task AddAsync(ScoreEntry entry)
         {
-            try
-            {
-                await firebaseClient
-                    .Child(CollectionName)
-                    .PostAsync(entry);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Błąd zapisu do Firebase: {ex.Message}");
-            }
+            var list = await GetAllAsync();
+            list.Add(entry);
+
+
+            var sorted = list.OrderByDescending(x => x.Score).Take(50).ToList();
+            string json = JsonSerializer.Serialize(sorted);
+            Preferences.Set(KEY_LOCAL_SCORES, json);
         }
 
         public static async Task<List<ScoreEntry>> GetTopAsync(int count = 50)
@@ -57,11 +38,8 @@ namespace QuizGeograficzny.Services
 
         public static async Task ClearAsync()
         {
-            try
-            {
-                await firebaseClient.Child(CollectionName).DeleteAsync();
-            }
-            catch { /* ignore */ }
+            Preferences.Remove(KEY_LOCAL_SCORES);
+            await Task.CompletedTask;
         }
     }
 }
