@@ -31,7 +31,7 @@ namespace QuizGeograficzny.Views
             }
 
 
-            await Shell.Current.GoToAsync($"///quiz?mode=survival");
+            await Shell.Current.GoToAsync($"quiz?mode=survival");
         }
         private async void OnRankingTapped(object sender, TappedEventArgs e)
         {

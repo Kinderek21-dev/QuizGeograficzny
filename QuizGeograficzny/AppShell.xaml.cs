@@ -5,7 +5,9 @@
         public AppShell()
         {
             InitializeComponent();
-
+            Routing.RegisterRoute("quiz", typeof(Views.QuizPage));
+            Routing.RegisterRoute("result", typeof(Views.ResultPage));
+            Routing.RegisterRoute("scoreboard", typeof(Views.ScoreboardPage));
             var settings = new ToolbarItem
             {
                 Text = "⚙️",

@@ -31,9 +31,7 @@
                     <Label Text="Losowane: 3 pytania z łatwego, 3 ze średniego, 4 z trudnego (10 pytań)."
                            FontSize="14"
                            TextColor="{AppThemeBinding Light=#666666, Dark=#BBBBBB}" />
-                    <Label Text="Punktacja: +1 za poprawne, -1 za błędne niezależnie od trudności."
-                           FontSize="14"
-                           TextColor="{AppThemeBinding Light=#666666, Dark=#BBBBBB}" />
+
                 </VerticalStackLayout>
             </Border>
 
@@ -53,11 +51,7 @@
                     BackgroundColor="{AppThemeBinding Light=White, Dark=#2A2A2A}"
                     TextColor="{AppThemeBinding Light=#333333, Dark=White}" />
 
-            <Label Text="Uwaga: aby wyniki trafiały do rankingu globalnego, musisz być połączony z Firebase."
-                   FontSize="12"
-                   TextColor="{AppThemeBinding Light=#D0C2FF, Dark=#999999}"
-                   HorizontalOptions="Center" />
-
+            
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

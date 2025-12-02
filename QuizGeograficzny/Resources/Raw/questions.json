@@ -1202,6 +1202,246 @@
       "correctAnswerIndex": 2,
       "difficulty": "trudny",
       "imageUrl": null
+    },
+    {
+      "id": 151,
+      "questionText": "Który kontynent jest najmniejszy pod względem powierzchni?",
+      "answers": [ "Europa", "Australia", "Antarktyda", "Ameryka Południowa" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 152,
+      "questionText": "Jak nazywa się największa wyspa na świecie?",
+      "answers": [ "Grenlandia", "Nowa Gwinea", "Borneo", "Madagaskar" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 153,
+      "questionText": "Stolicą Chorwacji jest:",
+      "answers": [ "Dubrownik", "Split", "Zagrzeb", "Zadar" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 154,
+      "questionText": "W którym kraju leży Transylwania?",
+      "answers": [ "Węgry", "Bułgaria", "Słowacja", "Rumunia" ],
+      "correctAnswerIndex": 3,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 155,
+      "questionText": "Jak nazywa się najgłębsze jezioro świata?",
+      "answers": [ "Jezioro Wiktorii", "Bajkał", "Jezioro Górne", "Tanganika" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 156,
+      "questionText": "Który kraj jest największym producentem kawy na świecie?",
+      "answers": [ "Kolumbia", "Wietnam", "Etiopia", "Brazylia" ],
+      "correctAnswerIndex": 3,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 157,
+      "questionText": "Cieśnina Gibraltarska oddziela Hiszpanię od:",
+      "answers": [ "Algierii", "Maroka", "Tunezji", "Libii" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 158,
+      "questionText": "W jakim państwie leży historyczne miasto Petra?",
+      "answers": [ "Izrael", "Jordania", "Egipt", "Liban" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 159,
+      "questionText": "Które miasto jest stolicą Kanady?",
+      "answers": [ "Toronto", "Vancouver", "Montreal", "Ottawa" ],
+      "correctAnswerIndex": 3,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 160,
+      "questionText": "Jak nazywa się waluta obowiązująca w Japonii?",
+      "answers": [ "Juan", "Won", "Jen", "Baht" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 161,
+      "questionText": "Rzeka, która dwukrotnie przecina równik, to:",
+      "answers": [ "Amazonka", "Nil", "Kongo", "Missisipi" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 162,
+      "questionText": "Który kraj posiada najwięcej jezior na świecie?",
+      "answers": [ "USA", "Rosja", "Finlandia", "Kanada" ],
+      "correctAnswerIndex": 3,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 163,
+      "questionText": "Stolicą którego kraju jest Ułan Bator?",
+      "answers": [ "Kazachstanu", "Mongolii", "Kirgistanu", "Uzbekistanu" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 164,
+      "questionText": "Morze Martwe słynie z tego, że jest:",
+      "answers": [ "Największym morzem", "Najgłębszym morzem", "Najniższym punktem na lądzie", "Najcieplejszym zbiornikiem" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 165,
+      "questionText": "Który kraj w Europie jest znany jako 'Kraina Tysiąca Jezior'?",
+      "answers": [ "Szwecja", "Norwegia", "Finlandia", "Polska" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 166,
+      "questionText": "Jakie dwa państwa leżą na Półwyspie Iberyjskim?",
+      "answers": [ "Włochy i Francja", "Hiszpania i Portugalia", "Grecja i Turcja", "Szwecja i Norwegia" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 167,
+      "questionText": "Gdzie znajduje się Pustynia Atakama, uznawana za najsuchszą na świecie?",
+      "answers": [ "W Afryce", "W Australii", "W Ameryce Południowej", "W Azji" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 168,
+      "questionText": "Który kraj ma flagę w kształcie nieprostokątnym?",
+      "answers": [ "Szwajcaria", "Nepal", "Watykan", "Monako" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 169,
+      "questionText": "Jak nazywa się cieśnina oddzielająca Rosję od Alaski (USA)?",
+      "answers": [ "Cieśnina Magellana", "Cieśnina Beringa", "Cieśnina Gibraltarska", "Cieśnina Malakka" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 170,
+      "questionText": "Który kontynent jest najludniejszy?",
+      "answers": [ "Afryka", "Europa", "Azja", "Ameryka Północna" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 171,
+      "questionText": "Stolicą którego kraju jest Rejkiawik?",
+      "answers": [ "Grenlandii", "Islandii", "Irlandii", "Norwegii" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 172,
+      "questionText": "W którym kraju leży Kanał Sueski?",
+      "answers": [ "W Panamie", "W Egipcie", "W Turcji", "W Grecji" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 173,
+      "questionText": "Który z tych krajów NIE ma dostępu do morza?",
+      "answers": [ "Niemcy", "Francja", "Szwajcaria", "Włochy" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 174,
+      "questionText": "Jak nazywa się najwyższy szczyt Ameryki Południowej?",
+      "answers": [ "Mont Blanc", "Kilimandżaro", "Aconcagua", "Elbrus" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "trudny",
+      "imageUrl": null
+    },
+    {
+      "id": 175,
+      "questionText": "W którym kraju znajduje się Machu Picchu?",
+      "answers": [ "W Chile", "W Peru", "W Boliwii", "W Meksyku" ],
+      "correctAnswerIndex": 1,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 176,
+      "questionText": "Który ocean jest największy?",
+      "answers": [ "Ocean Atlantycki", "Ocean Indyjski", "Ocean Arktyczny", "Ocean Spokojny" ],
+      "correctAnswerIndex": 3,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 177,
+      "questionText": "Jak nazywa się stolica Australii?",
+      "answers": [ "Sydney", "Melbourne", "Canberra", "Brisbane" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 178,
+      "questionText": "W którym państwie leży Czarnobyl?",
+      "answers": [ "W Rosji", "Na Białorusi", "Na Ukrainie", "W Polsce" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "łatwy",
+      "imageUrl": null
+    },
+    {
+      "id": 179,
+      "questionText": "Który kraj jest najmniejszy na świecie?",
+      "answers": [ "Monako", "San Marino", "Watykan", "Liechtenstein" ],
+      "correctAnswerIndex": 2,
+      "difficulty": "średni",
+      "imageUrl": null
+    },
+    {
+      "id": 180,
+      "questionText": "Gdzie leży Wielka Rafa Koralowa?",
+      "answers": [ "Przy wybrzeżu Australii", "Na Morzu Karaibskim", "Na Malediwach", "Na Morzu Czerwonym" ],
+      "correctAnswerIndex": 0,
+      "difficulty": "średni",
+      "imageUrl": null
     }
   ]
 }
