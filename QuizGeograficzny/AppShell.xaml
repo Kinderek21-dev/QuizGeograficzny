@@ -1,19 +1,59 @@
-<Shell
+﻿<Shell
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:QuizGeograficzny.Views"
-    x:Class="QuizGeograficzny.AppShell">
+    x:Class="QuizGeograficzny.AppShell"
+    Shell.FlyoutBehavior="Disabled">
+    <Shell.FlyoutHeader>
+        <Grid HeightRequest="150" BackgroundColor="{AppThemeBinding Light=#512BD4, Dark=#2B0B98}">
+            <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="10">
+                <Label Text="Quiz Geograficzny" 
+                       TextColor="White" 
+                       FontSize="22" 
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+        </Grid>
+    </Shell.FlyoutHeader>
 
-    <ShellContent Route="splash" ContentTemplate="{DataTemplate views:SplashPage}" />
-    <ShellContent Route="login" ContentTemplate="{DataTemplate views:LoginPage}" />
-    <ShellContent Route="gamemode" ContentTemplate="{DataTemplate views:GameModePage}" />
-    <ShellContent Route="difficulty" ContentTemplate="{DataTemplate views:DifficultyPage}" />
-    <ShellContent Route="quiz" ContentTemplate="{DataTemplate views:QuizPage}" />
-    <ShellContent Route="result" ContentTemplate="{DataTemplate views:ResultPage}" />
-    <ShellContent Route="scoreboard" ContentTemplate="{DataTemplate views:ScoreboardPage}" />
-    <ShellContent Route="settings" ContentTemplate="{DataTemplate views:SettingsPage}" />
-    <ShellContent Route="ranking" ContentTemplate="{DataTemplate views:RankingModePage}" />
-    <ShellContent Route="rankingprofile" ContentTemplate="{DataTemplate views:RankingProfilePage}" />
+    <ShellContent Route="splash" 
+                  ContentTemplate="{DataTemplate views:SplashPage}" 
+                  Shell.FlyoutItemIsVisible="False" />
 
+    <ShellContent Route="login" 
+                  ContentTemplate="{DataTemplate views:LoginPage}" 
+                  Shell.FlyoutItemIsVisible="False" />
+
+    <ShellContent Route="quiz" 
+                  ContentTemplate="{DataTemplate views:QuizPage}" 
+                  Shell.FlyoutItemIsVisible="False" />
+
+    <ShellContent Route="result" 
+                  ContentTemplate="{DataTemplate views:ResultPage}" 
+                  Shell.FlyoutItemIsVisible="False" />
+
+    <ShellContent Route="difficulty" 
+                  ContentTemplate="{DataTemplate views:DifficultyPage}" 
+                  Shell.FlyoutItemIsVisible="False" />
+
+    <ShellContent Route="rankingprofile" 
+                  ContentTemplate="{DataTemplate views:RankingProfilePage}" 
+                  Shell.FlyoutItemIsVisible="False" />
+
+    <FlyoutItem Title="Strona Główna">
+        <ShellContent Route="gamemode" ContentTemplate="{DataTemplate views:GameModePage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Ranking">
+        <ShellContent Route="ranking" ContentTemplate="{DataTemplate views:RankingModePage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Tablica Wyników">
+        <ShellContent Route="scoreboard" ContentTemplate="{DataTemplate views:ScoreboardPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Ustawienia">
+        <ShellContent Route="settings" ContentTemplate="{DataTemplate views:SettingsPage}" />
+    </FlyoutItem>
 
 </Shell>

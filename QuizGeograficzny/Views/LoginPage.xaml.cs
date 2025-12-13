@@ -22,6 +22,7 @@ public partial class LoginPage : ContentPage
         {
             if (DeviceInfo.Platform == DevicePlatform.WinUI)
             {
+                Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
                 await Shell.Current.GoToAsync("///gamemode");
                 return;
             }
@@ -31,6 +32,7 @@ public partial class LoginPage : ContentPage
             if (!availability)
             {
                 await DisplayAlert("Uwaga", "Zalogowano testowo (brak biometrii).", "OK");
+                Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
                 await Shell.Current.GoToAsync("///gamemode");
                 return;
             }
@@ -46,6 +48,7 @@ public partial class LoginPage : ContentPage
 
             if (result.Authenticated)
             {
+                Shell.Current.FlyoutBehavior = FlyoutBehavior.Flyout;
                 await Shell.Current.GoToAsync("///gamemode");
             }
             else
