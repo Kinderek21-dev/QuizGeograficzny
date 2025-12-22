@@ -1,126 +1,93 @@
-using QuizGeograficzny.Services;
 using QuizGeograficzny.Models;
-using Microsoft.Maui.Storage;
-using System;
-using System.Threading.Tasks;
-using Microsoft.Maui.Controls;
+using QuizGeograficzny.Services;
 
-namespace QuizGeograficzny.Views
+namespace QuizGeograficzny.Views;
+
+public partial class RankingProfilePage : ContentPage
 {
-    public partial class RankingProfilePage : ContentPage
+    public RankingProfilePage()
     {
-        private const string KEY_PROFILE_ID = "RankingProfileId";
-        private string _profileId = string.Empty;
+        InitializeComponent();
+    }
 
-        public RankingProfilePage()
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        await LoadProfile();
+    }
+
+    private async Task LoadProfile()
+    {
+      
+        string savedId = Preferences.Get("LocalProfileId", string.Empty);
+
+        if (!string.IsNullOrEmpty(savedId))
         {
-            InitializeComponent();
-        }
-
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
-            _profileId = Preferences.Get(KEY_PROFILE_ID, string.Empty);
-            UpdateUIState();
-            await LoadProfileStatsAsync();
-        }
-
-        private void UpdateUIState()
-        {
-            if (string.IsNullOrEmpty(_profileId))
-            {
-                ProfileActionButton.Text = "Utwórz profil";
-                PlayerNameLabel.Text = "Brak profilu";
-            }
-            else
-            {
-                ProfileActionButton.Text = "Zmieñ nick";
-            }
-        }
-
-        private async Task LoadProfileStatsAsync()
-        {
-            if (string.IsNullOrEmpty(_profileId))
-            {
-                GamesPlayedLabel.Text = "-";
-                PercentCorrectLabel.Text = "-";
-                TotalPointsLabel.Text = "-";
-                CorrectTotalLabel.Text = "-";
-                return;
-            }
-
-            var profile = await RankingService.GetProfileAsync(_profileId);
+            var profile = await RankingService.GetProfileAsync(savedId);
             if (profile != null)
             {
-                PlayerNameLabel.Text = profile.PlayerName ?? "Anon";
 
-                var stats = profile.Stats;
-                if (stats != null)
+                PlayerNameLabel.Text = profile.PlayerName;
+
+                if (profile.Stats != null)
                 {
-                    GamesPlayedLabel.Text = stats.GamesPlayed.ToString();
-                    PercentCorrectLabel.Text = stats.TotalAnswers > 0 ? $"{(int)Math.Round((double)stats.CorrectAnswers / stats.TotalAnswers * 100)}%" : "0%";
-                    TotalPointsLabel.Text = stats.TotalPoints.ToString();
-                    CorrectTotalLabel.Text = stats.CorrectAnswers.ToString();
+                    GamesPlayedLabel.Text = profile.Stats.GamesPlayed.ToString();
+
+                    double percent = profile.Stats.TotalAnswers > 0
+                        ? (double)profile.Stats.CorrectAnswers / profile.Stats.TotalAnswers
+                        : 0;
+                    PercentCorrectLabel.Text = $"{percent:P0}"; 
+
+                    TotalPointsLabel.Text = profile.Stats.TotalPoints.ToString();
+                    CorrectTotalLabel.Text = profile.Stats.CorrectAnswers.ToString();
                 }
             }
         }
+    }
 
-        private async void OnChangeNameTapped(object sender, EventArgs e)
+ 
+    private async void OnChangeNameTapped(object sender, EventArgs e)
+    {
+      
+        string newName = await DisplayPromptAsync("Zmiana Nicku", "Podaj swój nowy nick:", "Zapisz", "Anuluj", placeholder: PlayerNameLabel.Text);
+
+        if (string.IsNullOrWhiteSpace(newName))
+            return;
+
+        string currentId = Preferences.Get("LocalProfileId", string.Empty);
+
+  
+        var profile = new PlayerProfile
         {
-            string title = string.IsNullOrEmpty(_profileId) ? "Utwórz profil" : "Zmieñ nick";
-            string placeholder = string.IsNullOrEmpty(_profileId) ? "" : PlayerNameLabel.Text;
+            ProfileId = string.IsNullOrEmpty(currentId) ? Guid.NewGuid().ToString() : currentId,
+            PlayerName = newName
+        };
 
-            var name = await DisplayPromptAsync(title, "Podaj swój nick:", "Zapisz", "Anuluj", placeholder);
-
-            if (string.IsNullOrWhiteSpace(name)) return;
-            name = name.Trim();
-
-            if (string.IsNullOrEmpty(_profileId))
+        if (!string.IsNullOrEmpty(currentId))
+        {
+            var existing = await RankingService.GetProfileAsync(currentId);
+            if (existing != null)
             {
-                _profileId = Guid.NewGuid().ToString("N");
-                Preferences.Set(KEY_PROFILE_ID, _profileId);
+                profile.Stats = existing.Stats;
+                profile.CreatedAt = existing.CreatedAt;
             }
-
-            var profile = await RankingService.GetProfileAsync(_profileId);
-            if (profile == null)
-            {
-                profile = new PlayerProfile
-                {
-                    ProfileId = _profileId,
-                    PlayerName = name,
-                    CreatedAt = DateTime.UtcNow.ToString("o"),
-                    Stats = new QuizGeograficzny.Models.PlayerStats()
-                };
-            }
-            else
-            {
-                profile.PlayerName = name;
-            }
-
-            try
-            {
-                await RankingService.CreateOrUpdateProfileAsync(profile);
-                await DisplayAlert("Sukces", "Profil zapisany.", "OK");
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("B³¹d", "Nie uda³o siê zapisaæ profilu: " + ex.Message, "OK");
-            }
-
-            UpdateUIState();
-            PlayerNameLabel.Text = name;
         }
 
+     
+        await RankingService.CreateOrUpdateProfileAsync(profile);
 
-        private async void OnShowGlobalRankingTapped(object sender, EventArgs e)
-        {
-            if (sender is VisualElement element)
-            {
-                await element.ScaleTo(0.95, 100);
-                await element.ScaleTo(1.0, 100);
-            }
+     
+        Preferences.Set("LocalProfileId", profile.ProfileId);
 
-            await Shell.Current.GoToAsync("///scoreboard?source=remote");
-        }
+    
+        PlayerNameLabel.Text = newName;
+        await DisplayAlert("Sukces", "Nick zosta³ zaktualizowany.", "OK");
+    }
+
+    
+    private async void OnShowGlobalRankingTapped(object sender, TappedEventArgs e)
+    {
+        
+        await Shell.Current.GoToAsync("//ranking");
     }
 }

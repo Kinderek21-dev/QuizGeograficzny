@@ -52,6 +52,10 @@
         <ShellContent Route="scoreboard" ContentTemplate="{DataTemplate views:ScoreboardPage}" />
     </FlyoutItem>
 
+    <FlyoutItem Title="Czat">
+        <ShellContent Route="chat" ContentTemplate="{DataTemplate views:ChatPage}" />
+    </FlyoutItem>
+
     <FlyoutItem Title="Ustawienia">
         <ShellContent Route="settings" ContentTemplate="{DataTemplate views:SettingsPage}" />
     </FlyoutItem>
