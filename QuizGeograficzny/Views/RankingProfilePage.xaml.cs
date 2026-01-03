@@ -87,7 +87,7 @@ public partial class RankingProfilePage : ContentPage
     
     private async void OnShowGlobalRankingTapped(object sender, TappedEventArgs e)
     {
-        
-        await Shell.Current.GoToAsync("//ranking");
+
+        await Shell.Current.GoToAsync("///scoreboard?source=remote");
     }
 }

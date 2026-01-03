@@ -1166,7 +1166,7 @@
     {
       "id": 146,
       "questionText": "W hydrologii, co to jest 'próg powodziowy'?",
-      "answers": [ "głębokość w suszy", "poziom powodujący szkody", "minimalny opad", "średnia temperatura" ],
+      "answers": [ "głębokość w suszy", "poziom powodujący_szkody", "minimalny opad", "średnia temperatura" ],
       "correctAnswerIndex": 1,
       "difficulty": "trudny",
       "imageUrl": null

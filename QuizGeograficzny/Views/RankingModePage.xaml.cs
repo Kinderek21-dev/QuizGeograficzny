@@ -6,7 +6,7 @@ namespace QuizGeograficzny.Views
 {
     public partial class RankingModePage : ContentPage
     {
-        private const string KEY_PROFILE_ID = "RankingProfileId";
+        private const string KEY_PROFILE_ID = "LocalProfileId";
 
         public RankingModePage()
         {
